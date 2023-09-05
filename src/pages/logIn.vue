@@ -10,12 +10,12 @@ export default {
     <router-link :to="{ name: 'Home' }">back to home</router-link>
 
     <div class="d-flex justify-content-center text-center">
-        <form @submit.prevent="validateEmail(email)">
+        <form @submit.prevent>
 
             <!-- email -->
             <div>
                 <label for="email">email</label>
-                <input type="email" name="email" id="email" :value="email">
+                <input type="email" name="email" id="email">
             </div>
 
             <div>
