@@ -14,13 +14,7 @@ export default {
 }
 </script>
 
-<template>
-    <div>
-        <h2>
-            shower component
-        </h2>
-    </div>
-</template>
+<template></template>
 
 <style scoped>
 .container-fluid {

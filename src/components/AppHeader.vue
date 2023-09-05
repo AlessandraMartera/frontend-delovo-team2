@@ -7,9 +7,16 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <h1 class="text-center">
-      header
-    </h1>
+    <nav>
+      <button>
+        <router-link :to="{ name: 'register' }">register</router-link>
+      </button>
+
+      |s
+      <button>
+        <router-link :to="{ name: 'logIn' }">log in</router-link>
+      </button>
+    </nav>
   </div>
 </template>
 
