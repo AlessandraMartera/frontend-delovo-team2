@@ -3,14 +3,14 @@ import axios from 'axios';
 
 export default {
     name: 'RestaurantShow',
-    mounted() {
-        axios.get('http://localhost:8000/api/restaurants').then(response => {
-            const data = response.data;
-            console.log(data);
-        }).catch(error => {
-            console.log(error);
-        });
-    }
+    // mounted() {
+    //     axios.get('http://localhost:8000/api/restaurants').then(response => {
+    //         const data = response.data;
+    //         console.log(data);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+    // }
 }
 </script>
 

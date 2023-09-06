@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from './pages/Home.vue';
+import home from './pages/home.vue';
+import about from './pages/about.vue';
 
 import register from './pages/register.vue';
 import logIn from './pages/logIn.vue';
@@ -10,19 +11,26 @@ history: createWebHistory(),
 routes: [
 {
 path: '/',
-name: 'Home',
-component: Home
+name: 'home',
+component: home
 },
+{
+path: '/about/:id',
+name: 'about',
+component: about
+},
+
+
 {
 path: '/register',
 name: 'register',
 component: register
 },
 {
-    path: '/logIn',
-    name: 'logIn',
-    component: logIn
-    },
+path: '/logIn',
+name: 'logIn',
+component: logIn
+},
 
 ]
 });
