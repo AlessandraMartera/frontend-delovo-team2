@@ -42,11 +42,7 @@ export default {
     <router-link :to="{ name: 'home' }">back to home</router-link>
 
     <div class="d-flex justify-content-center text-center">
-<<<<<<< HEAD
-        <form @submit.prevent>
-=======
         <form @submit.prevent="logInUser()">
->>>>>>> pages
 
             <!-- email -->
             <div>
