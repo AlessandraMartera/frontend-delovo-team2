@@ -19,6 +19,13 @@ export default {
 </script>
 
 <template>
-    {{ restaurant.id }}
-    {{ restaurant.nome }}
+    <div>
+        <router-link :to="{ name: 'home' }">back to home</router-link>
+
+    </div>
+
+    <div class="container">
+        {{ restaurant.id }}
+        {{ restaurant.nome }}
+    </div>
 </template>
