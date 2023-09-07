@@ -12,7 +12,7 @@ export default {
             .then((response) => {
 
                 this.restaurant = response.data.restaurant;
-                console.log(this.restaurant);
+                // console.log(this.restaurant);
             })
     }
 }

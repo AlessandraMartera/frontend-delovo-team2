@@ -5,22 +5,24 @@ export default {
     data() {
         return {
             restaurants: [],
-            data: []
+            data: {
+                'email': '',
+                'password': ''
+            }
+        }
+    },
+    methods: {
+        logInUser(email, password) {
+            axios.post('http://127.0.0.1:8000/login', this.data, {
+                headers: { 'Content-type': 'multipart/form-data' }
+            }).then(res => {
+                this.data.email = email;
+                this.data.password = password;
+
+            })
 
         }
     },
-    // methods: {
-    //     logInUser() {
-    //         axios.post('http://127.0.0.1:8000/api/user', this.data, {
-    //             headers: { 'Content-type': 'multipart/form-data' }
-    //         }).then(res => {
-
-    //             this.data = res.data.user;
-    //             console.log(this.data);
-    //         })
-
-    //     }
-    // },
     // mounted() {
 
     //     axios.get('http://127.0.0.1:8000/api/restaurants')
@@ -41,25 +43,24 @@ export default {
     Log in
     <router-link :to="{ name: 'home' }">back to home</router-link>
 
-    <div class="d-flex justify-content-center text-center">
-        <form @submit.prevent="logInUser()">
-
+    <form @submit.prevent="logInUser(data.email, data.password)">
+        <div>
             <!-- email -->
-            <div>
-                <label for="email">email</label>
-                <input type="email" name="email" id="email">
-            </div>
+            <label for="email">email</label>
+            <input type="text" name="email" id="email" required v-model="data.email">
+        </div>
 
-            <div>
-                <!--password -->
-                <label for=" password">password</label>
-                <input type="password" name="password" id="password">
+        <div>
+            <!-- password -->
+            <label for="password">password</label>
+            <input type="text" name="password" id="password" required v-model="data.password">
+        </div>
+        <div>
 
-            </div>
+        </div>
 
-            <input type="submit" value="entra">
-        </form>
-    </div>
+        <input type="submit" value="submit">
+    </form>
 </template>
 
 <style scoped>

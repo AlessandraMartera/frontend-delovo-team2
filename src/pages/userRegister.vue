@@ -5,7 +5,8 @@ export default {
 
     data() {
         return {
-            restaurants: [],
+            user_id: 0,
+            user: [],
             data: {
                 'email': '',
                 'password': '',
@@ -14,33 +15,29 @@ export default {
         }
     },
     methods: {
+        routeNav() {
+            // Imposta un ritardo di 2 secondi (2000 millisecondi) prima della navigazione
+            setTimeout(() => {
+                // console.log(this.user_id);
+                this.$router.push({ name: 'restaurantRegister', params: { id: this.user_id } });
+                // Sostituisci '/destinazione' con l'URL di destinazione effettivo
+            }, 1000);
+        },
         registerUser(email, password) {
             axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
 
-                console.log(res)
-
+                this.user_id = res.data.user.id;
                 this.data.email = email;
                 this.data.password = password;
-
-
-
             });
+
+
+
         }
-    }
-    //     mounted() {
+    },
 
-    //         axios.get('http://127.0.0.1:8000/api/restaurants')
-    //             .then(res => {
-
-    //                 this.restaurants = res.data.restaurants;
-    //                 console.log(this.restaurants);
-
-    //             }).catch(error => {
-    //                 console.log(error);
-    //             })
-    //     }
 
 }
 </script>
@@ -61,12 +58,13 @@ export default {
             <div>
                 <!-- password -->
                 <label for="password">password</label>
-                <input type="text" nome="password" id="password" required v-model="data.password">
+                <input type="text" name="password" id="password" required v-model="data.password">
+            </div>
+            <div>
+
             </div>
 
-            <div>
-                <input type="submit" value="submit">
-            </div>
+            <input type="submit" value="submit" @click="routeNav">
 
         </form>
     </div>
