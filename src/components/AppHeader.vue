@@ -14,8 +14,8 @@ export default {
 
 
       <button>
-        log in
-        <!-- <router-link :to="{ name: 'logIn' }">log in</router-link> -->
+
+        <router-link :to="{ name: 'logIn' }">log in</router-link>
       </button>
     </nav>
   </div>

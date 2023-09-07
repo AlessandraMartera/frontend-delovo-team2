@@ -6,6 +6,8 @@ import about from './pages/about.vue';
 import userRegister from './pages/userRegister.vue';
 import restaurantRegister from './pages/restaurantRegister.vue';
 
+import logIn from './pages/logIn.vue';
+
 const router = createRouter({
 history: createWebHistory(),
 routes: [
@@ -25,10 +27,15 @@ name: 'userRegister',
 component: userRegister
 },
 {
-    path: '/restaurantRegister/:id',
-    name: 'restaurantRegister',
-    component: restaurantRegister
+    path: '/logIn',
+    name: 'logIn',
+    component: logIn
     },
+{
+path: '/restaurantRegister/:id',
+name: 'restaurantRegister',
+component: restaurantRegister
+},
 
 ]
 });

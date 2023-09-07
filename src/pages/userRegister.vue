@@ -19,9 +19,9 @@ export default {
             // Imposta un ritardo di 2 secondi (2000 millisecondi) prima della navigazione
             setTimeout(() => {
                 // console.log(this.user_id);
-                this.$router.push({ name: 'dettaglio', params: { id: this.user_id } });
+                this.$router.push({ name: 'restaurantRegister', params: { id: this.user_id } });
                 // Sostituisci '/destinazione' con l'URL di destinazione effettivo
-            }, 5000);
+            }, 1000);
         },
         registerUser(email, password) {
             axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
@@ -65,7 +65,7 @@ export default {
     <router-link :to="{ name: 'home' }">back to home</router-link>
 
     <div class="d-flex justify-content-center">
-        <form @submit.prevent="registerUser(data.email, data.email)">
+        <form @submit.prevent="registerUser(data.email, data.password)">
             <div>
                 <!-- email -->
                 <label for="email">email</label>
@@ -75,15 +75,16 @@ export default {
             <div>
                 <!-- password -->
                 <label for="password">password</label>
-                <input type="text" nome="password" id="password" required v-model="data.password">
+                <input type="text" name="password" id="password" required v-model="data.password">
             </div>
             <div>
 
             </div>
 
-            <router-link :to="{ name: 'restaurantRegister', params: { id: user_id } }" @click="gestisciNavigazione">
-                <input type="submit" value="submit">
-            </router-link>
+            <input type="submit" value="submit" @click="gestisciNavigazione">
+            <!-- <router-link :to="{ name: 'restaurantRegister', params: { id: user_id } }">
+
+            </router-link> -->
 
 
 
