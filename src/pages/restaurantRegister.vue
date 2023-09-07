@@ -1,53 +1,40 @@
 <script>
 import axios from 'axios';
+
 export default {
-
-
     data() {
         return {
             users: [],
             data: {
-                "user_id": 0,
+                "user_id": 11,
                 "nome": '',
                 "indirizzo": '',
                 "partita_iva": '',
                 "image": '',
             }
-
         }
     },
     methods: {
-        registerUser(nome, indirizzo, partita_iva, image, user_id) {
+        registerUser() {
+            // console.log(this.data.user_id);
             axios.post('http://127.0.0.1:8000/api/restaurants-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
-
-                console.log(res)
-
-                this.data.user_id = user_id;
-                // this.data.nome = nome;
-                // this.data.indirizzo = indirizzo;
-                // this.data.partita_iva = partita_iva;
-                // this.data.image = image;
-
-                console.log(user_id);
-
+                console.log("Restaurant registered successfully!");
+            }).catch(error => {
+                console.error("Error registering restaurant:", error);
             });
         }
     },
     mounted() {
-
-        axios.get('http://127.0.0.1:8000/api/users')
+        axios.get('http://127.0.0.1:8000/api/create')
             .then(res => {
-
-                this.users = res.data.users;
-                console.log(this.users);
-
+                // console.log(res.data)
+                // this.users = res.data.users;
             }).catch(error => {
-                console.log(error);
-            })
+                console.error("Error fetching users:", error);
+            });
     }
-
 }
 </script>
 
@@ -61,14 +48,12 @@ export default {
     </h1>
     <div class="d-flex justify-content-center">
 
-        <form @submit.prevent="registerUser(data.nome, data.indirizzo, data.partita_iva, data.image, user_id)">
+        <form @submit.prevent="registerUser(data.user_id, data.nome, data.indirizzo, data.partita_iva, data.image,)">
             <div>
                 <!-- id user -->
-                <!-- <label for="user_id">id dell'user</label>
-                <input type="number" name="user_id" id="user_id" required v-model="details"> -->
-                <select name="user_id" id="user_id">
-                    <option v-for="user in users" :v-model="user.id">
-                        {{ user.id }}
+                <select name="user_id" id="user_id" v-model="data.user_id">
+                    <option v-for="user in users" :key="user.id" :value="user.id">
+                        {{ user.id }} {{ user.email }}
                     </option>
                 </select>
             </div>

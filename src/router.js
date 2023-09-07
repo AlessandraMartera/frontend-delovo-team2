@@ -25,7 +25,7 @@ name: 'userRegister',
 component: userRegister
 },
 {
-    path: '/restaurantRegister',
+    path: '/restaurantRegister/:id',
     name: 'restaurantRegister',
     component: restaurantRegister
     },
