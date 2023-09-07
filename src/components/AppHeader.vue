@@ -29,37 +29,62 @@ export default {
 <template>
   <header>
     <nav>
-      <button>
-        <router-link :to="{ name: 'user-register' }">register</router-link>
-      </button>
+      <div id="logo">
+        <img src="../assets/img/lovo.png" alt="LOGO">
+      </div>
+      <div id="bottoni">
 
-      |s
-      <button>
-        <router-link :to="{ name: 'logIn' }">log in</router-link>
-      </button>
+        <ul id="eat">
+          <li>
+            <input type="text" placeholder="Cosa vuoi mangiare?">
+          </li>
+          <li>
+            <button>
+              <router-link :to="{ name: 'user-register' }">register</router-link>
+            </button>
+          </li>
+          <li>
+            <button>
+              <router-link :to="{ name: 'logIn' }">log in</router-link>
+            </button>
+          </li>
+        </ul>
+        <ul id="menu">
+          <li v-for="link in links">
+            <button>
+              <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
 
 <style scoped>
 header {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
   font-size: 15px;
-  margin: 20px 40px 20px 40px;
-  color: yellow;
+  margin: 23px 40px 0px 40px;
+  padding: 40px 0px;
+  background-color: #d6d7d9;
 }
 
 #logo {
   width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 140px;
 }
 
 nav {
-  background-color: rgb(56, 55, 55);
+  background-color: #1f1f1f;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  height: 145px;
 }
 
 #eat {
@@ -69,6 +94,19 @@ nav {
 
 #bottoni {
   width: 70%;
+  padding: 50px 0;
+}
+
+button,
+input {
+  background-color: #e6d5a4;
+  border-radius: 12px;
+  border: 1px solid;
+  height: 32px;
+}
+
+input {
+  width: 300px;
 }
 
 #eat,
@@ -81,5 +119,10 @@ nav {
 ul {
   list-style-type: none;
   ;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>

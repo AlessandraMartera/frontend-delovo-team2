@@ -23,19 +23,25 @@ export default {
 </script>
 
 <template>
-    <h1>
-        i nostri ristoranti:
-    </h1>
+    <div id="ciabatta">
+        <h1>
+            i nostri ristoranti:
+        </h1>
 
-    <ul>
-        <li v-for="(restaurant, idx) in this.restaurants">
-            <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-                {{ restaurant.nome }}
-            </router-link>
+        <ul>
+            <li v-for="(restaurant, idx) in this.restaurants">
+                <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+                    {{ restaurant.nome }}
+                </router-link>
 
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
 </template>
 
-<style></style>
+<style>
+#ciabatta {
+    background-color: rgb(10, 53, 95);
+}
+</style>
 
