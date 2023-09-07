@@ -33,7 +33,7 @@ export default {
         <router-link :to="{ name: 'userRegister' }">register</router-link>
       </button>
 
-      |s
+
       <button>
         log in
         <!-- <router-link :to="{ name: 'logIn' }">log in</router-link> -->
