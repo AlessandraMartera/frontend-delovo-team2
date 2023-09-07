@@ -15,7 +15,7 @@ export default {
         }
     },
     methods: {
-        gestisciNavigazione() {
+        routeNav() {
             // Imposta un ritardo di 2 secondi (2000 millisecondi) prima della navigazione
             setTimeout(() => {
                 // console.log(this.user_id);
@@ -81,13 +81,7 @@ export default {
 
             </div>
 
-            <input type="submit" value="submit" @click="gestisciNavigazione">
-            <!-- <router-link :to="{ name: 'restaurantRegister', params: { id: user_id } }">
-
-            </router-link> -->
-
-
-
+            <input type="submit" value="submit" @click="routeNav">
 
         </form>
     </div>
