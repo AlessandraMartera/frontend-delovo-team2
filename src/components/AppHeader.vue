@@ -30,12 +30,13 @@ export default {
   <header>
     <nav>
       <button>
-        <router-link :to="{ name: 'user-register' }">register</router-link>
+        <router-link :to="{ name: 'useRegister' }">register</router-link>
       </button>
 
       |s
       <button>
-        <router-link :to="{ name: 'logIn' }">log in</router-link>
+        log in
+        <!-- <router-link :to="{ name: 'logIn' }">log in</router-link> -->
       </button>
     </nav>
   </header>

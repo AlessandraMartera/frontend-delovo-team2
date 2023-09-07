@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import home from './pages/home.vue';
 import about from './pages/about.vue';
 
-import userRegister from './pages/user-register.vue';
-import logIn from './pages/logIn.vue';
+import userRegister from './pages/userRegister.vue';
+import restaurantRegister from './pages/restaurantRegister.vue';
 
 const router = createRouter({
 history: createWebHistory(),
@@ -20,15 +20,15 @@ name: 'about',
 component: about
 },
 {
-path: '/user-register',
-name: 'user-register',
+path: '/useRegister',
+name: 'useRegister',
 component: userRegister
 },
 {
-path: '/logIn',
-name: 'logIn',
-component: logIn
-},
+    path: '/restaurantRegister',
+    name: 'restaurantRegister',
+    component: restaurantRegister
+    },
 
 ]
 });
