@@ -5,8 +5,9 @@ export default {
 
     data() {
         return {
-            restaurants: [],
+
             data: {
+
                 'email': '',
                 'password': '',
             }
@@ -18,29 +19,26 @@ export default {
             axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
+                this.user_id = res.data.user_id;
+                console.log(res);
 
-                console.log(res)
 
                 this.data.email = email;
                 this.data.password = password;
 
-
+                //  redirect to restaurantRegister
+                window.location.href = '/restaurantRegister';
 
             });
+
+
+
         }
+    },
+    mounted() {
+
+
     }
-    //     mounted() {
-
-    //         axios.get('http://127.0.0.1:8000/api/restaurants')
-    //             .then(res => {
-
-    //                 this.restaurants = res.data.restaurants;
-    //                 console.log(this.restaurants);
-
-    //             }).catch(error => {
-    //                 console.log(error);
-    //             })
-    //     }
 
 }
 </script>
@@ -63,10 +61,28 @@ export default {
                 <label for="password">password</label>
                 <input type="text" nome="password" id="password" required v-model="data.password">
             </div>
-
             <div>
-                <input type="submit" value="submit">
+
             </div>
+            <!-- 
+            <router-link :to="{ name: 'restaurantRegister' }">
+
+                via alla pagina di creazione
+            </router-link> -->
+
+            <input type="submit" value="submit">
+
+            <!-- <button type="submit">
+                <router-link :to="{ name: 'restaurantRegister' }">
+                    submit
+
+                </router-link>
+            </button> -->
+
+
+
+
+
 
         </form>
     </div>

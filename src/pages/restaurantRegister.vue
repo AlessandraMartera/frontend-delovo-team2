@@ -5,9 +5,9 @@ export default {
 
     data() {
         return {
-            restaurants: [],
+            users: [],
             data: {
-                "user_id": '',
+                "user_id": 0,
                 "nome": '',
                 "indirizzo": '',
                 "partita_iva": '',
@@ -18,34 +18,35 @@ export default {
     },
     methods: {
         registerUser(nome, indirizzo, partita_iva, image, user_id) {
-            axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
+            axios.post('http://127.0.0.1:8000/api/restaurants-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
 
                 console.log(res)
 
                 this.data.user_id = user_id;
-                this.data.nome = nome;
-                this.data.indirizzo = indirizzo;
-                this.data.partita_iva = partita_iva;
-                this.data.image = image;
+                // this.data.nome = nome;
+                // this.data.indirizzo = indirizzo;
+                // this.data.partita_iva = partita_iva;
+                // this.data.image = image;
 
+                console.log(user_id);
 
             });
         }
+    },
+    mounted() {
+
+        axios.get('http://127.0.0.1:8000/api/users')
+            .then(res => {
+
+                this.users = res.data.users;
+                console.log(this.users);
+
+            }).catch(error => {
+                console.log(error);
+            })
     }
-    //     mounted() {
-
-    //         axios.get('http://127.0.0.1:8000/api/restaurants')
-    //             .then(res => {
-
-    //                 this.restaurants = res.data.restaurants;
-    //                 console.log(this.restaurants);
-
-    //             }).catch(error => {
-    //                 console.log(error);
-    //             })
-    //     }
 
 }
 </script>
@@ -54,13 +55,22 @@ export default {
     register
 
     <router-link :to="{ name: 'home' }">back to home</router-link>
-
+    <hr>
+    <h1>
+        REGISTRA IL TUO RISTORANTE
+    </h1>
     <div class="d-flex justify-content-center">
-        <form @submit.prevent="registerUser(data.nome, data.indirizzo, data.partita_iva, data.image, data.user_id)">
+
+        <form @submit.prevent="registerUser(data.nome, data.indirizzo, data.partita_iva, data.image, user_id)">
             <div>
-                <!-- name -->
-                <label for="user_id">id dell'user</label>
-                <input type="number" name="user_id" id="user_id" required v-model="data.user_id">
+                <!-- id user -->
+                <!-- <label for="user_id">id dell'user</label>
+                <input type="number" name="user_id" id="user_id" required v-model="details"> -->
+                <select name="user_id" id="user_id">
+                    <option v-for="user in users" :v-model="user.id">
+                        {{ user.id }}
+                    </option>
+                </select>
             </div>
 
             <div>

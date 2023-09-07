@@ -4,7 +4,7 @@ import home from './pages/home.vue';
 import about from './pages/about.vue';
 
 import userRegister from './pages/userRegister.vue';
-// import userRegister from './pages/useRegister.vue';
+import restaurantRegister from './pages/restaurantRegister.vue';
 
 const router = createRouter({
 history: createWebHistory(),
@@ -24,6 +24,11 @@ path: '/useRegister',
 name: 'useRegister',
 component: userRegister
 },
+{
+    path: '/restaurantRegister',
+    name: 'restaurantRegister',
+    component: restaurantRegister
+    },
 
 ]
 });
