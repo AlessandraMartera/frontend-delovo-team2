@@ -5,9 +5,9 @@ export default {
 
     data() {
         return {
-
+            user_id: 0,
+            user: [],
             data: {
-
                 'email': '',
                 'password': '',
             }
@@ -15,19 +15,28 @@ export default {
         }
     },
     methods: {
+        gestisciNavigazione() {
+            // Imposta un ritardo di 2 secondi (2000 millisecondi) prima della navigazione
+            setTimeout(() => {
+                // console.log(this.user_id);
+                this.$router.push({ name: 'dettaglio', params: { id: this.user_id } });
+                // Sostituisci '/destinazione' con l'URL di destinazione effettivo
+            }, 5000);
+        },
         registerUser(email, password) {
             axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
-                this.user_id = res.data.user_id;
-                console.log(res);
+                // this.user_id = res.data.user_id;
+                // console.log(res.data.user.id);
+                this.user_id = res.data.user.id;
 
-
+                // console.log(this.user_id);
                 this.data.email = email;
                 this.data.password = password;
 
                 //  redirect to restaurantRegister
-                window.location.href = '/restaurantRegister';
+                // window.location.href = '/restaurantRegister';
 
             });
 
@@ -37,7 +46,14 @@ export default {
     },
     mounted() {
 
+        axios.get('http://127.0.0.1:8000/api/users')
+            .then(res => {
 
+                // this.users = res.data.users;
+                // console.log(this.users);
+            }).catch(error => {
+                console.error("Error fetching users:", error);
+            });
     }
 
 }
@@ -49,7 +65,7 @@ export default {
     <router-link :to="{ name: 'home' }">back to home</router-link>
 
     <div class="d-flex justify-content-center">
-        <form @submit.prevent="registerUser(data.email, data.password)">
+        <form @submit.prevent="registerUser(data.email, data.email)">
             <div>
                 <!-- email -->
                 <label for="email">email</label>
@@ -64,22 +80,10 @@ export default {
             <div>
 
             </div>
-            <!-- 
-            <router-link :to="{ name: 'restaurantRegister' }">
 
-                via alla pagina di creazione
-            </router-link> -->
-
-            <input type="submit" value="submit">
-
-            <!-- <button type="submit">
-                <router-link :to="{ name: 'restaurantRegister' }">
-                    submit
-
-                </router-link>
-            </button> -->
-
-
+            <router-link :to="{ name: 'restaurantRegister', params: { id: user_id } }" @click="gestisciNavigazione">
+                <input type="submit" value="submit">
+            </router-link>
 
 
 
