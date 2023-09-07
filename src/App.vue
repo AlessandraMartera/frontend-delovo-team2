@@ -14,7 +14,7 @@ export default {
 
 <template>
   <AppHeader />
-  <RestaurantShow />
+
   <Router-view></Router-view>
 </template>
 

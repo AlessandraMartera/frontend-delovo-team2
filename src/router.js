@@ -20,8 +20,8 @@ name: 'about',
 component: about
 },
 {
-path: '/useRegister',
-name: 'useRegister',
+path: '/userRegister',
+name: 'userRegister',
 component: userRegister
 },
 {
