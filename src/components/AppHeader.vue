@@ -40,7 +40,7 @@ export default {
           </li>
           <li>
             <button>
-              <router-link :to="{ name: 'user-register' }">register</router-link>
+              <router-link :to="{ name: 'userRegister' }">register</router-link>
             </button>
           </li>
           <li>
