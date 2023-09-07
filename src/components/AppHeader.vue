@@ -9,7 +9,7 @@ export default {
   <div class="container-fluid">
     <nav>
       <button>
-        <router-link :to="{ name: 'register' }">register</router-link>
+        <router-link :to="{ name: 'user-register' }">register</router-link>
       </button>
 
       |s

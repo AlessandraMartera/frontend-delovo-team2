@@ -7,32 +7,33 @@ export default {
         return {
             restaurants: [],
             data: {
-                "name": '',
-                "email": '',
-                "password": ''
+                "user_id": '',
+                "nome": '',
+                "indirizzo": '',
+                "partita_iva": '',
+                "image": '',
             }
 
         }
     },
-    // methods: {
-    //     registerUser(name, email, password) {
-    //         axios.post('http://127.0.0.1:8000/api/restaurants', this.data, {
-    //             headers: { 'Content-type': 'multipart/form-data' }
-    //         }).then(res => {
+    methods: {
+        registerUser(nome, indirizzo, partita_iva, image, user_id) {
+            axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
+                headers: { 'Content-type': 'multipart/form-data' }
+            }).then(res => {
 
-    //             this.restaurants = res.data.restaurants;
-    //             console.log(this.restaurants);
+                console.log(res)
 
-    //             this.data.name = name;
-    //             this.data.email = email;
-    //             this.data.password = password;
+                this.data.user_id = user_id;
+                this.data.nome = nome;
+                this.data.indirizzo = indirizzo;
+                this.data.partita_iva = partita_iva;
+                this.data.image = image;
 
-    //             console.log(this.data);
 
-    //         })
-
-    //     }
-    // }
+            });
+        }
+    }
     //     mounted() {
 
     //         axios.get('http://127.0.0.1:8000/api/restaurants')
@@ -53,30 +54,37 @@ export default {
     register
 
     <router-link :to="{ name: 'home' }">back to home</router-link>
+
     <div class="d-flex justify-content-center">
-        <form methods="POST" @submit.prevent="registerUser(data.name, data.email, data.password)">
+        <form @submit.prevent="registerUser(data.nome, data.indirizzo, data.partita_iva, data.image, data.user_id)">
             <div>
                 <!-- name -->
-                <label for="name">name</label>
-                <input type="name" name="name" id="name" required v-model="data.name">
+                <label for="user_id">id dell'user</label>
+                <input type="number" name="user_id" id="user_id" required v-model="data.user_id">
+            </div>
+
+            <div>
+                <!-- name -->
+                <label for="nome">nome</label>
+                <input type="text" nome="nome" id="nome" required v-model="data.nome">
             </div>
 
             <div>
                 <!-- email -->
-                <label for="email">email</label>
-                <input type="email" name="email" id="email" required :v-model="data.email">
+                <label for="indirizzo">indirizzo</label>
+                <input type="text" name="indirizzo" id="indirizzo" required v-model="data.indirizzo">
             </div>
 
             <div>
                 <!-- password -->
-                <label for="password">password</label>
-                <input type="password" name="password" id="password" required :v-model="data.password">
+                <label for="partita_iva">partita_iva</label>
+                <input type="text" name="partita_iva" id="partita_iva" required v-model="data.partita_iva">
             </div>
 
             <div>
                 <!-- confirm password -->
-                <label for="confirm_password">confirm password</label>
-                <input type="confirm_password" name="confirm_password" id="confirm_password" required>
+                <label for="image">image</label>
+                <input type="text" name="image" id="image" v-model="data.image">
             </div>
 
             <div>
