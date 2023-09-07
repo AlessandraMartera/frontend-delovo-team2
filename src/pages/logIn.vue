@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         logInUser(email, password) {
-            axios.post('http://127.0.0.1:8000/api/user-login', this.data, {
+            axios.post('http://127.0.0.1:8000/login', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
                 this.data.email = email;

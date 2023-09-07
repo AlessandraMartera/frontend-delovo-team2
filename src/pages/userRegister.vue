@@ -27,34 +27,17 @@ export default {
             axios.post('http://127.0.0.1:8000/api/user-create', this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
-                // this.user_id = res.data.user_id;
-                // console.log(res.data.user.id);
-                this.user_id = res.data.user.id;
 
-                // console.log(this.user_id);
+                this.user_id = res.data.user.id;
                 this.data.email = email;
                 this.data.password = password;
-
-                //  redirect to restaurantRegister
-                // window.location.href = '/restaurantRegister';
-
             });
 
 
 
         }
     },
-    mounted() {
 
-        axios.get('http://127.0.0.1:8000/api/users')
-            .then(res => {
-
-                // this.users = res.data.users;
-                // console.log(this.users);
-            }).catch(error => {
-                console.error("Error fetching users:", error);
-            });
-    }
 
 }
 </script>

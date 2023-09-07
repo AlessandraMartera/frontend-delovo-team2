@@ -12,7 +12,6 @@ export default {
             .then(res => {
 
                 this.restaurants = res.data.restaurants;
-                // console.log(this.restaurants);
 
             }).catch(error => {
                 console.log(error);

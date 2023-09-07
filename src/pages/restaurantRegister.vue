@@ -16,41 +16,29 @@ export default {
         }
     },
     methods: {
+        // funzione 
         registerUser(nome, indirizzo, partita_iva, image,) {
-            // console.log(this.data.user_id);
+
             axios.post(`http://127.0.0.1:8000/api/restaurants-create/${this.$route.params.id}`, this.data, {
                 headers: { 'Content-type': 'multipart/form-data' }
             }).then(res => {
-                console.log(res.data);
-
-
                 this.data.nome = nome;
                 this.data.indirizzo = indirizzo;
                 this.data.partita_iva = partita_iva;
                 this.data.image = image;
 
-                // console.log(this.data);
                 console.log("Restaurant registered successfully!");
             }).catch(error => {
                 console.error("Error registering restaurant:", error);
             });
         }
-    },
-    mounted() {
-        axios.get(`http://127.0.0.1:8000/api/create/${this.$route.params.id}`)
-            .then(res => {
-                console.log(res.data.user);
-                this.user = res.data.user;
-            }).catch(error => {
-                console.error("Error fetching users:", error);
-            });
     }
 }
 </script>
 
 <template>
     register
-
+    <!-- router link che ci ripora alla home -->
     <router-link :to="{ name: 'home' }">back to home</router-link>
     <hr>
     <h1>
@@ -59,14 +47,6 @@ export default {
     <div class="d-flex justify-content-center">
 
         <form @submit.prevent="registerUser(data.nome, data.indirizzo, data.partita_iva, data.image,)">
-            <div>
-                <!-- id user -->
-                <!-- <select name="user_id" id="user_id" v-model="data.user_id">
-                    <option v-for="user in users" :key="user.id" :value="user.id">
-                        {{ user.id }} {{ user.email }}
-                    </option>
-                </select> -->
-            </div>
 
             <div>
                 <!-- name -->
@@ -75,24 +55,26 @@ export default {
             </div>
 
             <div>
-                <!-- email -->
+                <!-- indirizzo -->
                 <label for="indirizzo">indirizzo</label>
                 <input type="text" name="indirizzo" id="indirizzo" required v-model="data.indirizzo">
             </div>
 
             <div>
-                <!-- password -->
+                <!-- partita iva -->
                 <label for="partita_iva">partita_iva</label>
                 <input type="text" name="partita_iva" id="partita_iva" required v-model="data.partita_iva">
             </div>
 
             <div>
-                <!-- confirm password -->
+                <!-- immagine -->
                 <label for="image">image</label>
                 <input type="text" name="image" id="image" v-model="data.image">
             </div>
 
+
             <div>
+                <!-- input submit -->
                 <input type="submit" value="submit">
             </div>
         </form>
