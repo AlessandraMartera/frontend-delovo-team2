@@ -29,29 +29,14 @@ export default {
 <template>
   <header>
     <nav>
-      <div id="logo">
-        <img src="img/logo.svg" alt="LOGO">
-      </div>
-      <div id="bottoni">
-        <ul id="eat">
-          <li>
-            <input type="text" placeholder="Cosa vuoi mangiare?">
-          </li>
-          <li><button>
-              <router-link :to="{ name: 'register' }">register</router-link>
-            </button>
-          </li>
-          <li><button>
-              <router-link :to="{ name: 'logIn' }">log in</router-link>
-            </button>
-          </li>
-        </ul>
-        <ul id="menu">
-          <li v-for="link in links">
-            <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
-          </li>
-        </ul>
-      </div>
+      <button>
+        <router-link :to="{ name: 'user-register' }">register</router-link>
+      </button>
+
+      |s
+      <button>
+        <router-link :to="{ name: 'logIn' }">log in</router-link>
+      </button>
     </nav>
   </header>
 </template>
