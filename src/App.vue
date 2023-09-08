@@ -3,6 +3,7 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 import AppFooter from './components/AppFooter.vue'
+// import RestaurantShow from './components/RestaurantShow.vue'
 
 
 
@@ -11,7 +12,7 @@ export default {
     AppHeader,
     AppMain,
     AppFooter,
-    RestaurantShow
+    // RestaurantShow
   },
 
 }
@@ -20,10 +21,12 @@ export default {
 <template>
   <body>
     <div class="background">
+      <img src="./assets/img/Sfondo.jpg" alt=".sfondo" class="sfondo">
       <AppHeader />
-      <AppMain />
-      <AppFooter />
+      <!-- <AppMain /> -->
+      <!-- <AppFooter /> -->
     </div>
+
 
   </body>
 
@@ -36,11 +39,26 @@ export default {
 @use './styles/general.scss' as *;
 
 .background {
-  background-image: url('./assets/img/Sfondo.jpg');
+
   height: 100vh;
-  margin: 0 100px;
-  object-fit: contain;
+  width: 80%;
+  margin: 0 auto;
+  background-color: aqua;
+
+  position: relative;
+  z-index: 0;
 
 
+
+  img {
+    height: 100vh;
+    width: 100%;
+
+
+  }
+
+  .sfondo {
+    object-fit: cover;
+  }
 }
 </style>

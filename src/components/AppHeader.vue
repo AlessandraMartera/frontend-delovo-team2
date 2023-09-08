@@ -30,7 +30,7 @@ export default {
   <header>
     <nav>
       <div id="logo">
-        <img src="../assets/img/lovo.png" alt="LOGO">
+        <!-- <img src="../assets/img/lovo.png" alt="LOGO"> -->
       </div>
       <div id="bottoni">
 
@@ -69,8 +69,15 @@ export default {
 header {
   font-size: 15px;
 
-  margin-top: 50px;
+  margin: 0 auto;
   padding: 40px 0px;
+  position: absolute;
+  // z-index: 2;
+  top: 0;
+  left: -5%;
+  text-align: center;
+  width: 110%;
+
 
 }
 

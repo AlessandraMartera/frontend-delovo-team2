@@ -22,9 +22,9 @@ export default {
 </script>
 
 <template>
-    <h1>
+    <!-- <h1>
         i nostri ristoranti:
-    </h1>
+    </h1> -->
 
     <ul>
         <li v-for="(restaurant, idx) in this.restaurants">
