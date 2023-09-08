@@ -1,11 +1,24 @@
 <script>
 import axios from 'axios';
 
-
-
 export default {
-    name: 'AppSectionTypology'
+    name: 'AppSectionTypology',
 
+    data() {
+        return {
+            typologies: []
+        }
+    },
+    mounted() {
+        axios.get(`http://127.0.0.1:8000/api/typologies`)
+            .then((response) => {
+
+                this.typologies = response.data.typologies;
+                console.log(this.typologies);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
 }
 </script>
 
@@ -17,8 +30,11 @@ export default {
         <div class="section-egg">
             <input type="button" value="left">
 
-            <div class="uovo">
+            <div class="uovo" v-for="(typologies, idx) in this.typologies">
                 <img class="indiano" src="./../assets/images/Indiano.jpg" alt="indiano">
+                <span>
+                    {{ typologies.nome }}
+                </span>
             </div>
 
             <input type="button" value="right">
@@ -77,11 +93,20 @@ h1 {
         -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
         border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 
+        text-align: center;
+
         img {
             width: 168px;
             height: 240px;
             -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+
+        span {
+            background-color: #000000;
+            color: white;
+            position: relative;
+            bottom: 120px;
         }
     }
 }
