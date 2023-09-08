@@ -21,7 +21,7 @@ export default {
 <template>
   <body>
     <div class="background">
-      <img src="./assets/img/Sfondo.jpg" alt=".sfondo" class="sfondo">
+      <img src="./assets/images/Sfondo.jpg" alt=".sfondo" class="sfondo">
       <AppHeader />
       <!-- <AppMain /> -->
       <!-- <AppFooter /> -->
@@ -34,9 +34,14 @@ export default {
   <Router-view></Router-view>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use './styles/partials/variables.scss' as Var;
 @use './styles/general.scss' as *;
+
+body {
+
+  height: 100%;
+}
 
 .background {
 

@@ -30,7 +30,7 @@ export default {
   <header>
     <nav>
       <div id="logo">
-        <!-- <img src="../assets/img/lovo.png" alt="LOGO"> -->
+        <img src="./../assets/images/Logo3.svg" alt="">
       </div>
       <div id="bottoni">
 
@@ -79,20 +79,36 @@ header {
   width: 110%;
 
 
+
 }
 
 #logo {
-  width: 30%;
+  height: 230px;
+  width: 150px;
   display: flex;
   justify-content: center;
+
+  background-color: $vividAuburn;
+  margin: 35px 0 0 100px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border: 5px solid black;
+
+
+
+  img {
+    margin-left: 4px;
+    margin-top: -10px;
+    height: 230px;
+  }
 }
 
-img {
-  width: 140px;
-}
+
 
 nav {
-  background-color: #1f1f1f;
+  background-image: url('./../assets/images/Sfondo_sezione_tipologie.jpg');
+  background-size: cover;
+  background-position: bottom;
   display: flex;
   justify-content: space-between;
   align-items: center;
