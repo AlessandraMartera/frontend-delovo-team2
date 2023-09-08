@@ -25,13 +25,12 @@ export default {
       <AppHeader />
       <!-- <AppMain /> -->
       <!-- <AppFooter /> -->
+
+      <Router-view></Router-view>
     </div>
 
 
   </body>
-
-
-  <Router-view></Router-view>
 </template>
 
 <style lang="scss" scoped>
