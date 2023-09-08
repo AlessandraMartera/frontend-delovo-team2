@@ -23,10 +23,10 @@ export default {
     <div class="background">
       <img src="./assets/images/Sfondo.jpg" alt=".sfondo" class="sfondo">
       <AppHeader />
-      <!-- <AppMain /> -->
+      <AppMain />
       <!-- <AppFooter /> -->
 
-      <Router-view></Router-view>
+      <!-- <Router-view></Router-view> -->
     </div>
 
 

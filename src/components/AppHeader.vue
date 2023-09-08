@@ -75,7 +75,7 @@ header {
   // z-index: 2;
   top: 0;
   left: -5%;
-  text-align: center;
+
   width: 110%;
 
 
@@ -87,6 +87,7 @@ header {
   width: 150px;
   display: flex;
   justify-content: center;
+  margin-left: 200px;
 
   background-color: $vividAuburn;
   margin: 35px 0 0 100px;
@@ -98,7 +99,7 @@ header {
 
   img {
     margin-left: 4px;
-    margin-top: -10px;
+    margin-top: -5px;
     height: 230px;
   }
 }
@@ -113,6 +114,18 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 145px;
+
+  // box-shadow: 10px 10px 5px black;
+
+  // -webkit-box-shadow: -1px 0px 20px 8px #000000;
+  // -moz-box-shadow: -1px 0px 20px 8px #000000;
+  // -o-box-shadow: -1px 0px 20px 8px #000000;
+  // box-shadow: -1px 0px 20px 8px #000000;
+
+  -webkit-box-shadow: 10px 11px 24px 6px #000000;
+  -moz-box-shadow: 10px 11px 24px 6px #000000;
+  -o-box-shadow: 10px 11px 24px 6px #000000;
+  box-shadow: 10px 11px 24px 6px #000000;
 }
 
 #eat {
