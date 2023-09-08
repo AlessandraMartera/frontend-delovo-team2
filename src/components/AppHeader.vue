@@ -61,12 +61,17 @@ export default {
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@use './../styles/partials/variables.scss' as *;
+@use './../styles/partials/mixins.scss' as *;
+@use './../styles/general.scss' as *;
+
 header {
   font-size: 15px;
-  margin: 23px 40px 0px 40px;
+
+  margin-top: 50px;
   padding: 40px 0px;
-  background-color: #d6d7d9;
+
 }
 
 #logo {
