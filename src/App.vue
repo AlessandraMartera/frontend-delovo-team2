@@ -24,7 +24,7 @@ export default {
       <img src="./assets/images/Sfondo.jpg" alt=".sfondo" class="sfondo">
       <AppHeader />
       <AppMain />
-      <!-- <AppFooter /> -->
+      <AppFooter />
 
       <!-- <Router-view></Router-view> -->
     </div>
