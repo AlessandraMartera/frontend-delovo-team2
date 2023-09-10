@@ -30,12 +30,14 @@ export default {
         <div class="section-egg">
             <input type="button" value="left">
 
-            <div class="uovo" v-for="(typologies, idx) in this.typologies">
-                <img class="indiano" src="./../assets/images/Indiano.jpg" alt="indiano">
-                <span>
-                    {{ typologies.nome }}
-                </span>
-            </div>
+            <section class="tipology-list">
+                <div class="uovo" v-for="(typologies, idx) in this.typologies">
+                    <img class="indiano" src="./../assets/images/Indiano.jpg" alt="indiano">
+                    <span>
+                        {{ typologies.nome }}
+                    </span>
+                </div>
+            </section>
 
             <input type="button" value="right">
         </div>
@@ -81,6 +83,15 @@ h1 {
             height: 60px;
             width: 60px;
             border-radius: 50%;
+        }
+
+        .tipology-list {
+            width: 70vw;
+            overflow: hidden;
+            overflow-x: auto;
+
+            // uova in linea
+            display: flex;
         }
     }
 
