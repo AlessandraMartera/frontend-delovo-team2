@@ -71,19 +71,11 @@ export default {
 @use './../styles/general.scss' as *;
 
 header {
-  font-size: 15px;
-
-  margin: 0 auto;
-  padding: 40px 0px;
-  position: absolute;
-  // z-index: 2;
-  top: 0;
-  left: -5%;
-
   width: 110%;
-
-
-
+  margin: 0 auto;
+  margin-left: -5%;
+  padding: 40px 0px;
+  font-size: 15px;
 }
 
 #logo {
@@ -99,16 +91,12 @@ header {
   border-bottom-right-radius: 50%;
   border: 5px solid black;
 
-
-
   img {
     margin-left: 4px;
     margin-top: -5px;
     height: 230px;
   }
 }
-
-
 
 nav {
   background-image: url('./../assets/images/Sfondo_sezione_tipologie.jpg');
@@ -134,7 +122,6 @@ nav {
 
 #eat {
   margin-top: 20px;
-
 }
 
 #bottoni {

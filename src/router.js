@@ -3,11 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import home from './pages/home.vue';
 import about from './pages/about.vue';
 
-import userRegister from './pages/userRegister.vue';
-import restaurantRegister from './pages/restaurantRegister.vue';
-
-import logIn from './pages/logIn.vue';
-
 import AppSectionTypology from './components/AppSectionTypology.vue';
 
 const router = createRouter({
@@ -22,21 +17,6 @@ const router = createRouter({
             path: '/about/:id',
             name: 'about',
             component: about
-        },
-        {
-            path: '/userRegister',
-            name: 'userRegister',
-            component: userRegister
-        },
-        {
-            path: '/logIn',
-            name: 'logIn',
-            component: logIn
-        },
-        {
-            path: '/restaurantRegister/:id',
-            name: 'restaurantRegister',
-            component: restaurantRegister
         },
         {
             path: '/typologies',

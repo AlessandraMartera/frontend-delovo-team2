@@ -2,7 +2,6 @@
 import axios from 'axios';
 import AppSectionTypology from "./AppSectionTypology.vue";
 
-
 export default {
     name: 'AppMain',
 
@@ -29,17 +28,7 @@ export default {
 </script>
 
 <template>
-    <AppSectionTypology />
-
     <section class="restaurants">
-        <!-- <ul>
-            <li v-for="(restaurant, idx) in this.restaurants">
-                <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-                    {{ restaurant.nome }}
-                </router-link>
-
-            </li>
-        </ul> -->
         <router-view></router-view>
     </section>
 </template>
@@ -49,24 +38,24 @@ export default {
 @use './../styles/partials/mixins.scss' as *;
 @use './../styles/general.scss' as *;
 
-.restaurants {
-    margin: 0 auto;
-    position: absolute;
-    top: 750px;
-    left: -7.5%;
-    width: 115%;
-    height: 200px;
-    text-align: center;
+// .restaurants {
+//     margin: 0 auto;
+//     // position: absolute;
+//     // top: 750px;
+//     // left: -7.5%;
+//     width: 115%;
+//     height: 200px;
+//     text-align: center;
 
-    background-color: aquamarine;
+//     background-color: aquamarine;
 
-    // list css
-    overflow: hidden;
-    overflow-y: auto;
+//     // list css
+//     overflow: hidden;
+//     overflow-y: auto;
 
 
-    li {
-        list-style: none;
-    }
-}
+//     li {
+//         list-style: none;
+//     }
+// }
 </style>

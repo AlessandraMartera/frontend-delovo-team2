@@ -6,15 +6,13 @@ export default {
 
     data() {
         return {
-            typologies: []
+            typologies: [],
         }
     },
     mounted() {
         axios.get(`http://127.0.0.1:8000/api/typologies`)
             .then((response) => {
-
                 this.typologies = response.data.typologies;
-                console.log(this.typologies);
             }).catch(error => {
                 console.log(error);
             })
@@ -30,14 +28,23 @@ export default {
         <div class="section-egg">
             <input type="button" value="left">
 
-            <section class="tipology-list">
+            <!-- <section class="tipology-list">
                 <div class="uovo" v-for="(typologies, idx) in this.typologies">
                     <img class="indiano" src="./../assets/images/Indiano.jpg" alt="indiano">
                     <span>
                         {{ typologies.nome }}
                     </span>
                 </div>
-            </section>
+            </section> -->
+
+            <div class="row text-white">
+                <div class="col" v-for="typology in this.typologies">
+                    <button class="btn btn-primary" type="submit" @click.prevent="$emit('search', typology.id)">
+                        {{ typology.nome }}
+                    </button>
+                </div>
+
+            </div>
 
             <input type="button" value="right">
         </div>
@@ -57,11 +64,10 @@ h1 {
 }
 
 .typology {
-    margin: 0 auto;
-    position: absolute;
-    top: 300px;
-    left: -7.5%;
-    width: 115%;
+    margin-top: 100px;
+    margin-left: -5%;
+
+    width: 110%;
     height: 400px;
     background-image: url(./../assets/images/Sfondo_sezione_tipologie.jpg);
     background-size: cover;

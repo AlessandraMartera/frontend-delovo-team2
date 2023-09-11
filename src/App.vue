@@ -20,16 +20,12 @@ export default {
 
 <template>
   <body>
+    <!-- backgroud che da lo sfondo bianco a tutta la pagina -->
     <div class="background">
-      <img src="./assets/images/Sfondo.jpg" alt=".sfondo" class="sfondo">
       <AppHeader />
       <AppMain />
       <AppFooter />
-
-      <!-- <Router-view></Router-view> -->
     </div>
-
-
   </body>
 </template>
 
@@ -37,32 +33,9 @@ export default {
 @use './styles/partials/variables.scss' as Var;
 @use './styles/general.scss' as *;
 
-body {
-
-  height: 100%;
-}
-
 .background {
-
-  height: 100vh;
   width: 80%;
   margin: 0 auto;
-  background-color: aqua;
-
-  position: relative;
-  z-index: 0;
-
-
-
-  img {
-    height: 100vh;
-    width: 100%;
-
-
-  }
-
-  .sfondo {
-    object-fit: cover;
-  }
+  background-image: url('./assets/images/Sfondo.jpg');
 }
 </style>
