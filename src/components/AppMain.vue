@@ -1,12 +1,11 @@
 <script>
 import axios from 'axios';
-import AppSectionTypology from "./AppSectionTypology.vue";
 
 export default {
     name: 'AppMain',
 
     components: {
-        AppSectionTypology
+
     },
     data() {
         return {

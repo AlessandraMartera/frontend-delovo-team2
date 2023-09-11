@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import home from './pages/home.vue';
 import about from './pages/about.vue';
 
-import AppSectionTypology from './components/AppSectionTypology.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,11 +16,6 @@ const router = createRouter({
             path: '/about/:id',
             name: 'about',
             component: about
-        },
-        {
-            path: '/typologies',
-            name: 'AppSectionTypology',
-            component: AppSectionTypology
         },
 
     ]
