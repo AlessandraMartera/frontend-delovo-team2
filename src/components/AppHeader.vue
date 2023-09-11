@@ -40,12 +40,16 @@ export default {
           </li>
           <li>
             <button>
-              <router-link :to="{ name: 'userRegister' }">register</router-link>
+              <a href="http://127.0.0.1:8000/register">
+                register
+              </a>
             </button>
           </li>
           <li>
             <button>
-              <router-link :to="{ name: 'logIn' }">log in</router-link>
+              <a href="http://127.0.0.1:8000/login">
+                log in
+              </a>
             </button>
           </li>
         </ul>
