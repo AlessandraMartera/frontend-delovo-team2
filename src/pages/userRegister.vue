@@ -32,9 +32,6 @@ export default {
                 this.data.email = email;
                 this.data.password = password;
             });
-
-
-
         }
     },
 

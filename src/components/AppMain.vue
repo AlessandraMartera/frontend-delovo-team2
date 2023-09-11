@@ -32,14 +32,15 @@ export default {
     <AppSectionTypology />
 
     <section class="restaurants">
-        <ul>
+        <!-- <ul>
             <li v-for="(restaurant, idx) in this.restaurants">
                 <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
                     {{ restaurant.nome }}
                 </router-link>
 
             </li>
-        </ul>
+        </ul> -->
+        <router-view></router-view>
     </section>
 </template>
 

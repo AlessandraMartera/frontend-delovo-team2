@@ -25,7 +25,7 @@ export default {
     </div>
 
     <div class="container">
-        {{ restaurant.id }}
+        {{ restaurant.id }} -
         {{ restaurant.nome }}
     </div>
 </template>
