@@ -1,41 +1,29 @@
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    name: 'AppMain',
+  name: "AppMain",
 
-    components: {
-
-    },
-    data() {
-        return {
-            restaurants: []
-        }
-    },
-    mounted() {
-
-        axios.get('http://127.0.0.1:8000/api/restaurants')
-            .then(res => {
-
-                this.restaurants = res.data.restaurants;
-
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-}
+  components: {},
+  data() {
+    return {
+      restaurants: [],
+    };
+  },
+  mounted() {},
+};
 </script>
 
 <template>
-    <section class="restaurants">
-        <router-view></router-view>
-    </section>
+  <section class="restaurants">
+    <router-view></router-view>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-@use './../styles/partials/variables.scss' as *;
-@use './../styles/partials/mixins.scss' as *;
-@use './../styles/general.scss' as *;
+@use "./../styles/partials/variables.scss" as *;
+@use "./../styles/partials/mixins.scss" as *;
+@use "./../styles/general.scss" as *;
 
 // .restaurants {
 //     margin: 0 auto;
@@ -51,7 +39,6 @@ export default {
 //     // list css
 //     overflow: hidden;
 //     overflow-y: auto;
-
 
 //     li {
 //         list-style: none;
