@@ -16,18 +16,23 @@ export default {
     <h1>Scegli la tipologia di ristorante</h1>
 
     <!-- <AppSectionTypology /> -->
-    <div class="row text-white">
-      <div class="col" v-for="(typology, idx) in types" :key="idx">
-        <button
-          @click.prevent="$emit('event', idx)"
-          :class="
-            selectedTypes.includes(typology.nome)
-              ? 'btn btn-warning'
-              : 'btn btn-primary'
-          "
-        >
-          {{ typology.nome }}
+    <div class="section-egg ">
+      <div class="" v-for="(typology, idx) in types" :key="idx">
+
+        <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome)
+          ? ' uovo selected'
+          : 'uovo'
+          ">
+
+          <img src="./../assets/images/Italiano.jpg" alt="">
+          <span>
+            {{ typology.nome }}
+          </span>
         </button>
+
+
+
+
       </div>
     </div>
   </section>
@@ -81,22 +86,32 @@ h1 {
     }
   }
 
+  .selected {
+    img {
+      filter: grayscale(100%) opacity(1);
+    }
+
+  }
+
   .uovo {
     margin-left: 25px;
     display: block;
     width: 168px;
     height: 240px;
-    background-color: #0060a0;
+
     -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 
     text-align: center;
+
+
 
     img {
       width: 168px;
       height: 240px;
       -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+
     }
 
     span {
@@ -105,6 +120,14 @@ h1 {
       position: relative;
       bottom: 120px;
     }
+
+    .selected {
+      img {}
+
+      background-color: #00000034;
+    }
+
+    .not-selected {}
   }
 }
 </style>
