@@ -17,7 +17,7 @@ export default {
 
     <!-- <AppSectionTypology /> -->
     <div class="section-egg ">
-      <div class="" v-for="(typology, idx) in types" :key="idx">
+      <div class="item" v-for="(typology, idx) in types" :key="idx">
 
         <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome)
           ? ' uovo selected'
@@ -122,12 +122,11 @@ h1 {
     }
 
     .selected {
-      img {}
 
       background-color: #00000034;
     }
 
-    .not-selected {}
+
   }
 }
 </style>
