@@ -27,5 +27,8 @@ export default {
       {{ restaurant.nome }}
     </h1>
     <div>ci puoi trovare {{ restaurant.indirizzo }}</div>
+    <div>
+      {{ restaurant.products }}
+    </div>
   </div>
 </template>
