@@ -25,6 +25,7 @@ export default {
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
 
+
 // .restaurants {
 //     margin: 0 auto;
 //     // position: absolute;

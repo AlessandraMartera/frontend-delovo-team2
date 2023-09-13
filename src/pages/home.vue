@@ -66,32 +66,73 @@ export default {
     <!-- Componente tipologie per ricerca -->
     <AppSectionTypology @event="toggle" :types="this.typologies" :selectedTypes="this.selectedTypologies" />
     <!-- Sezione listato ristoranti filtrati -->
-    <section class="mt-5">
-        <!-- Se non sono selezionate tipologie stampa tutti -->
-        <div v-if="selectedTypologies.length === 0">
-            <ul v-for="(restaurant, idx) in restaurants" :key="idx">
-                <li>
-                    <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-                        {{ restaurant.nome }}
-                    </router-link>
-                </li>
-            </ul>
-        </div>
-        <!-- Se non esistono ristoranti con le tipologie selezionate -->
-        <div v-else-if="filteredRestaurants.length === 0">
-            Non ci sono ristoranti compatibili con la tua selezione
-        </div>
-        <!-- Stampa tutti i ristoranti -->
-        <div v-else>
-            <ul v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
-                <li>
-                    <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-                        {{ restaurant.nome }}
-                    </router-link>
-                </li>
-            </ul>
+    <section class="mt-5 ">
+        <div>
+            <!-- Se non sono selezionate tipologie stampa tutti -->
+            <div class="restaurant row" v-if="selectedTypologies.length === 0">
+                <ul class="col-6" v-for="(restaurant, idx) in restaurants" :key="idx">
+                    <li class="card ">
+                        <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+                            <h2> {{ restaurant.nome }} </h2>
+
+                            <div class="typology-card">
+                                <h4>Tipologia:</h4>
+                                <ul>
+                                    <li v-for="typology in restaurant.typologies">
+                                        {{ typology.nome }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+            <!-- Se non esistono ristoranti con le tipologie selezionate -->
+            <div v-else-if="filteredRestaurants.length === 0">
+                Non ci sono ristoranti compatibili con la tua selezione
+            </div>
+            <!-- Stampa tutti i ristoranti -->
+            <div v-else>
+                <ul v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
+                    <li>
+                        <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+                            {{ restaurant.nome }}
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+@use "./../styles/partials/variables.scss" as *;
+@use "./../styles/partials/mixins.scss" as *;
+@use "./../styles/general.scss" as *;
+
+.card {
+    padding: 20px;
+    margin: 20px;
+    min-height: 300px;
+
+    h2 {
+        color: $vividAuburn;
+        margin-bottom: 25px;
+    }
+
+    background-image: url(./../assets/images/Sfondo_ristoranti_home.avif);
+    background-size: cover;
+
+    .typology-card {
+        h4 {
+            color: $CookiesAndCream;
+        }
+
+        li {
+            color: $pearlAqua;
+        }
+    }
+
+}
+</style>
