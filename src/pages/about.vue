@@ -30,19 +30,43 @@ export default {
     },
     addToCart(item) {
       console.log(this.items);
+      // controllo se ci sono oggetti all'interno del carrello 
       if (this.items.length > 0) {
         const cartItem = this.items[0];
         console.log(cartItem);
+
+        // controlle se l'id del ristorante corrisponde all'id del ristorante degli oggetti presenti nel carrello 
         if (cartItem.ristorante_id == this.restaurant.id) {
+
+          // controllo che la quantità del prodotto si maggiore di 0
           if (item.quantità > 0) {
             const oggetto = {
               nome: item.nome,
               id: item.id,
               quantità: item.quantità,
               ristorante_id: this.restaurant.id,
+
             };
-            this.items.push(item.nome, oggetto);
-            sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
+            // controllo gli elementi di items 
+            this.items.forEach((element, idx) => {
+
+              // se trovo un elemento con lo stesso id dell'oggetto
+              if (oggetto.id === element.id) {
+
+                // sotituisco l'oggetto già presente con quello appena inserito
+                this.items[idx] = oggetto;
+              }
+              else {
+
+                // aggiugno l'oggeto all'array items
+                this.items.push(oggetto);
+              }
+
+              // aggiungo il prodotto alla sessione
+              sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
+            });
+
+
           } else {
             alert("Selezionare quantità maggiore di 0");
           }
@@ -95,25 +119,13 @@ export default {
             <img :src="product.image" alt="" />
           </div>
 
-          <div
-            class="cart-add d-flex justify-content-center gap-3 align-items-center"
-            v-if="!product.is_clicked"
-            @click.prevent="toggleCart(product)"
-          >
+          <div class="cart-add d-flex justify-content-center gap-3 align-items-center" v-if="!product.is_clicked"
+            @click.prevent="toggleCart(product)">
             Aggiungi al carrello
           </div>
           <div class="cart-add" v-else>
-            <form
-              class="d-flex justify-content-between align-items-center"
-              @submit.prevent="addToCart(product)"
-            >
-              <input
-                v-model="product.quantità"
-                class="quantity"
-                type="number"
-                min="1"
-                placeholder="0"
-              />
+            <form class="d-flex justify-content-between align-items-center" @submit.prevent="addToCart(product)">
+              <input v-model="product.quantità" class="quantity" type="number" min="1" placeholder="0" />
               <button type="submit" class="btn btn-secondary">Aggiungi</button>
             </form>
           </div>
@@ -123,17 +135,19 @@ export default {
   </div>
   <div class="cart">
     <h1>Carrello</h1>
-    <h2>{{}}</h2>
+    <h2 v-if="this.items.length != 0">
+      <h6>Ristorante selezionato</h6>
+      <h4>
+        {{ this.items[0].ristorante_nome }}
+      </h4>
+    </h2>
     <ul>
       <li class="row" v-for="(item, index) in items" :key="index">
         <span class="col-5">
           {{ item.nome }}
         </span>
         <span class="col-1">{{ item.quantità }}</span>
-        <button
-          class="col-3 btn btn-danger"
-          @click="removeItem(index, item.nome)"
-        >
+        <button class="col-3 btn btn-danger" @click="removeItem(index, item.nome)">
           Rimuovi
         </button>
       </li>
@@ -168,9 +182,11 @@ export default {
   padding: 10px 20px;
   cursor: pointer;
 }
+
 .quantity {
   width: 50px;
 }
+
 .cart {
   position: absolute;
   width: 350px;
