@@ -23,7 +23,7 @@ export default {
   <section class="typology">
     <h1>Scegli la tipologia di ristorante</h1>
 
-    <button @click="showDropdown"> > </button>
+    <button @click="showDropdown"> &#11167; </button>
 
     <!-- <AppSectionTypology /> -->
     <section v-if="showmenu" class="section-egg ">
@@ -52,6 +52,7 @@ export default {
 @use "./../styles/general.scss" as *;
 
 h1 {
+  display: inline;
   padding: 25px;
   color: white;
 }
@@ -59,6 +60,7 @@ h1 {
 .typology {
   margin-top: 100px;
   margin-left: -5%;
+  padding: 10px;
 
   width: 110%;
   // height: 400px;
