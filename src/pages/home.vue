@@ -71,35 +71,43 @@ export default {
     :selectedTypes="this.selectedTypologies"
   />
   <!-- Sezione listato ristoranti filtrati -->
-  <section class="mt-5">
+  <section class="my-5">
     <div>
       <!-- Se non sono selezionate tipologie stampa tutti -->
-      <div class="restaurant row" v-if="selectedTypologies.length === 0">
-        <ul class="col-6" v-for="(restaurant, idx) in restaurants" :key="idx">
+      <div class="list-rest" v-if="selectedTypologies.length === 0">
+        <ul
+          class="list-rest-ul"
+          v-for="(restaurant, idx) in restaurants"
+          :key="idx"
+        >
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-            <li class="card">
+            <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
-              <div style="width: 300px; height: 200px">
-                <img
-                  class="img"
-                  :src="
-                    restaurant.image
-                      ? `${this.beUrl}${restaurant.image}`
-                      : `${this.beUrl}main-image.jpg`
-                  "
-                  alt=""
-                />
-              </div>
-              <div class="typology-card">
-                <h4>Tipologia:</h4>
-                <ul>
-                  <li
-                    v-for="(typology, idx) in restaurant.typologies"
-                    :key="idx"
-                  >
-                    {{ typology.nome }}
-                  </li>
-                </ul>
+              <div class="d-flex gap-5 align-items-center">
+                <div>
+                  <div class="cont-img">
+                    <img
+                      class="img"
+                      :src="
+                        restaurant.image
+                          ? `${this.beUrl}${restaurant.image}`
+                          : `${this.beUrl}main-image.jpg`
+                      "
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="typology-card">
+                  <h4>Tipologia:</h4>
+                  <ul>
+                    <li
+                      v-for="(typology, idx) in restaurant.typologies"
+                      :key="idx"
+                    >
+                      {{ typology.nome }}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </li>
           </router-link>
@@ -107,28 +115,48 @@ export default {
       </div>
       <!-- Se non esistono ristoranti con le tipologie selezionate -->
       <div v-else-if="filteredRestaurants.length === 0" class="no-restaurant">
-        <h2>Non ci sono ristoranti compatibili con la tua selezione</h2>
+        <h2 class="text-danger h1">
+          Non ci sono ristoranti compatibili con la tua selezione
+        </h2>
       </div>
       <!-- Stampa tutti i ristoranti -->
-      <div v-else>
-        <ul v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
-          <li class="card">
-            <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+      <div v-else class="list-rest">
+        <ul
+          class="list-rest-ul"
+          v-for="(restaurant, idx) in filteredRestaurants"
+          :key="idx"
+        >
+          <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+            <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
-
-              <div class="typology-card">
-                <h4>Tipologia:</h4>
-                <ul>
-                  <li
-                    v-for="(typology, idx) in restaurant.typologies"
-                    :key="idx"
-                  >
-                    {{ typology.nome }}
-                  </li>
-                </ul>
+              <div class="d-flex gap-5 align-items-center">
+                <div>
+                  <div class="cont-img">
+                    <img
+                      class="img"
+                      :src="
+                        restaurant.image
+                          ? `${this.beUrl}${restaurant.image}`
+                          : `${this.beUrl}main-image.jpg`
+                      "
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="typology-card">
+                  <h4>Tipologia:</h4>
+                  <ul>
+                    <li
+                      v-for="(typology, idx) in restaurant.typologies"
+                      :key="idx"
+                    >
+                      {{ typology.nome }}
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </router-link>
-          </li>
+            </li>
+          </router-link>
         </ul>
       </div>
     </div>
@@ -139,31 +167,48 @@ export default {
 @use "./../styles/partials/variables.scss" as *;
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
-
+.list-rest {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  .list-rest-ul {
+    width: calc(50% - 20px);
+    display: flex;
+    justify-content: center;
+  }
+}
 .card {
+  height: 500px;
+  padding: 0 0 20px 80px;
+  // margin: 20px 0 0 180px;
+  width: 800px;
+  background-size: cover;
+  background-image: url(./../assets/images/Sfondo_ristoranti_home.avif);
+  border-radius: 50px;
+  -webkit-box-shadow: 10px 11px 24px 6px #000000;
+  -moz-box-shadow: 10px 11px 24px 6px #000000;
+  -o-box-shadow: 10px 11px 24px 6px #000000;
+  box-shadow: 10px 11px 24px 6px #565555;
+
   a {
     width: 100%;
   }
-
-  padding: 20px;
-  margin: 20px;
-  min-height: 300px;
-
   h2 {
-    color: $vividAuburn;
+    color: #e0cfb5;
     margin-bottom: 25px;
+    font-size: 3rem;
+    max-width: 420px;
   }
-
-  background-image: url(./../assets/images/Sfondo_ristoranti_home.avif);
-  background-size: cover;
 
   .typology-card {
     h4 {
-      color: $CookiesAndCream;
+      color: white;
+      font-size: 2.5rem;
     }
 
     li {
-      color: $pearlAqua;
+      color: #a9c9bf;
     }
   }
 }
@@ -175,9 +220,15 @@ export default {
   background-color: rgba($color: $richBlack, $alpha: 0.7);
   border: 3px solid black;
 }
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.cont-img {
+  width: 420px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 0 30px 30px 0;
+  .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 </style>

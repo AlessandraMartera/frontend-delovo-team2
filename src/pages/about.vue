@@ -99,10 +99,6 @@ export default {
 </script>
 
 <template>
-  <div>
-    <router-link :to="{ name: 'home' }">back to home</router-link>
-  </div>
-
   <div class="container my-5 mx-5">
     <div class="titolo-ristorante">
       <div class="foto d-flex">

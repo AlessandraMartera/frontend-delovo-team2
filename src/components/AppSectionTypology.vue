@@ -7,42 +7,40 @@ export default {
   },
   data() {
     return {
-      showmenu: false
+      showmenu: false,
     };
   },
   methods: {
     showDropdown: function () {
       this.showmenu = !this.showmenu;
-      console.log(this.showmenu)
-    }
-  }
+      // console.log(this.showmenu);
+    },
+  },
 };
 </script>
 
 <template>
   <section class="typology">
-    <h1>Scegli la tipologia di ristorante</h1>
-
-    <button @click="showDropdown"> &#11167; </button>
+    <div class="select d-flex gap-3" @click="showDropdown">
+      <h1 class="ms-5">SCEGLI LA TIPOLOGIA DI RISTORANTE</h1>
+      <button class="py-0 px-2 rounded">&#11167;</button>
+    </div>
 
     <!-- <AppSectionTypology /> -->
-    <section v-if="showmenu" class="section-egg ">
+    <section v-if="showmenu" class="section-egg">
       <div class="item" v-for="(typology, idx) in types" :key="idx">
-
-        <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome)
-          ? ' uovo selected'
-          : 'uovo'
-          ">
-
-          <img src="./../assets/images/Italiano.jpg" alt="">
-          <span>
-            {{ typology.nome }}
+        <button
+          class="uovo"
+          @click.prevent="$emit('event', idx)"
+          :class="selectedTypes.includes(typology.nome) ? ' selected' : ''"
+        >
+          <img class="img-egg" src="./../assets/images/Italiano.jpg" alt="" />
+          <span class="border px-4 py-2 rounded">
+            {{ typology.nome.toUpperCase() }}
           </span>
         </button>
-
       </div>
     </section>
-
   </section>
 </template>
 
@@ -52,23 +50,22 @@ export default {
 @use "./../styles/general.scss" as *;
 
 h1 {
-  display: inline;
-  padding: 25px;
-  color: $skobeloff;
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  color: #e0cfb5;
+  font-size: 3rem;
+  // text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+.select {
+  cursor: pointer;
 }
 
 .typology {
   margin-top: 100px;
   margin-left: -5%;
   padding: 10px;
-
   width: 110%;
-  // height: 400px;
   background-image: url(./../assets/images/Sfondo_sezione_tipologie.jpg);
   background-size: cover;
   background-position: top;
-
   -webkit-box-shadow: 10px 11px 24px 6px #000000;
   -moz-box-shadow: 10px 11px 24px 6px #000000;
   -o-box-shadow: 10px 11px 24px 6px #000000;
@@ -82,32 +79,21 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     gap: 30px;
-
-    input {
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-    }
-
-    .tipology-list {
-      width: 70vw;
-      overflow: hidden;
-      overflow-x: auto;
-
-      // uova in linea
-      display: flex;
-    }
+    // .img-egg {
+    //   filter: opacity(0.7);
+    // }
   }
 
   .selected {
     img {
       filter: grayscale(100%) opacity(1);
     }
-
   }
 
   button {
     border: none;
+    font-size: 1.5rem;
+    background: #a08b80;
   }
 
   .uovo {
@@ -116,33 +102,26 @@ h1 {
     width: 168px;
     height: 240px;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-
     text-align: center;
-
-
-
+    font-size: 1.4rem;
+    .selected {
+      background-color: red;
+    }
 
     img {
       width: 168px;
       height: 240px;
-
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       border: 4px solid $skobeloff;
     }
 
     span {
-      background-color: #000000;
+      background-color: #596d67;
       color: white;
       position: relative;
-      bottom: 120px;
+      bottom: 90px;
+      left: 50px;
     }
-
-    .selected {
-
-      background-color: #00000034;
-    }
-
-
   }
 }
 </style>
