@@ -6,8 +6,16 @@ export default {
     selectedTypes: Array,
   },
   data() {
-    return {};
+    return {
+      showmenu: false
+    };
   },
+  methods: {
+    showDropdown: function () {
+      this.showmenu = !this.showmenu;
+      console.log(this.showmenu)
+    }
+  }
 };
 </script>
 
@@ -15,8 +23,10 @@ export default {
   <section class="typology">
     <h1>Scegli la tipologia di ristorante</h1>
 
+    <button @click="showDropdown"> &#11167; </button>
+
     <!-- <AppSectionTypology /> -->
-    <div class="section-egg ">
+    <section v-if="showmenu" class="section-egg ">
       <div class="item" v-for="(typology, idx) in types" :key="idx">
 
         <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome)
@@ -30,11 +40,9 @@ export default {
           </span>
         </button>
 
-
-
-
       </div>
-    </div>
+    </section>
+
   </section>
 </template>
 
@@ -44,6 +52,7 @@ export default {
 @use "./../styles/general.scss" as *;
 
 h1 {
+  display: inline;
   padding: 25px;
   color: white;
 }
@@ -51,9 +60,10 @@ h1 {
 .typology {
   margin-top: 100px;
   margin-left: -5%;
+  padding: 10px;
 
   width: 110%;
-  height: 400px;
+  // height: 400px;
   background-image: url(./../assets/images/Sfondo_sezione_tipologie.jpg);
   background-size: cover;
   background-position: top;
@@ -67,8 +77,10 @@ h1 {
     padding: 20px 40px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
 
     input {
       height: 60px;
