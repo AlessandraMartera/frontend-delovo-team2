@@ -32,8 +32,16 @@ export default {
         <router-link class="home" :to="{ name: 'home' }">Torna alla Home</router-link>
       </div>
       <div class="offset-3 col-2 d-flex gap-4 align-items-center">
-        <button href="http://127.0.0.1:8000/register">Registrati</button>
-        <button href="http://127.0.0.1:8000/login">Accedi</button>
+        <a href="http://127.0.0.1:8000/register">
+          <button>
+            Registrati
+          </button>
+        </a>
+        <a href="http://127.0.0.1:8000/login">
+          <button>
+            Accedi
+          </button>
+        </a>
         <button href="#">Carrello</button>
       </div>
 

@@ -65,45 +65,29 @@ export default {
 
 <template>
   <!-- Componente tipologie per ricerca -->
-  <AppSectionTypology
-    @event="toggle"
-    :types="this.typologies"
-    :selectedTypes="this.selectedTypologies"
-  />
+  <AppSectionTypology @event="toggle" :types="this.typologies" :selectedTypes="this.selectedTypologies" />
   <!-- Sezione listato ristoranti filtrati -->
   <section class="my-5">
     <div>
       <!-- Se non sono selezionate tipologie stampa tutti -->
       <div class="list-rest" v-if="selectedTypologies.length === 0">
-        <ul
-          class="list-rest-ul"
-          v-for="(restaurant, idx) in restaurants"
-          :key="idx"
-        >
+        <ul class="list-rest-ul" v-for="(restaurant, idx) in restaurants" :key="idx">
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
-              <div class="d-flex gap-5 align-items-center">
+              <div class="d-flex gap-4 align-items-center">
                 <div>
                   <div class="cont-img">
-                    <img
-                      class="img"
-                      :src="
-                        restaurant.image
-                          ? `${this.beUrl}${restaurant.image}`
-                          : `${this.beUrl}main-image.jpg`
-                      "
-                      alt=""
-                    />
+                    <img class="img" :src="restaurant.image
+                      ? `${this.beUrl}${restaurant.image}`
+                      : `${this.beUrl}main-image.jpg`
+                      " alt="" />
                   </div>
                 </div>
                 <div class="typology-card">
                   <h4>Tipologia:</h4>
                   <ul>
-                    <li
-                      v-for="(typology, idx) in restaurant.typologies"
-                      :key="idx"
-                    >
+                    <li v-for="(typology, idx) in restaurant.typologies" :key="idx">
                       {{ typology.nome }}
                     </li>
                   </ul>
@@ -121,35 +105,23 @@ export default {
       </div>
       <!-- Stampa tutti i ristoranti -->
       <div v-else class="list-rest">
-        <ul
-          class="list-rest-ul"
-          v-for="(restaurant, idx) in filteredRestaurants"
-          :key="idx"
-        >
+        <ul class="list-rest-ul" v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
               <div class="d-flex gap-5 align-items-center">
                 <div>
                   <div class="cont-img">
-                    <img
-                      class="img"
-                      :src="
-                        restaurant.image
-                          ? `${this.beUrl}${restaurant.image}`
-                          : `${this.beUrl}main-image.jpg`
-                      "
-                      alt=""
-                    />
+                    <img class="img" :src="restaurant.image
+                      ? `${this.beUrl}${restaurant.image}`
+                      : `${this.beUrl}main-image.jpg`
+                      " alt="" />
                   </div>
                 </div>
                 <div class="typology-card">
                   <h4>Tipologia:</h4>
                   <ul>
-                    <li
-                      v-for="(typology, idx) in restaurant.typologies"
-                      :key="idx"
-                    >
+                    <li v-for="(typology, idx) in restaurant.typologies" :key="idx">
                       {{ typology.nome }}
                     </li>
                   </ul>
@@ -167,25 +139,29 @@ export default {
 @use "./../styles/partials/variables.scss" as *;
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
+
 .list-rest {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+
   .list-rest-ul {
     width: calc(50% - 20px);
     display: flex;
     justify-content: center;
   }
 }
+
 .card {
-  height: 300px;
+  height: 350px;
   padding: 0 0 20px 40px;
-  // margin: 20px 0 0 180px;
-  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  width: 550px;
   background-size: cover;
   background-image: url(./../assets/images/Sfondo_ristoranti_home.avif);
-  border-radius: 50px;
+  border-radius: 30px;
   -webkit-box-shadow: 10px 11px 24px 6px #000000;
   -moz-box-shadow: 10px 11px 24px 6px #000000;
   -o-box-shadow: 10px 11px 24px 6px #000000;
@@ -194,6 +170,7 @@ export default {
   a {
     width: 100%;
   }
+
   h2 {
     color: #e0cfb5;
     margin-bottom: 25px;
@@ -220,11 +197,13 @@ export default {
   background-color: rgba($color: $richBlack, $alpha: 0.7);
   border: 3px solid black;
 }
+
 .cont-img {
   width: 320px;
   height: 200px;
   overflow: hidden;
-  border-radius: 0 30px 30px 0;
+  border-radius: 20px;
+
   .img {
     width: 100%;
     height: 100%;
