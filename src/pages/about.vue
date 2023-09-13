@@ -99,60 +99,46 @@ export default {
 </script>
 
 <template>
-  <div class="container my-5 mx-5">
+  <div class="container ">
     <div class="titolo-ristorante">
-      <div class="foto d-flex">
-        <img :src="`${this.beUrl}${restaurant.image}`" alt="" />
-      </div>
-      <div class="info">
-        <h1>
-          {{ restaurant.nome }}
-        </h1>
-        <span>
-          {{ restaurant.indirizzo }}
-        </span>
+
+      <div class="foto-titolo">
+        <div class="foto d-flex">
+          <img :src="`${this.beUrl}${restaurant.image}`" alt="" />
+        </div>
+        <div class="info">
+          <h1>
+            {{ restaurant.nome }}
+          </h1>
+          <span>
+            {{ restaurant.indirizzo }}
+          </span>
+        </div>
       </div>
 
-      <h3>Menu</h3>
-      <div class="row" v-for="(product, idx) in restaurant.products" :key="idx">
-        <div class="col-6">
+
+      <h1>Menu</h1>
+      <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
+        <div class="col-6 card p-3">
           <div class="product">
             <div class="product-details">
-              <h4>{{ product.nome }}</h4>
+              <h2>{{ product.nome }}</h2>
               <p>{{ product.descrizione }}</p>
               <p>Prezzo: {{ product.prezzo }} €</p>
-              <div style="width: 300px; height: 200px">
-                <img
-                  class="img"
-                  :src="
-                    product.image
-                      ? `${this.beUrl}${product.image}`
-                      : `${this.beUrl}main-image.jpg`
-                  "
-                  alt=""
-                />
+              <div class="img-plate">
+                <img :src="product.image
+                  ? `${this.beUrl}${product.image}`
+                  : `${this.beUrl}main-image.jpg`
+                  " alt="" />
               </div>
             </div>
 
-            <div
-              class="cart-add d-flex justify-content-center gap-3 align-items-center"
-              v-if="!product.is_clicked"
-              @click.prevent="toggleCart(product)"
-            >
+            <div class="cart-add" v-if="!product.is_clicked" @click.prevent="toggleCart(product)">
               Aggiungi al carrello
             </div>
             <div class="cart-add" v-else>
-              <form
-                class="d-flex justify-content-between align-items-center"
-                @submit.prevent="addToCart(product)"
-              >
-                <input
-                  v-model="product.quantità"
-                  class="quantity"
-                  type="number"
-                  min="1"
-                  placeholder="0"
-                />
+              <form class="d-flex justify-content-between align-items-center" @submit.prevent="addToCart(product)">
+                <input v-model="product.quantità" class="quantity" type="number" min="1" placeholder="0" />
                 <button type="submit" class="btn btn-secondary">
                   Aggiungi
                 </button>
@@ -178,10 +164,7 @@ export default {
             {{ item.nome }}
           </span>
           <span class="col-1">{{ item.quantità }}</span>
-          <button
-            class="col-3 btn btn-danger"
-            @click="removeItem(index, item.nome)"
-          >
+          <button class="col-3 btn btn-danger" @click="removeItem(index, item.nome)">
             Rimuovi
           </button>
         </li>
@@ -212,18 +195,29 @@ export default {
 .titolo-ristorante {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  // background-color: blue;
+  width: 80%;
+  background: linear-gradient(360deg, $CookiesAndCream,
+      $vividAuburn);
   position: relative;
-  margin-top: 100px;
+  margin: 120px auto;
+  border-radius: 20px;
+  border: 3px solid black;
+  padding: 30px;
+
+  .foto-titolo {
+    display: flex;
+    justify-content: space-around;
+  }
 
   .foto {
-    margin-top: -80px;
-    margin-left: -50px;
+    margin-top: -100px;
+    margin-left: -100px;
+    margin-bottom: 30px;
     width: 250px;
     height: 250px;
     border-radius: 50%;
     background-color: white;
+    border: 3px solid black;
 
     img {
       width: 100%;
@@ -240,13 +234,13 @@ export default {
     text-align: center;
     width: 60%;
     height: 180px;
-
+    margin-top: -60px;
+    border-radius: 20px;
     background-image: url(./../assets/images/Sfondo_titolo_ristorante.avif);
-
+    border: 3px solid black;
     background-size: cover;
-    position: absolute;
-    top: -35px;
-    right: 50px;
+    box-shadow: 10px 11px 35px 6px #000000;
+
 
     h1 {
       font-size: 40px;
@@ -266,13 +260,28 @@ export default {
   }
 }
 
+.product {
+  font-size: 23px;
+}
+
+.product-details {
+
+  line-height: 18px;
+
+  h2,
+  p {
+    margin-bottom: 10px;
+  }
+}
+
 .cart-add {
-  background-color: #007bff;
+  background-color: #005F73;
   color: #fff;
-  width: 200px;
-  height: 60px;
-  padding: 10px 20px;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .quantity {
@@ -287,9 +296,20 @@ export default {
   right: 200px;
   background-color: rgb(98, 108, 129);
 }
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+.img-plate {
+
+  width: 300px;
+  height: 200px;
+  margin: 20px 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+
+  }
+
 }
 </style>
