@@ -179,10 +179,10 @@ export default {
   }
 }
 .card {
-  height: 500px;
-  padding: 0 0 20px 80px;
+  height: 300px;
+  padding: 0 0 20px 40px;
   // margin: 20px 0 0 180px;
-  width: 800px;
+  width: 500px;
   background-size: cover;
   background-image: url(./../assets/images/Sfondo_ristoranti_home.avif);
   border-radius: 50px;
@@ -197,14 +197,14 @@ export default {
   h2 {
     color: #e0cfb5;
     margin-bottom: 25px;
-    font-size: 3rem;
+    font-size: 2rem;
     max-width: 420px;
   }
 
   .typology-card {
     h4 {
       color: white;
-      font-size: 2.5rem;
+      font-size: 1.5rem;
     }
 
     li {
@@ -221,8 +221,8 @@ export default {
   border: 3px solid black;
 }
 .cont-img {
-  width: 420px;
-  height: 300px;
+  width: 320px;
+  height: 200px;
   overflow: hidden;
   border-radius: 0 30px 30px 0;
   .img {

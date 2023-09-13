@@ -38,7 +38,7 @@ h4,
 h5,
 h6 {
   font-family: "Patrick Hand SC", cursive;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 .background {
   width: 80%;

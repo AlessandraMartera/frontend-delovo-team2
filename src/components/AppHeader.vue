@@ -23,7 +23,7 @@ export default {
 <template>
   <header>
     <nav class="row align-items-center">
-      <div class="col-2">
+      <div class="col-3">
         <div id="logo" class="">
           <img src="./../assets/images/Logo3.svg" alt="" />
         </div>
@@ -33,7 +33,7 @@ export default {
           >Torna alla Home</router-link
         >
       </div>
-      <div class="offset-6 col-2 d-flex gap-4 align-items-center">
+      <div class="offset-3 col-2 d-flex gap-4 align-items-center">
         <button href="http://127.0.0.1:8000/register">Registrati</button>
         <button href="http://127.0.0.1:8000/login">Accedi</button>
         <button href="#">Carrello</button>
@@ -64,7 +64,7 @@ header {
   padding: 40px 0px;
   button,
   .home {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     background: #e0cfb5;
     color: #982931;
     margin-bottom: 40px;
