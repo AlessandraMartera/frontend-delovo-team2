@@ -120,7 +120,7 @@ export default {
 
       <div class="info">
         <h1>
-          <i class="fa-solid fa-location-dot"></i>
+
           {{ restaurant.nome }}
         </h1>
 
