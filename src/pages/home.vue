@@ -89,15 +89,27 @@ export default {
                 </ul>
             </div>
             <!-- Se non esistono ristoranti con le tipologie selezionate -->
-            <div v-else-if="filteredRestaurants.length === 0">
-                Non ci sono ristoranti compatibili con la tua selezione
+            <div v-else-if="filteredRestaurants.length === 0" class="no-restaurant">
+                <h2>
+                    Non ci sono ristoranti compatibili con la tua selezione
+                </h2>
             </div>
             <!-- Stampa tutti i ristoranti -->
             <div v-else>
                 <ul v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
-                    <li>
+                    <li class="card ">
                         <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-                            {{ restaurant.nome }}
+                            <h2> {{ restaurant.nome }} </h2>
+
+                            <div class="typology-card">
+                                <h4>Tipologia:</h4>
+                                <ul>
+                                    <li v-for="typology in restaurant.typologies">
+                                        {{ typology.nome }}
+                                    </li>
+                                </ul>
+                            </div>
+
                         </router-link>
                     </li>
                 </ul>
@@ -134,5 +146,13 @@ export default {
         }
     }
 
+}
+
+.no-restaurant {
+    padding: 20px;
+    margin-bottom: 50px;
+    color: $carnelian;
+    background-color: rgba($color: $richBlack, $alpha: 0.7);
+    border: 3px solid black;
 }
 </style>
