@@ -15,9 +15,9 @@ export default {
         this.restaurant = response.data.restaurant;
       });
 
-    for (let i = 0; i < localStorage.length; i++) {
-      const chiave = localStorage.key(i);
-      const oggettoJSON = localStorage.getItem(chiave);
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const chiave = sessionStorage.key(i);
+      const oggettoJSON = sessionStorage.getItem(chiave);
       const oggetto = JSON.parse(oggettoJSON);
 
       // Aggiungi l'oggetto all'array "items"
@@ -29,21 +29,47 @@ export default {
       prod.is_clicked = !prod.is_clicked;
     },
     addToCart(item) {
-      const oggetto = {
-        nome: item.nome,
-        id: item.id,
-        quantità: item.quantità,
-      };
-      this.items.push(oggetto);
-      localStorage.setItem(item.nome, JSON.stringify(oggetto));
       console.log(this.items);
+      if (this.items.length > 0) {
+        const cartItem = this.items[0];
+        console.log(cartItem);
+        if (cartItem.ristorante_id == this.restaurant.id) {
+          if (item.quantità > 0) {
+            const oggetto = {
+              nome: item.nome,
+              id: item.id,
+              quantità: item.quantità,
+              ristorante_id: this.restaurant.id,
+            };
+            this.items.push(item.nome, oggetto);
+            sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
+          } else {
+            alert("Selezionare quantità maggiore di 0");
+          }
+        } else {
+          alert(
+            "Stai inserendo i prodotti di un altro ristorante, cancella o concludi l'ordine col ristorante precedente"
+          );
+        }
+      } else {
+        if (item.quantità > 0) {
+          const oggetto = {
+            nome: item.nome,
+            id: item.id,
+            quantità: item.quantità,
+            ristorante_id: this.restaurant.id,
+            ristorante_nome: this.restaurant.nome,
+          };
+          this.items.push(oggetto);
+          sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
+        } else {
+          alert("Selezionare quantità maggiore di 0");
+        }
+      }
     },
-    removeItem(index) {
+    removeItem(index, nome) {
       this.items.splice(index, 1);
-      localStorage.setItem("items", JSON.stringify(this.items));
-    },
-    ciao() {
-      console.log(this.items, localStorage.getItem("items"));
+      sessionStorage.removeItem(nome);
     },
   },
 };
@@ -97,13 +123,17 @@ export default {
   </div>
   <div class="cart">
     <h1>Carrello</h1>
+    <h2>{{}}</h2>
     <ul>
       <li class="row" v-for="(item, index) in items" :key="index">
         <span class="col-5">
           {{ item.nome }}
         </span>
         <span class="col-1">{{ item.quantità }}</span>
-        <button class="col-3 btn btn-danger" @click="removeItem(index)">
+        <button
+          class="col-3 btn btn-danger"
+          @click="removeItem(index, item.nome)"
+        >
           Rimuovi
         </button>
       </li>
