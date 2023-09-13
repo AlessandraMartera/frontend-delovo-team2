@@ -15,11 +15,6 @@ export default {
           url: "#",
           current: false,
         },
-        {
-          text: "Boh",
-          url: "#",
-          current: false,
-        },
       ]
     }
   }
@@ -33,25 +28,34 @@ export default {
         <img src="./../assets/images/Logo3.svg" alt="">
       </div>
       <div id="bottoni">
-
-        <ul id="eat">
+        <ul class="eat">
           <li>
             <input type="text" placeholder="Cosa vuoi mangiare?">
           </li>
-          <li>
-            <button>
-              <a href="http://127.0.0.1:8000/register">
-                register
-              </a>
-            </button>
-          </li>
-          <li>
-            <button>
-              <a href="http://127.0.0.1:8000/login">
-                log in
-              </a>
-            </button>
-          </li>
+          <ul class="eat">
+            <li>
+              <button>
+                <a href="http://127.0.0.1:8000/register">
+                  Register
+                </a>
+              </button>
+            </li>
+            <li>
+              <button>
+                <a href="http://127.0.0.1:8000/login">
+                  Log In
+                </a>
+              </button>
+            </li>
+            <li>
+              <button>
+                <a href="http://127.0.0.1:8000/login">
+                  Carrello
+                </a>
+              </button>
+            </li>
+          </ul>
+
         </ul>
         <ul id="menu">
           <li v-for="link in links">
@@ -120,9 +124,7 @@ nav {
   box-shadow: 10px 11px 24px 6px #000000;
 }
 
-#eat {
-  margin-top: 20px;
-}
+
 
 #bottoni {
   width: 70%;
@@ -133,19 +135,29 @@ button,
 input {
   background-color: #e6d5a4;
   border-radius: 12px;
-  border: 1px solid;
-  height: 32px;
+  border: 0px solid;
+  padding: 5px;
+  cursor: pointer;
 }
 
 input {
   width: 300px;
 }
 
-#eat,
+.eat,
 #menu {
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  margin-right: 4%;
+}
+
+.eat li {
+  margin: 0 20px;
+}
+
+#menu {
+  width: 30%;
+  margin-top: 20px;
 }
 
 ul {
