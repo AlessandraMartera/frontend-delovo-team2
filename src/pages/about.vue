@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       restaurant: [],
-      oggettiSessione: {},
+      items: [],
     };
   },
   mounted() {
@@ -13,18 +13,15 @@ export default {
       .get(`http://127.0.0.1:8000/api/show-restaurant/${this.$route.params.id}`)
       .then((response) => {
         this.restaurant = response.data.restaurant;
-        // console.log(this.restaurant);
       });
-    // Inizializza un oggetto vuoto per memorizzare gli oggetti dalla sessionStorage
-    this.oggettiSessione = {};
 
-    // Ciclo attraverso tutte le chiavi nella sessionStorage
-    for (let chiave in sessionStorage) {
-      // Recupera l'oggetto dalla sessionStorage
-      const oggettoJSON = sessionStorage.getItem(chiave);
-      if (oggettoJSON) {
-        this.oggettiSessione[chiave] = JSON.parse(oggettoJSON);
-      }
+    for (let i = 0; i < localStorage.length; i++) {
+      const chiave = localStorage.key(i);
+      const oggettoJSON = localStorage.getItem(chiave);
+      const oggetto = JSON.parse(oggettoJSON);
+
+      // Aggiungi l'oggetto all'array "items"
+      this.items.push(oggetto);
     }
   },
   methods: {
@@ -37,8 +34,16 @@ export default {
         id: item.id,
         quantità: item.quantità,
       };
-      sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-      // console.log(item);
+      this.items.push(oggetto);
+      localStorage.setItem(item.nome, JSON.stringify(oggetto));
+      console.log(this.items);
+    },
+    removeItem(index) {
+      this.items.splice(index, 1);
+      localStorage.setItem("items", JSON.stringify(this.items));
+    },
+    ciao() {
+      console.log(this.items, localStorage.getItem("items"));
     },
   },
 };
@@ -93,13 +98,14 @@ export default {
   <div class="cart">
     <h1>Carrello</h1>
     <ul>
-      <li
-        class="row"
-        v-for="(oggetto, chiave) in oggettiSessione"
-        :key="chiave"
-      >
-        <strong class="col-8">{{ oggetto.nome }}</strong>
-        <span class="col-4">{{ oggetto.quantità }}</span>
+      <li class="row" v-for="(item, index) in items" :key="index">
+        <span class="col-5">
+          {{ item.nome }}
+        </span>
+        <span class="col-1">{{ item.quantità }}</span>
+        <button class="col-3 btn btn-danger" @click="removeItem(index)">
+          Rimuovi
+        </button>
       </li>
     </ul>
   </div>
