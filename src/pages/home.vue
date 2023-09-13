@@ -69,7 +69,7 @@ export default {
     <section class="mt-5">
         <!-- Se non sono selezionate tipologie stampa tutti -->
         <div v-if="selectedTypologies.length === 0">
-            <ul v-for="(restaurant, idx) in restaurants" :key="idx">
+            <ul v-for="( restaurant, idx ) in  restaurants " :key="idx">
                 <li>
                     <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
                         {{ restaurant.nome }}
@@ -83,7 +83,7 @@ export default {
         </div>
         <!-- Stampa tutti i ristoranti -->
         <div v-else>
-            <ul v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
+            <ul v-for="( restaurant, idx ) in  filteredRestaurants " :key="idx">
                 <li>
                     <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
                         {{ restaurant.nome }}

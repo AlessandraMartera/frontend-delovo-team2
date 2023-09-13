@@ -95,6 +95,12 @@ export default {
       this.items.splice(index, 1);
       sessionStorage.removeItem(nome);
     },
+    emptyCart() {
+      if (this.items.length != 0) {
+        this.items = [];
+        sessionStorage.clear();
+      }
+    },
   },
 };
 </script>
@@ -133,6 +139,8 @@ export default {
       </div>
     </div>
   </div>
+
+  <!-- carrello -->
   <div class="cart">
     <h1>Carrello</h1>
     <h2 v-if="this.items.length != 0">
@@ -152,6 +160,18 @@ export default {
         </button>
       </li>
     </ul>
+
+    <!-- bottoni conclusione o per svuotare il carrello -->
+    <div v-if="this.items != 0" class="d-flex justify-content-around">
+
+      <!-- bottone per concludere l'ordine -->
+      <router-link :to="{ name: 'order' }" class="btn btn-success">
+        Concludi
+      </router-link>
+
+      <!-- bottone per cancellare tutto dall'interno del carrello -->
+      <button class="btn btn-danger" @click="emptyCart">Svuota carrello</button>
+    </div>
   </div>
 </template>
 
