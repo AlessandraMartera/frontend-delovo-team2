@@ -54,7 +54,8 @@ export default {
 h1 {
   display: inline;
   padding: 25px;
-  color: white;
+  color: $skobeloff;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .typology {
@@ -105,25 +106,28 @@ h1 {
 
   }
 
+  button {
+    border: none;
+  }
+
   .uovo {
     margin-left: 25px;
     display: block;
     width: 168px;
     height: 240px;
-
-    -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 
     text-align: center;
 
 
 
+
     img {
       width: 168px;
       height: 240px;
-      -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      border: 4px solid $skobeloff;
     }
 
     span {

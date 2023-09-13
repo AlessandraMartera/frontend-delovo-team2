@@ -71,8 +71,10 @@ export default {
             <!-- Se non sono selezionate tipologie stampa tutti -->
             <div class="restaurant row" v-if="selectedTypologies.length === 0">
                 <ul class="col-6" v-for="(restaurant, idx) in restaurants" :key="idx">
-                    <li class="card ">
-                        <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+
+                    <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
+                        <li class="card ">
+
                             <h2> {{ restaurant.nome }} </h2>
 
                             <div class="typology-card">
@@ -83,9 +85,9 @@ export default {
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                    </router-link>
 
-                        </router-link>
-                    </li>
                 </ul>
             </div>
             <!-- Se non esistono ristoranti con le tipologie selezionate -->
@@ -124,6 +126,11 @@ export default {
 @use "./../styles/general.scss" as *;
 
 .card {
+
+    a {
+        width: 100%;
+    }
+
     padding: 20px;
     margin: 20px;
     min-height: 300px;
@@ -137,6 +144,9 @@ export default {
     background-size: cover;
 
     .typology-card {
+
+
+
         h4 {
             color: $CookiesAndCream;
         }
