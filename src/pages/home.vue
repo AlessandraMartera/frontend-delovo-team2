@@ -109,7 +109,7 @@ export default {
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
-              <div class="d-flex gap-5 align-items-center">
+              <div class="d-flex gap-4 align-items-center">
                 <div>
                   <div class="cont-img">
                     <img class="img" :src="restaurant.image
