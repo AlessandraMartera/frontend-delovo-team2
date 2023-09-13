@@ -6,8 +6,16 @@ export default {
     selectedTypes: Array,
   },
   data() {
-    return {};
+    return {
+      showmenu: false
+    };
   },
+  methods: {
+    showDropdown: function () {
+      this.showmenu = !this.showmenu;
+      console.log(this.showmenu)
+    }
+  }
 };
 </script>
 
@@ -15,8 +23,10 @@ export default {
   <section class="typology">
     <h1>Scegli la tipologia di ristorante</h1>
 
+    <button @click="showDropdown"> > </button>
+
     <!-- <AppSectionTypology /> -->
-    <section class="section-egg ">
+    <section v-if="showmenu" class="section-egg ">
       <div class="item" v-for="(typology, idx) in types" :key="idx">
 
         <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome)
@@ -32,6 +42,7 @@ export default {
 
       </div>
     </section>
+
   </section>
 </template>
 
