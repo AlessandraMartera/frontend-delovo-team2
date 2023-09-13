@@ -6,6 +6,7 @@ export default {
     return {
       restaurant: [],
       items: [],
+      beUrl: "http://127.0.0.1:8000/storage/",
     };
   },
   mounted() {
@@ -30,14 +31,13 @@ export default {
     },
     addToCart(item) {
       console.log(this.items);
-      // controllo se ci sono oggetti all'interno del carrello 
+      // controllo se ci sono oggetti all'interno del carrello
       if (this.items.length > 0) {
         const cartItem = this.items[0];
         console.log(cartItem);
 
-        // controlle se l'id del ristorante corrisponde all'id del ristorante degli oggetti presenti nel carrello 
+        // controlle se l'id del ristorante corrisponde all'id del ristorante degli oggetti presenti nel carrello
         if (cartItem.ristorante_id == this.restaurant.id) {
-
           // controllo che la quantità del prodotto si maggiore di 0
           if (item.quantità > 0) {
             const oggetto = {
@@ -45,19 +45,14 @@ export default {
               id: item.id,
               quantità: item.quantità,
               ristorante_id: this.restaurant.id,
-
             };
-            // controllo gli elementi di items 
+            // controllo gli elementi di items
             this.items.forEach((element, idx) => {
-
               // se trovo un elemento con lo stesso id dell'oggetto
               if (oggetto.id === element.id) {
-
                 // sotituisco l'oggetto già presente con quello appena inserito
                 this.items[idx] = oggetto;
-              }
-              else {
-
+              } else {
                 // aggiugno l'oggeto all'array items
                 this.items.push(oggetto);
               }
@@ -65,8 +60,6 @@ export default {
               // aggiungo il prodotto alla sessione
               sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
             });
-
-
           } else {
             alert("Selezionare quantità maggiore di 0");
           }
@@ -111,36 +104,17 @@ export default {
   </div>
 
   <div class="container my-5 mx-5">
-
     <div class="titolo-ristorante">
-
       <div class="foto d-flex">
-        <img src="./../assets/images/Italiano.jpg" alt="">
+        <img :src="`${this.beUrl}${restaurant.image}`" alt="" />
       </div>
-
       <div class="info">
         <h1>
-
           {{ restaurant.nome }}
         </h1>
-
         <span>
-
           {{ restaurant.indirizzo }}
         </span>
-
-      </div>
-
-      <div class="menu">
-        <h3>
-          questo è il nostro menu
-        </h3>
-        <ul>
-          <li v-for="product in restaurant.products">
-            {{ product.nome }}
-          </li>
-        </ul>
-
       </div>
 
       <h3>Menu</h3>
@@ -151,17 +125,41 @@ export default {
               <h4>{{ product.nome }}</h4>
               <p>{{ product.descrizione }}</p>
               <p>Prezzo: {{ product.prezzo }} €</p>
-              <img :src="product.image" alt="" />
+              <div style="width: 300px; height: 200px">
+                <img
+                  class="img"
+                  :src="
+                    product.image
+                      ? `${this.beUrl}${product.image}`
+                      : `${this.beUrl}main-image.jpg`
+                  "
+                  alt=""
+                />
+              </div>
             </div>
 
-            <div class="cart-add d-flex justify-content-center gap-3 align-items-center" v-if="!product.is_clicked"
-              @click.prevent="toggleCart(product)">
+            <div
+              class="cart-add d-flex justify-content-center gap-3 align-items-center"
+              v-if="!product.is_clicked"
+              @click.prevent="toggleCart(product)"
+            >
               Aggiungi al carrello
             </div>
             <div class="cart-add" v-else>
-              <form class="d-flex justify-content-between align-items-center" @submit.prevent="addToCart(product)">
-                <input v-model="product.quantità" class="quantity" type="number" min="1" placeholder="0" />
-                <button type="submit" class="btn btn-secondary">Aggiungi</button>
+              <form
+                class="d-flex justify-content-between align-items-center"
+                @submit.prevent="addToCart(product)"
+              >
+                <input
+                  v-model="product.quantità"
+                  class="quantity"
+                  type="number"
+                  min="1"
+                  placeholder="0"
+                />
+                <button type="submit" class="btn btn-secondary">
+                  Aggiungi
+                </button>
               </form>
             </div>
           </div>
@@ -184,7 +182,10 @@ export default {
             {{ item.nome }}
           </span>
           <span class="col-1">{{ item.quantità }}</span>
-          <button class="col-3 btn btn-danger" @click="removeItem(index, item.nome)">
+          <button
+            class="col-3 btn btn-danger"
+            @click="removeItem(index, item.nome)"
+          >
             Rimuovi
           </button>
         </li>
@@ -192,18 +193,17 @@ export default {
 
       <!-- bottoni conclusione o per svuotare il carrello -->
       <div v-if="this.items != 0" class="d-flex justify-content-around">
-
         <!-- bottone per concludere l'ordine -->
         <router-link :to="{ name: 'order' }" class="btn btn-success">
           Concludi
         </router-link>
 
         <!-- bottone per cancellare tutto dall'interno del carrello -->
-        <button class="btn btn-danger" @click="emptyCart">Svuota carrello</button>
+        <button class="btn btn-danger" @click="emptyCart">
+          Svuota carrello
+        </button>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -217,12 +217,11 @@ export default {
   display: flex;
   flex-direction: column;
   width: 90%;
-  background-color: blue;
+  // background-color: blue;
   position: relative;
   margin-top: 100px;
 
   .foto {
-
     margin-top: -80px;
     margin-left: -50px;
     width: 250px;
@@ -235,7 +234,6 @@ export default {
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-
     }
   }
 
@@ -254,12 +252,9 @@ export default {
     top: -35px;
     right: 50px;
 
-
-
-
     h1 {
       font-size: 40px;
-      color: $skobeloff ;
+      color: $skobeloff;
       padding: 20px;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     }
@@ -273,12 +268,7 @@ export default {
   .menu {
     width: 100%;
   }
-
-
 }
-
-
-
 
 .cart-add {
   background-color: #007bff;
@@ -300,5 +290,10 @@ export default {
   top: 200px;
   right: 200px;
   background-color: rgb(98, 108, 129);
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
