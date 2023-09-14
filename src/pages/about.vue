@@ -44,8 +44,8 @@ export default {
           // controllo che la quantità del prodotto si maggiore di 0
           if (item.quantità > 0) {
             const oggetto = {
-              nome: item.nome,
               id: item.id,
+              nome: item.nome,
               quantità: item.quantità,
               ristorante_id: this.restaurant.id,
               ristorante_nome: this.restaurant.nome,
@@ -84,8 +84,8 @@ export default {
       } else {
         if (item.quantità > 0) {
           const oggetto = {
-            nome: item.nome,
             id: item.id,
+            nome: item.nome,
             quantità: item.quantità,
             ristorante_id: this.restaurant.id,
             ristorante_nome: this.restaurant.nome,

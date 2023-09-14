@@ -12,8 +12,10 @@ export default {
         "telefono": '',
         "email": '',
         "note": '',
+        "product": [],
 
-      }
+      },
+
     };
   },
   mounted() {
@@ -23,6 +25,15 @@ export default {
       const valore = sessionStorage.getItem(chiave); // Ottieni il valore associato alla chiave
       this.sessionItems.push({ chiave, valore }); // Aggiungi l'elemento all'array sessionItems
     }
+
+    this.sessionItems.forEach(element => {
+      const res = JSON.parse(element.valore);
+      // console.log(res.id);
+      this.data.product.push({
+        "id": res.id
+      })
+    });
+    // console.log(this.data.product);
   },
   methods: {
     sendOrder() {
