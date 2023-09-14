@@ -29,11 +29,9 @@ export default {
     this.sessionItems.forEach(element => {
       const res = JSON.parse(element.valore);
       // console.log(res.id);
-      this.data.product.push({
-        "id": res.id
-      })
+      this.data.product.push(res.id)
     });
-    // console.log(this.data.product);
+    console.log(this.data.product);
   },
   methods: {
     sendOrder() {
