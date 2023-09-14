@@ -65,29 +65,46 @@ export default {
 
 <template>
   <!-- Componente tipologie per ricerca -->
-  <AppSectionTypology @event="toggle" :types="this.typologies" :selectedTypes="this.selectedTypologies" />
+  <AppSectionTypology
+    @event="toggle"
+    :types="this.typologies"
+    :selectedTypes="this.selectedTypologies"
+  />
   <!-- Sezione listato ristoranti filtrati -->
   <section class="my-5">
+    <div>{{ this.$store.state.message }}</div>
     <div>
       <!-- Se non sono selezionate tipologie stampa tutti -->
       <div class="list-rest" v-if="selectedTypologies.length === 0">
-        <ul class="list-rest-ul" v-for="(restaurant, idx) in restaurants" :key="idx">
+        <ul
+          class="list-rest-ul"
+          v-for="(restaurant, idx) in restaurants"
+          :key="idx"
+        >
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
               <div class="d-flex gap-4 align-items-center">
                 <div>
                   <div class="cont-img">
-                    <img class="img" :src="restaurant.image
-                      ? `${this.beUrl}${restaurant.image}`
-                      : `${this.beUrl}main-image.jpg`
-                      " alt="" />
+                    <img
+                      class="img"
+                      :src="
+                        restaurant.image
+                          ? `${this.beUrl}${restaurant.image}`
+                          : `${this.beUrl}main-image.jpg`
+                      "
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div class="typology-card">
                   <h4>Tipologia:</h4>
                   <ul>
-                    <li v-for="(typology, idx) in restaurant.typologies" :key="idx">
+                    <li
+                      v-for="(typology, idx) in restaurant.typologies"
+                      :key="idx"
+                    >
                       {{ typology.nome }}
                     </li>
                   </ul>
@@ -105,23 +122,35 @@ export default {
       </div>
       <!-- Stampa tutti i ristoranti -->
       <div v-else class="list-rest">
-        <ul class="list-rest-ul" v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
+        <ul
+          class="list-rest-ul"
+          v-for="(restaurant, idx) in filteredRestaurants"
+          :key="idx"
+        >
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="card d-flex justify-content-center">
               <h2>{{ restaurant.nome }}</h2>
               <div class="d-flex gap-4 align-items-center">
                 <div>
                   <div class="cont-img">
-                    <img class="img" :src="restaurant.image
-                      ? `${this.beUrl}${restaurant.image}`
-                      : `${this.beUrl}main-image.jpg`
-                      " alt="" />
+                    <img
+                      class="img"
+                      :src="
+                        restaurant.image
+                          ? `${this.beUrl}${restaurant.image}`
+                          : `${this.beUrl}main-image.jpg`
+                      "
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div class="typology-card">
                   <h4>Tipologia:</h4>
                   <ul>
-                    <li v-for="(typology, idx) in restaurant.typologies" :key="idx">
+                    <li
+                      v-for="(typology, idx) in restaurant.typologies"
+                      :key="idx"
+                    >
                       {{ typology.nome }}
                     </li>
                   </ul>

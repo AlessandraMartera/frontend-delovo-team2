@@ -1,11 +1,25 @@
 import { createApp } from 'vue'
 // import './style.css'
 import App from './App.vue'
+// Import vuex
+import { createStore } from 'vuex'
+
 
 // import router
 import { router } from "./router.js"
 
 // import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-createApp(App).use(router).mount('#app')
+
+// Create a new store instance.
+const store = createStore({
+  state() {
+    return {
+      message: 'cighi'
+    }
+  }
+})
+
+
+createApp(App).use(router).use(store).mount('#app')
 

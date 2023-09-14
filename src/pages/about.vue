@@ -15,7 +15,6 @@ export default {
       .get(`http://127.0.0.1:8000/api/show-restaurant/${this.$route.params.id}`)
       .then((response) => {
         this.restaurant = response.data.restaurant;
-        console.log(this.restaurant);
       });
     // Ciclo sessionStorage
     for (let i = 0; i < sessionStorage.length; i++) {
