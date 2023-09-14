@@ -132,4 +132,8 @@ button {
         width: 60px;
     }
 }
+
+a {
+    color: black;
+}
 </style>
