@@ -6,6 +6,16 @@ export default {
   data() {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
+      data: {
+        "nome": '',
+        "indirizzo": '',
+        "telefono": '',
+        "email": '',
+        "note": '',
+        "product": [],
+
+      },
+
     };
   },
   mounted() {
@@ -15,7 +25,27 @@ export default {
       const valore = sessionStorage.getItem(chiave); // Ottieni il valore associato alla chiave
       this.sessionItems.push({ chiave, valore }); // Aggiungi l'elemento all'array sessionItems
     }
+
+    this.sessionItems.forEach(element => {
+      const res = JSON.parse(element.valore);
+      // console.log(res.id);
+      this.data.product.push(res.id)
+    });
+    console.log(this.data.product);
   },
+  methods: {
+    sendOrder() {
+      console.log("invio ordine");
+      axios.post("http://127.0.0.1:8000/api/orders", this.data,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }).then((res) => {
+          console.log(res);
+        }
+        )
+    },
+
+  }
 };
 </script>
 
@@ -59,35 +89,36 @@ export default {
         <div>
           <label for="nome">Iserisci qui il tuo nome</label>
           <br />
-          <input type="text" name="nome" id="nome" placeholder="nome" required />
+          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" required />
+          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
+            required />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input type="text" name="telefono" id="telefono" placeholder="telefono" required />
+          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input type="email" name="email" id="email" placeholder="email" required />
+          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea name="note" id="note" cols="30" rows="10"></textarea>
+          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
         </div>
 
         <hr />
@@ -97,6 +128,12 @@ export default {
 
 
     </div>
+
+    <div id="dropin-container"></div>
+    <button @click="sendOrder()" id="submit-button" class="button button--small button--green">
+      pagamento
+    </button>
+
   </div>
 </template>
 
