@@ -28,12 +28,43 @@ export default {
     }
   },
   methods: {
-    toggleCart(prod) {
-      prod.is_clicked = !prod.is_clicked;
+    toggleCart() {
       this.cart_visible = true;
     },
-    addToCart(item) {
+    addOneProduct(item) {
       this.cart_visible = true;
+      let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
+      const oggetto = {
+        nome: item.nome,
+        id: item.id,
+        quantità: 1,
+        ristorante_id: this.restaurant.id,
+        ristorante_nome: this.restaurant.nome,
+      };
+      // Ciclo attraverso gli elementi di items
+      for (let idx = 0; idx < this.items.length; idx++) {
+        const element = this.items[idx];
+        // Se trovo un elemento con lo stesso id dell'oggetto
+        if (oggetto.id === element.id) {
+          // Sostituisco l'oggetto già presente con quello appena inserito
+          alert("prodotto già inserito nel carrello");
+          found = true; // Segno che l'oggetto è stato trovato
+          break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
+        }
+      }
+
+      // Se l'oggetto non è stato trovato nell'array, lo aggiungo
+      if (!found) {
+        this.items.push(oggetto);
+      }
+
+      // console.log(this.items);
+
+      // Aggiungo il prodotto alla sessione
+      sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
+    },
+
+    addToCart(item) {
       // controllo se ci sono oggetti all'interno del carrello
       if (this.items.length > 0) {
         const cartItem = this.items[0];
@@ -152,14 +183,10 @@ export default {
               </div>
             </div>
 
-            <div
-              class="cart-add"
-              v-if="!product.is_clicked"
-              @click.prevent="toggleCart(product)"
-            >
+            <div class="cart-add" @click.prevent="addOneProduct(product)">
               Aggiungi al carrello
             </div>
-            <div class="cart-add" v-else>
+            <div class="cart-add">
               <form
                 class="d-flex justify-content-between align-items-center"
                 @submit.prevent="addToCart(product)"
@@ -184,20 +211,32 @@ export default {
     <!-- carrello -->
     <div class="cart" v-if="cart_visible">
       <h1 class="text-center">Carrello</h1>
-      <h2 v-if="this.items.length != 0">
-        <h6>Ristorante selezionato</h6>
+      <div class="text-center py-2" v-if="this.items.length != 0">
+        <h6>Ristorante selezionato:</h6>
         <h4>
           {{ this.items[0].ristorante_nome }}
         </h4>
-      </h2>
+      </div>
       <ul>
-        <li class="row py-3" v-for="(item, index) in items" :key="index">
-          <span class="col-5">
+        <li
+          class="row py-3 mx-3 align-items-center"
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <h5 class="col-4">
             {{ item.nome }}
-          </span>
-          <span class="col-1">{{ item.quantità }}</span>
+          </h5>
+          <div
+            class="counter col-3 d-flex justify-content-center align-items-center"
+          >
+            <button class="pb-2">-</button>
+            <span class="px-3">{{ item.quantità }}</span>
+            <button class="pb-2" @click.prevent="addOneProduct(product)">
+              +
+            </button>
+          </div>
           <button
-            class="col-3 btn btn-danger py-0"
+            class="ms-4 col-3 btn btn-danger py-0"
             @click="removeItem(index, item.nome)"
           >
             Rimuovi
@@ -206,16 +245,18 @@ export default {
       </ul>
 
       <!-- bottoni conclusione o per svuotare il carrello -->
-      <div v-if="this.items != 0" class="d-flex justify-content-around my-3">
-        <!-- bottone per concludere l'ordine -->
-        <router-link :to="{ name: 'order' }" class="btn btn-success">
-          Concludi
-        </router-link>
+      <div v-if="this.items != 0" class="send-cart">
+        <div class="d-flex justify-content-around">
+          <!-- bottone per concludere l'ordine -->
+          <router-link :to="{ name: 'order' }" class="btn btn-success">
+            Concludi
+          </router-link>
 
-        <!-- bottone per cancellare tutto dall'interno del carrello -->
-        <button class="btn btn-danger" @click="emptyCart">
-          Svuota carrello
-        </button>
+          <!-- bottone per cancellare tutto dall'interno del carrello -->
+          <button class="btn btn-danger" @click="emptyCart">
+            Svuota carrello
+          </button>
+        </div>
       </div>
       <div class="close-cart" @click="cart_visible = false">X</div>
     </div>
@@ -323,11 +364,32 @@ export default {
 
 .cart {
   position: absolute;
-  width: 350px;
+  width: 600px;
   height: 350px;
   top: 200px;
   right: 200px;
   background-color: rgb(98, 108, 129);
+  .close-cart {
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+  .send-cart {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+  }
+  .counter {
+    font-size: 2rem;
+    button {
+      font-size: 2.5rem;
+      background-color: transparent;
+      border: none;
+      color: white;
+    }
+  }
 }
 
 .img-plate {
