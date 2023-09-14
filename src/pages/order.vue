@@ -7,10 +7,10 @@ export default {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
       data: {
-        "nome": 'qwe',
-        "indirizzo": 'qwe',
-        "telefono": '2222222222',
-        "email": 'aws@sad.ca',
+        "nome": '',
+        "indirizzo": '',
+        "telefono": '',
+        "email": '',
         "note": '',
         "product": [],
 
