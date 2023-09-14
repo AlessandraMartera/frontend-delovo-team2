@@ -43,8 +43,8 @@ export default {
 </script>
 
 <template>
-    <section>
-        <div class="contenitore">
+    <section class="contenitore">
+        <div>
             <div class="news">
                 <div id="logo">
                     <img src="./../assets/images/Logo3.svg" alt="">
@@ -56,9 +56,7 @@ export default {
                 </ul>
             </div>
         </div>
-    </section>
-    <section>
-        <div class="contenitore">
+        <div>
             <small id="copy">© Copyright 2012-2020 | L'ovo | All Rights Reserved </small>
         </div>
     </section>
@@ -78,29 +76,33 @@ export default {
 }
 
 .contenitore {
-    background-color: #9b2226dd;
-    font-size: 20px;
-    background-image: url("./assets/images/Sfondo_footer.jpg");
-    padding: 20px;
+    background-image: url("./../assets/images/Sfondo_footer.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 
-    ul {
-        @include center ();
-        justify-content: start;
-        font-size: 60px;
-        margin: 0px 20px;
+    div {
+        font-size: 20px;
+        padding: 20px;
 
-        li {
-            margin: 0 2%;
+        ul {
+            @include center ();
+            justify-content: start;
+            font-size: 60px;
+            margin: 0px 20px;
 
-            a {
-                font-weight: 600;
-                font-size: 20px;
+            li {
+                margin: 0 2%;
+
+                a {
+                    font-weight: 600;
+                    font-size: 20px;
+
+                }
 
             }
-
         }
-    }
 
+    }
 }
 
 .news {
