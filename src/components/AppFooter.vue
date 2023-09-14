@@ -44,18 +44,18 @@ export default {
 
 <template>
     <section class="contenitore">
-        <div>
-            <div class="news">
-                <div id="logo">
-                    <img src="./../assets/images/Logo3.svg" alt="">
-                </div>
-                <ul>
-                    <li v-for="link in links">
-                        <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
-                    </li>
-                </ul>
+
+        <div class="news">
+            <div id="logo">
+                <img src="./../assets/images/Logo3.svg" alt="">
             </div>
+            <ul>
+                <li v-for="link in links">
+                    <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+                </li>
+            </ul>
         </div>
+
         <div>
             <small id="copy">© Copyright 2012-2020 | L'ovo | All Rights Reserved </small>
         </div>
@@ -71,9 +71,7 @@ export default {
     padding: 20px 0;
 }
 
-#copy {
-    padding: 50px 0;
-}
+
 
 .contenitore {
     background-image: url("./../assets/images/Sfondo_footer.jpg");
@@ -85,18 +83,14 @@ export default {
         padding: 20px;
 
         ul {
-            @include center ();
-            justify-content: start;
-            font-size: 60px;
+            display: flex;
             margin: 0px 20px;
 
             li {
-                margin: 0 2%;
+                padding: 10px;
 
                 a {
                     font-weight: 600;
-                    font-size: 20px;
-
                 }
 
             }
@@ -120,21 +114,21 @@ button {
 
 
 #logo {
-    height: 76px;
-    width: 50px;
+    height: 80px;
+    width: 54px;
     display: flex;
     justify-content: center;
-    background-color: $vividAuburn;
-    margin: 35px 0 0 0px;
+
+    background-color: #992631;
+    //   margin: -30px 0 0 100px;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     border: 3px solid black;
 
     img {
         margin-left: 4px;
-        margin-top: -5px;
-        height: 70px;
-        width: 60px;
+        margin-top: -20px;
+        height: 76px;
     }
 }
 
