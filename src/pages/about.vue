@@ -6,6 +6,7 @@ export default {
     return {
       restaurant: [],
       items: [],
+      cart_visible: false,
       beUrl: "http://127.0.0.1:8000/storage/",
     };
   },
@@ -14,6 +15,7 @@ export default {
       .get(`http://127.0.0.1:8000/api/show-restaurant/${this.$route.params.id}`)
       .then((response) => {
         this.restaurant = response.data.restaurant;
+        console.log(this.restaurant);
       });
 
     for (let i = 0; i < sessionStorage.length; i++) {
@@ -28,13 +30,14 @@ export default {
   methods: {
     toggleCart(prod) {
       prod.is_clicked = !prod.is_clicked;
+      this.cart_visible = true;
     },
     addToCart(item) {
-      console.log(this.items);
+      this.cart_visible = true;
       // controllo se ci sono oggetti all'interno del carrello
       if (this.items.length > 0) {
         const cartItem = this.items[0];
-        console.log(cartItem);
+        // console.log(cartItem);
 
         // controlle se l'id del ristorante corrisponde all'id del ristorante degli oggetti presenti nel carrello
         if (cartItem.ristorante_id == this.restaurant.id) {
@@ -45,21 +48,31 @@ export default {
               id: item.id,
               quantità: item.quantità,
               ristorante_id: this.restaurant.id,
+              ristorante_nome: this.restaurant.nome,
             };
-            // controllo gli elementi di items
-            this.items.forEach((element, idx) => {
-              // se trovo un elemento con lo stesso id dell'oggetto
-              if (oggetto.id === element.id) {
-                // sotituisco l'oggetto già presente con quello appena inserito
-                this.items[idx] = oggetto;
-              } else {
-                // aggiugno l'oggeto all'array items
-                this.items.push(oggetto);
-              }
+            let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
 
-              // aggiungo il prodotto alla sessione
-              sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-            });
+            // Ciclo attraverso gli elementi di items
+            for (let idx = 0; idx < this.items.length; idx++) {
+              const element = this.items[idx];
+              // Se trovo un elemento con lo stesso id dell'oggetto
+              if (oggetto.id === element.id) {
+                // Sostituisco l'oggetto già presente con quello appena inserito
+                this.items[idx] = oggetto;
+                found = true; // Segno che l'oggetto è stato trovato
+                break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
+              }
+            }
+
+            // Se l'oggetto non è stato trovato nell'array, lo aggiungo
+            if (!found) {
+              this.items.push(oggetto);
+            }
+
+            console.log(this.items);
+
+            // Aggiungo il prodotto alla sessione
+            sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
           } else {
             alert("Selezionare quantità maggiore di 0");
           }
@@ -115,7 +128,7 @@ export default {
 
       <h3>Menu</h3>
       <div class="row" v-for="(product, idx) in restaurant.products" :key="idx">
-        <div class="col-6">
+        <div class="col-6" v-if="product.is_visible">
           <div class="product">
             <div class="product-details">
               <h4>{{ product.nome }}</h4>
@@ -164,8 +177,8 @@ export default {
     </div>
 
     <!-- carrello -->
-    <div class="cart">
-      <h1>Carrello</h1>
+    <div class="cart" v-if="cart_visible">
+      <h1 class="text-center">Carrello</h1>
       <h2 v-if="this.items.length != 0">
         <h6>Ristorante selezionato</h6>
         <h4>
@@ -173,13 +186,13 @@ export default {
         </h4>
       </h2>
       <ul>
-        <li class="row" v-for="(item, index) in items" :key="index">
+        <li class="row py-3" v-for="(item, index) in items" :key="index">
           <span class="col-5">
             {{ item.nome }}
           </span>
           <span class="col-1">{{ item.quantità }}</span>
           <button
-            class="col-3 btn btn-danger"
+            class="col-3 btn btn-danger py-0"
             @click="removeItem(index, item.nome)"
           >
             Rimuovi
@@ -188,7 +201,7 @@ export default {
       </ul>
 
       <!-- bottoni conclusione o per svuotare il carrello -->
-      <div v-if="this.items != 0" class="d-flex justify-content-around">
+      <div v-if="this.items != 0" class="d-flex justify-content-around my-3">
         <!-- bottone per concludere l'ordine -->
         <router-link :to="{ name: 'order' }" class="btn btn-success">
           Concludi
@@ -199,6 +212,7 @@ export default {
           Svuota carrello
         </button>
       </div>
+      <div class="close-cart" @click="cart_visible = false">X</div>
     </div>
   </div>
 </template>
@@ -286,6 +300,13 @@ export default {
   top: 200px;
   right: 200px;
   background-color: rgb(98, 108, 129);
+  .close-cart {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
 }
 .img {
   width: 100%;
