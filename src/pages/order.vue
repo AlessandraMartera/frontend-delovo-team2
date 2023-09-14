@@ -20,7 +20,10 @@ export default {
 </script>
 
 <template>
-  <h1 class="my-5 mx-2 text-center">completa il tuo ordine</h1>
+  <div class="title-page">
+    <h1 class=" text-center">COMPLETA IL TUO ORDINE</h1>
+  </div>
+
 
   <div class="container-fluid my-2">
     <div class="d-flex justify-content-around">
@@ -89,7 +92,7 @@ export default {
 
         <hr />
 
-        <input type="submit" value="update" />
+        <input type="submit" value="update" class="button" />
       </form>
 
 
@@ -102,6 +105,20 @@ export default {
 @use "./../styles/partials/variables.scss" as *;
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
+
+.title-page {
+
+  background-color: $CookiesAndCream;
+  width: 500px;
+  margin: 30px auto;
+  border: 3px solid black;
+  border-radius: 15px;
+
+  h1 {
+    font-size: 45px;
+    padding: 10PX;
+  }
+}
 
 .container-fluid {
   min-height: 900px;
@@ -122,7 +139,7 @@ export default {
 
     h1 {
       text-align: center;
-      font-size: 55px;
+      font-size: 50px;
       margin-bottom: 20px;
       margin-left: 40px;
     }
@@ -147,12 +164,19 @@ export default {
   }
 
   .container-form {
-    input {
-      width: 100%;
+
+    div {
+      font-size: 25px;
     }
 
-    button {
-      width: 50px;
+    input {
+      width: 100%;
+      font-size: 20px;
+      padding: 5px;
+    }
+
+    .button {
+      width: 100px;
     }
   }
 
