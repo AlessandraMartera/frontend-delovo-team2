@@ -79,18 +79,22 @@ export default {
 
 .contenitore {
     background-color: #9b2226dd;
+    font-size: 20px;
+    background-image: url("./assets/images/Sfondo_footer.jpg");
     padding: 20px;
 
     ul {
         @include center ();
         justify-content: start;
+        font-size: 60px;
+        margin: 0px 20px;
 
         li {
             margin: 0 2%;
 
             a {
                 font-weight: 600;
-                font-size: 12px;
+                font-size: 20px;
 
             }
 
@@ -114,11 +118,10 @@ button {
 
 
 #logo {
-    height: 80px;
-    width: 60px;
+    height: 76px;
+    width: 50px;
     display: flex;
     justify-content: center;
-    margin-left: 200px;
     background-color: $vividAuburn;
     margin: 35px 0 0 0px;
     border-bottom-left-radius: 50%;
