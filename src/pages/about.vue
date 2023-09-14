@@ -17,10 +17,13 @@ export default {
         this.restaurant = response.data.restaurant;
         console.log(this.restaurant);
       });
-
+    // Ciclo sessionStorage
     for (let i = 0; i < sessionStorage.length; i++) {
-      const chiave = sessionStorage.key(i);
-      const oggettoJSON = sessionStorage.getItem(chiave);
+      // Ricavo la chiave dell'elemento ciclato
+      const key = sessionStorage.key(i);
+      // Ricavo il la string json
+      const oggettoJSON = sessionStorage.getItem(key);
+      // Parso il json
       const oggetto = JSON.parse(oggettoJSON);
 
       // Aggiungi l'oggetto all'array "items"
@@ -28,106 +31,96 @@ export default {
     }
   },
   methods: {
-    toggleCart() {
-      this.cart_visible = true;
-    },
     addOneProduct(item) {
+      // Attivo
       this.cart_visible = true;
-      let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
-      const oggetto = {
-        nome: item.nome,
-        id: item.id,
-        quantità: 1,
-        ristorante_id: this.restaurant.id,
-        ristorante_nome: this.restaurant.nome,
-      };
-      // Ciclo attraverso gli elementi di items
-      for (let idx = 0; idx < this.items.length; idx++) {
-        const element = this.items[idx];
-        // Se trovo un elemento con lo stesso id dell'oggetto
-        if (oggetto.id === element.id) {
-          // Sostituisco l'oggetto già presente con quello appena inserito
-          alert("prodotto già inserito nel carrello");
-          found = true; // Segno che l'oggetto è stato trovato
-          break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
-        }
-      }
-
-      // Se l'oggetto non è stato trovato nell'array, lo aggiungo
-      if (!found) {
-        this.items.push(oggetto);
-      }
-
-      // console.log(this.items);
-
-      // Aggiungo il prodotto alla sessione
-      sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-    },
-
-    addToCart(item) {
-      // controllo se ci sono oggetti all'interno del carrello
       if (this.items.length > 0) {
         const cartItem = this.items[0];
-        // console.log(cartItem);
 
-        // controlle se l'id del ristorante corrisponde all'id del ristorante degli oggetti presenti nel carrello
         if (cartItem.ristorante_id == this.restaurant.id) {
-          // controllo che la quantità del prodotto si maggiore di 0
-          if (item.quantità > 0) {
-            const oggetto = {
-              nome: item.nome,
-              id: item.id,
-              quantità: item.quantità,
-              ristorante_id: this.restaurant.id,
-              ristorante_nome: this.restaurant.nome,
-            };
-            let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
-
-            // Ciclo attraverso gli elementi di items
-            for (let idx = 0; idx < this.items.length; idx++) {
-              const element = this.items[idx];
-              // Se trovo un elemento con lo stesso id dell'oggetto
-              if (oggetto.id === element.id) {
-                // Sostituisco l'oggetto già presente con quello appena inserito
-                this.items[idx] = oggetto;
-                found = true; // Segno che l'oggetto è stato trovato
-                break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
-              }
+          let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
+          const oggetto = {
+            nome: item.nome,
+            id: item.id,
+            quantità: 1,
+            ristorante_id: this.restaurant.id,
+            ristorante_nome: this.restaurant.nome,
+          };
+          // Ciclo attraverso gli elementi di items
+          for (let idx = 0; idx < this.items.length; idx++) {
+            const element = this.items[idx];
+            // Se trovo un elemento con lo stesso id dell'oggetto
+            if (oggetto.id === element.id) {
+              // Sostituisco l'oggetto già presente con quello appena inserito
+              alert("prodotto già inserito nel carrello");
+              found = true; // Segno che l'oggetto è stato trovato
+              break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
             }
-
-            // Se l'oggetto non è stato trovato nell'array, lo aggiungo
-            if (!found) {
-              this.items.push(oggetto);
-            }
-
-            console.log(this.items);
-
-            // Aggiungo il prodotto alla sessione
-            sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-          } else {
-            alert("Selezionare quantità maggiore di 0");
           }
+
+          // Se l'oggetto non è stato trovato nell'array, lo aggiungo
+          if (!found) {
+            this.items.push(oggetto);
+          }
+
+          // console.log(this.items);
+
+          // Aggiungo il prodotto alla sessione
+          sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
         } else {
           alert(
             "Stai inserendo i prodotti di un altro ristorante, cancella o concludi l'ordine col ristorante precedente"
           );
         }
       } else {
-        if (item.quantità > 0) {
-          const oggetto = {
-            nome: item.nome,
-            id: item.id,
-            quantità: item.quantità,
-            ristorante_id: this.restaurant.id,
-            ristorante_nome: this.restaurant.nome,
-          };
-          this.items.push(oggetto);
-          sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-        } else {
-          alert("Selezionare quantità maggiore di 0");
+        let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
+        const oggetto = {
+          nome: item.nome,
+          id: item.id,
+          quantità: 1,
+          ristorante_id: this.restaurant.id,
+          ristorante_nome: this.restaurant.nome,
+        };
+        // Ciclo attraverso gli elementi di items
+        for (let idx = 0; idx < this.items.length; idx++) {
+          const element = this.items[idx];
+          // Se trovo un elemento con lo stesso id dell'oggetto
+          if (oggetto.id === element.id) {
+            // Sostituisco l'oggetto già presente con quello appena inserito
+            alert("prodotto già inserito nel carrello");
+            found = true; // Segno che l'oggetto è stato trovato
+            break; // Interrompo il ciclo quando trovo un elemento con lo stesso id
+          }
         }
+
+        // Se l'oggetto non è stato trovato nell'array, lo aggiungo
+        if (!found) {
+          this.items.push(oggetto);
+        }
+
+        // console.log(this.items);
+
+        // Aggiungo il prodotto alla sessione
+        sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
       }
     },
+    addQuantity(idx) {
+      this.items[idx].quantità++;
+      const storage = JSON.parse(sessionStorage.getItem(this.items[idx].nome));
+      storage.quantità++;
+      sessionStorage.setItem(this.items[idx].nome, JSON.stringify(storage));
+    },
+    removeQuantity(idx) {
+      if (this.items[idx].quantità > 1) {
+        this.items[idx].quantità--;
+        const storage = JSON.parse(
+          sessionStorage.getItem(this.items[idx].nome)
+        );
+        storage.quantità--;
+        sessionStorage.setItem(this.items[idx].nome, JSON.stringify(storage));
+      }
+    },
+
     removeItem(index, nome) {
       this.items.splice(index, 1);
       sessionStorage.removeItem(nome);
@@ -182,35 +175,19 @@ export default {
                 />
               </div>
             </div>
-
+            <!-- Bottone aggiunge un elemento del prodotto selezionato, apre il carrello -->
             <div class="cart-add" @click.prevent="addOneProduct(product)">
               Aggiungi al carrello
-            </div>
-            <div class="cart-add">
-              <form
-                class="d-flex justify-content-between align-items-center"
-                @submit.prevent="addToCart(product)"
-              >
-                <input
-                  v-model="product.quantità"
-                  class="quantity"
-                  type="number"
-                  min="1"
-                  placeholder="0"
-                />
-                <button type="submit" class="btn btn-secondary">
-                  Aggiungi
-                </button>
-              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- carrello -->
+    <!-- CARRELLO -->
     <div class="cart" v-if="cart_visible">
       <h1 class="text-center">Carrello</h1>
+      <!-- Mostra il ristorante in cui si sta acquistando solo se è presente un prodotto -->
       <div class="text-center py-2" v-if="this.items.length != 0">
         <h6>Ristorante selezionato:</h6>
         <h4>
@@ -220,23 +197,27 @@ export default {
       <ul>
         <li
           class="row py-3 mx-3 align-items-center"
-          v-for="(item, index) in items"
-          :key="index"
+          v-for="(item, idx) in items"
+          :key="idx"
         >
-          <h5 class="col-4">
+          <h3 class="col-6">
             {{ item.nome }}
-          </h5>
+          </h3>
           <div
             class="counter col-3 d-flex justify-content-center align-items-center"
           >
-            <button class="pb-2">-</button>
-            <span class="px-3">{{ item.quantità }}</span>
-            <button class="pb-2" @click.prevent="addOneProduct(product)">
-              +
+            <button
+              class="pb-2"
+              :class="item.quantità == 1 ? 'disabled' : ''"
+              @click.prevent="removeQuantity(idx)"
+            >
+              -
             </button>
+            <span class="px-3">{{ item.quantità }}</span>
+            <button class="pb-2" @click.prevent="addQuantity(idx)">+</button>
           </div>
           <button
-            class="ms-4 col-3 btn btn-danger py-0"
+            class="offset-1 col-2 btn btn-danger py-0"
             @click="removeItem(index, item.nome)"
           >
             Rimuovi
@@ -249,7 +230,7 @@ export default {
         <div class="d-flex justify-content-around">
           <!-- bottone per concludere l'ordine -->
           <router-link :to="{ name: 'order' }" class="btn btn-success">
-            Concludi
+            Acquista
           </router-link>
 
           <!-- bottone per cancellare tutto dall'interno del carrello -->
@@ -364,7 +345,7 @@ export default {
 
 .cart {
   position: absolute;
-  width: 600px;
+  width: 700px;
   height: 350px;
   top: 200px;
   right: 200px;
@@ -374,6 +355,7 @@ export default {
     position: absolute;
     top: 0;
     right: 20px;
+    cursor: pointer;
   }
   .send-cart {
     position: absolute;
@@ -382,7 +364,7 @@ export default {
     height: 50px;
   }
   .counter {
-    font-size: 2rem;
+    font-size: 3rem;
     button {
       font-size: 2.5rem;
       background-color: transparent;
