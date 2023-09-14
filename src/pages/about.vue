@@ -129,11 +129,7 @@ export default {
       </div>
 
       <h1>Menu</h1>
-      <div
-        class="row my-4"
-        v-for="(product, idx) in restaurant.products"
-        :key="idx"
-      >
+      <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
         <div class="col-6 card p-3" v-if="product.is_visible">
           <div class="product">
             <div class="product-details">
@@ -141,36 +137,19 @@ export default {
               <p>{{ product.descrizione }}</p>
               <p>Prezzo: {{ product.prezzo }} €</p>
               <div class="img-plate">
-                <img
-                  :src="
-                    product.image
-                      ? `${this.beUrl}${product.image}`
-                      : `${this.beUrl}main-image.jpg`
-                  "
-                  alt=""
-                />
+                <img :src="product.image
+                  ? `${this.beUrl}${product.image}`
+                  : `${this.beUrl}main-image.jpg`
+                  " alt="" />
               </div>
             </div>
 
-            <div
-              class="cart-add"
-              v-if="!product.is_clicked"
-              @click.prevent="toggleCart(product)"
-            >
+            <div class="cart-add" v-if="!product.is_clicked" @click.prevent="toggleCart(product)">
               Aggiungi al carrello
             </div>
             <div class="cart-add" v-else>
-              <form
-                class="d-flex justify-content-between align-items-center"
-                @submit.prevent="addToCart(product)"
-              >
-                <input
-                  v-model="product.quantità"
-                  class="quantity"
-                  type="number"
-                  min="1"
-                  placeholder="0"
-                />
+              <form class="d-flex justify-content-between align-items-center" @submit.prevent="addToCart(product)">
+                <input v-model="product.quantità" class="quantity" type="number" min="1" placeholder="0" />
                 <button type="submit" class="btn btn-secondary">
                   Aggiungi
                 </button>
@@ -196,10 +175,7 @@ export default {
             {{ item.nome }}
           </span>
           <span class="col-1">{{ item.quantità }}</span>
-          <button
-            class="col-3 btn btn-danger py-0"
-            @click="removeItem(index, item.nome)"
-          >
+          <button class="col-3 btn btn-danger py-0" @click="removeItem(index, item.nome)">
             Rimuovi
           </button>
         </li>
@@ -219,6 +195,8 @@ export default {
       </div>
       <div class="close-cart" @click="cart_visible = false">X</div>
     </div>
+
+
   </div>
 </template>
 
@@ -232,7 +210,13 @@ export default {
   display: flex;
   flex-direction: column;
   width: 80%;
-  background: linear-gradient(360deg, $CookiesAndCream, $vividAuburn);
+  background: linear-gradient(360deg,
+
+
+      $skobeloff,
+
+
+      $CookiesAndCream, );
   position: relative;
   margin: 120px auto;
   border-radius: 20px;
@@ -292,6 +276,10 @@ export default {
   .menu {
     width: 100%;
   }
+}
+
+.card {
+  background-color: #f8eccb;
 }
 
 .product {
