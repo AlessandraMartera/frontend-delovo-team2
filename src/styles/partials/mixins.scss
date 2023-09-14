@@ -1,0 +1,26 @@
+@mixin my-display-flex-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin my-display-flex-2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@mixin center ($type: 'both') {
+    display: flex;
+
+    @if $type =='vertical' {
+        justify-content: center;
+    }
+
+    @else if $type =='horizontal' {
+        align-items: center;
+    }
+
+    @else if $type =='both' {
+        justify-content: center;
+        align-items: center;
+    }
+}
