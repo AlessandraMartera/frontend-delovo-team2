@@ -8,3 +8,4 @@ import { router } from "./router.js"
 // import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 createApp(App).use(router).mount('#app')
+
