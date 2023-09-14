@@ -129,11 +129,7 @@ export default {
       </div>
 
       <h1>Menu</h1>
-      <div
-        class="row my-4"
-        v-for="(product, idx) in restaurant.products"
-        :key="idx"
-      >
+      <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
         <div class="col-6 card p-3" v-if="product.is_visible">
           <div class="product">
             <div class="product-details">
@@ -141,40 +137,25 @@ export default {
               <p>{{ product.descrizione }}</p>
               <p>Prezzo: {{ product.prezzo }} €</p>
               <div class="img-plate">
-                <img
-                  :src="
-                    product.image
-                      ? `${this.beUrl}${product.image}`
-                      : `${this.beUrl}main-image.jpg`
-                  "
-                  alt=""
-                />
+                <img :src="product.image
+                  ? `${this.beUrl}${product.image}`
+                  : `${this.beUrl}main-image.jpg`
+                  " alt="" />
               </div>
             </div>
 
-            <div
-              class="cart-add"
-              v-if="!product.is_clicked"
-              @click.prevent="toggleCart(product)"
-            >
+            <div class="cart-add" v-if="!product.is_clicked" @click.prevent="toggleCart(product)">
               Aggiungi al carrello
             </div>
             <div class="cart-add" v-else>
-              <form
-                class="d-flex justify-content-between align-items-center"
-                @submit.prevent="addToCart(product)"
-              >
-                <input
-                  v-model="product.quantità"
-                  class="quantity"
-                  type="number"
-                  min="1"
-                  placeholder="0"
-                />
+              <form class="d-flex justify-content-between align-items-center" @submit.prevent="addToCart(product)">
+                <input v-model="product.quantità" class="quantity" type="number" min="1" placeholder="0" />
                 <button type="submit" class="btn btn-secondary">
                   Aggiungi
                 </button>
               </form>
+
+
             </div>
           </div>
         </div>
@@ -196,10 +177,7 @@ export default {
             {{ item.nome }}
           </span>
           <span class="col-1">{{ item.quantità }}</span>
-          <button
-            class="col-3 btn btn-danger py-0"
-            @click="removeItem(index, item.nome)"
-          >
+          <button class="col-3 btn btn-danger py-0" @click="removeItem(index, item.nome)">
             Rimuovi
           </button>
         </li>
