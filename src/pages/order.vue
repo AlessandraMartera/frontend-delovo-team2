@@ -42,7 +42,7 @@ export default {
             </li>
             <li v-for="(item, index) in sessionItems" :key="index">
               <div class="row riga-piatti">
-                <div class="col-5 d-flex">{{ item.chiave }} </div>
+                <div class="col-5 d-flex text-nowrap">{{ item.chiave }} </div>
                 <div class="col-5">
                   {{ JSON.parse(item.valore).quantità }}
                 </div>
