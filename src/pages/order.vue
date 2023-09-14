@@ -7,10 +7,10 @@ export default {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
       data: {
-        "nome": '',
-        "indirizzo": '',
-        "telefono": '',
-        "email": '',
+        "nome": 'qwe',
+        "indirizzo": 'qwe',
+        "telefono": '2222222222',
+        "email": 'aws@sad.ca',
         "note": '',
         "product": [],
 
@@ -28,10 +28,10 @@ export default {
 
     this.sessionItems.forEach(element => {
       const res = JSON.parse(element.valore);
-      // console.log(res.id);
-      this.data.product.push(res.id)
+      // console.log(res.quantità);
+      this.data.product.push({ "product_id": res.id, "quantity": res.quantità });
     });
-    console.log(this.data.product);
+    // console.log(this.data.quantity);
   },
   methods: {
     sendOrder() {
