@@ -2,29 +2,28 @@
 import axios from "axios";
 
 export default {
-    name: "AppMain",
+  name: "AppMain",
 
-    components: {},
-    data() {
-        return {
-            restaurants: [],
-        };
-    },
-    mounted() { },
+  components: {},
+  data() {
+    return {
+      restaurants: [],
+    };
+  },
+  mounted() {},
 };
 </script>
 
 <template>
-    <section class="restaurants">
-        <router-view></router-view>
-    </section>
+  <section class="restaurants">
+    <router-view></router-view>
+  </section>
 </template>
 
 <style lang="scss" scoped>
 @use "./../styles/partials/variables.scss" as *;
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
-
 
 // .restaurants {
 //     margin: 0 auto;

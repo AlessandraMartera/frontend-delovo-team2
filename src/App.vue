@@ -3,14 +3,14 @@ import axios from "axios";
 import AppHeader from "./components/AppHeader.vue";
 import AppMain from "./components/AppMain.vue";
 import AppFooter from "./components/AppFooter.vue";
-// import RestaurantShow from './components/RestaurantShow.vue'
+import AppCart from "./components/AppCart.vue";
 
 export default {
   components: {
     AppHeader,
     AppMain,
     AppFooter,
-    // RestaurantShow
+    AppCart,
   },
 };
 </script>
@@ -22,6 +22,9 @@ export default {
       <AppHeader />
       <AppMain />
       <AppFooter />
+      <div class="app-cart">
+        <AppCart :restaurant="restaurant" />
+      </div>
     </div>
   </body>
 </template>
@@ -44,5 +47,11 @@ h6 {
   width: 80%;
   margin: 0 auto;
   background-image: url("./assets/images/Sfondo.jpg");
+}
+// AppCart
+.app-cart {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 </style>

@@ -16,9 +16,10 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.1",
-    "vue": "^3.3.4",
+    "vue": "^3.2.36",
     "vue-carousel": "^0.18.0",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
