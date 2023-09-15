@@ -29,11 +29,8 @@ export default {
     <!-- <AppSectionTypology /> -->
     <section v-if="showmenu" class="section-egg">
       <div class="item" v-for="(typology, idx) in types" :key="idx">
-        <button
-          class="uovo"
-          @click.prevent="$emit('event', idx)"
-          :class="selectedTypes.includes(typology.nome) ? ' selected' : ''"
-        >
+        <button class="uovo" @click.prevent="$emit('event', idx)"
+          :class="selectedTypes.includes(typology.nome) ? ' selected' : ''">
           <img class="img-egg" src="./../assets/images/Italiano.jpg" alt="" />
           <span class="border px-4 py-2 rounded">
             {{ typology.nome.toUpperCase() }}
@@ -54,9 +51,7 @@ h1 {
   font-size: 3rem;
   // text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
-.select {
-  cursor: pointer;
-}
+
 
 .typology {
   margin-top: 100px;
@@ -84,16 +79,14 @@ h1 {
     // }
   }
 
-  .selected {
-    img {
-      filter: grayscale(100%) opacity(1);
-    }
-  }
+
 
   button {
     border: none;
     font-size: 1.5rem;
     background: #a08b80;
+
+
   }
 
   .uovo {
@@ -104,9 +97,6 @@ h1 {
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     text-align: center;
     font-size: 1.4rem;
-    .selected {
-      background-color: red;
-    }
 
     img {
       width: 168px;
@@ -122,8 +112,22 @@ h1 {
       bottom: 90px;
       left: 50px;
     }
+
+
+  }
+
+  .uovo.selected {
+
+    cursor: pointer;
+
+    img {
+      border-color: $vividAuburn;
+    }
+
+    span {
+      color: $vividAuburn;
+    }
   }
 }
 </style>
-
 
