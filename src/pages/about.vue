@@ -101,49 +101,39 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="titolo-ristorante">
-      <div class="foto-titolo">
-        <div class="foto d-flex">
-          <img :src="`${this.$store.state.beUrl}${restaurant.image}`" alt="" />
-        </div>
-        <div class="info">
-          <h1>
-            {{ restaurant.nome }}
-          </h1>
-          <span>
-            {{ restaurant.indirizzo }}
-          </span>
-        </div>
+  <div class="titolo-ristorante">
+    <div class="foto-titolo">
+      <div class="foto d-flex">
+        <img :src="`${this.$store.state.beUrl}${restaurant.image}`" alt="" />
       </div>
+      <div class="info">
+        <h1>
+          {{ restaurant.nome }}
+        </h1>
+        <span>
+          {{ restaurant.indirizzo }}
+        </span>
+      </div>
+    </div>
 
-      <h1>Menu</h1>
-      <div
-        class="row my-4"
-        v-for="(product, idx) in restaurant.products"
-        :key="idx"
-      >
-        <div class="col-6 card p-3" v-if="product.is_visible">
-          <div class="product">
-            <div class="product-details">
-              <h2>{{ product.nome }}</h2>
-              <p>{{ product.descrizione }}</p>
-              <p>Prezzo: {{ product.prezzo }} €</p>
-              <div class="img-plate">
-                <img
-                  :src="
-                    product.image
-                      ? `${this.$store.state.beUrl}${product.image}`
-                      : `${this.$store.state.beUrl}main-image.jpg`
-                  "
-                  alt=""
-                />
-              </div>
+    <h1>Menu</h1>
+    <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
+      <div class="col-6 card p-3" v-if="product.is_visible">
+        <div class="product">
+          <div class="product-details">
+            <h2>{{ product.nome }}</h2>
+            <p>{{ product.descrizione }}</p>
+            <p>Prezzo: {{ product.prezzo }} €</p>
+            <div class="img-plate">
+              <img :src="product.image
+                ? `${this.$store.state.beUrl}${product.image}`
+                : `${this.$store.state.beUrl}main-image.jpg`
+                " alt="" />
             </div>
-            <!-- Bottone aggiunge un elemento del prodotto selezionato, apre il carrello -->
-            <div class="cart-add" @click.prevent="addOneProduct(product)">
-              Aggiungi al carrello
-            </div>
+          </div>
+          <!-- Bottone aggiunge un elemento del prodotto selezionato, apre il carrello -->
+          <div class="cart-add" @click.prevent="addOneProduct(product)">
+            Aggiungi al carrello
           </div>
         </div>
       </div>
@@ -156,6 +146,8 @@ export default {
 @use "./../styles/partials/variables.scss" as *;
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
+
+
 
 .titolo-ristorante {
   display: flex;
