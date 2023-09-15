@@ -7,11 +7,12 @@ export default {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
       data: {
-        nome: "",
-        indirizzo: "",
-        telefono: "",
-        email: "",
-        note: "",
+        nome: "gargamella",
+        indirizzo: "gargamella",
+        telefono: "gargamella",
+        email: "gargamella@gargamella",
+        note: "gargamella",
+        totale: 0,
         product: [],
       },
     };
@@ -34,6 +35,7 @@ export default {
   methods: {
     sendOrder() {
       console.log("invio ordine");
+      this.data.totale = this.$store.state.total;
       axios
         .post("http://127.0.0.1:8000/api/orders", this.data, {
           headers: { "Content-Type": "multipart/form-data" },
@@ -79,6 +81,7 @@ export default {
               </div>
             </li>
           </ul>
+          <div>Totale:{{ this.$store.state.total }}</div>
         </div>
       </div>
 
