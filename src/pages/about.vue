@@ -1,13 +1,12 @@
 <script>
 import axios from "axios";
+
 export default {
   name: "About",
+
   data() {
     return {
       restaurant: [],
-      items: [],
-      cart_visible: false,
-      beUrl: "http://127.0.0.1:8000/storage/",
     };
   },
   mounted() {
@@ -16,25 +15,17 @@ export default {
       .then((response) => {
         this.restaurant = response.data.restaurant;
       });
-    // Ciclo sessionStorage
-    for (let i = 0; i < sessionStorage.length; i++) {
-      // Ricavo la chiave dell'elemento ciclato
-      const key = sessionStorage.key(i);
-      // Ricavo il la string json
-      const oggettoJSON = sessionStorage.getItem(key);
-      // Parso il json
-      const oggetto = JSON.parse(oggettoJSON);
-
-      // Aggiungi l'oggetto all'array "items"
-      this.items.push(oggetto);
-    }
   },
   methods: {
     addOneProduct(item) {
-      // Attivo
-      this.cart_visible = true;
-      if (this.items.length > 0) {
-        const cartItem = this.items[0];
+      // Attivo variabile carrello in store globale
+      this.$store.state.cart_visible = true;
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Scorrimento fluido
+      });
+      if (this.$store.state.items.length > 0) {
+        const cartItem = this.$store.state.items[0];
 
         if (cartItem.ristorante_id == this.restaurant.id) {
           let found = false; // Variabile per tenere traccia se l'oggetto è stato trovato
@@ -46,8 +37,8 @@ export default {
             ristorante_nome: this.restaurant.nome,
           };
           // Ciclo attraverso gli elementi di items
-          for (let idx = 0; idx < this.items.length; idx++) {
-            const element = this.items[idx];
+          for (let idx = 0; idx < this.$store.state.items.length; idx++) {
+            const element = this.$store.state.items[idx];
             // Se trovo un elemento con lo stesso id dell'oggetto
             if (oggetto.id === element.id) {
               // Sostituisco l'oggetto già presente con quello appena inserito
@@ -59,10 +50,10 @@ export default {
 
           // Se l'oggetto non è stato trovato nell'array, lo aggiungo
           if (!found) {
-            this.items.push(oggetto);
+            this.$store.state.items.push(oggetto);
           }
 
-          // console.log(this.items);
+          // console.log(this.$store.state.items);
 
           // Aggiungo il prodotto alla sessione
           sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
@@ -81,8 +72,8 @@ export default {
           ristorante_nome: this.restaurant.nome,
         };
         // Ciclo attraverso gli elementi di items
-        for (let idx = 0; idx < this.items.length; idx++) {
-          const element = this.items[idx];
+        for (let idx = 0; idx < this.$store.state.items.length; idx++) {
+          const element = this.$store.state.items[idx];
           // Se trovo un elemento con lo stesso id dell'oggetto
           if (oggetto.id === element.id) {
             // Sostituisco l'oggetto già presente con quello appena inserito
@@ -94,40 +85,13 @@ export default {
 
         // Se l'oggetto non è stato trovato nell'array, lo aggiungo
         if (!found) {
-          this.items.push(oggetto);
+          this.$store.state.items.push(oggetto);
         }
 
-        // console.log(this.items);
+        // console.log(this.$store.state.items);
 
         // Aggiungo il prodotto alla sessione
         sessionStorage.setItem(item.nome, JSON.stringify(oggetto));
-      }
-    },
-    addQuantity(idx) {
-      this.items[idx].quantità++;
-      const storage = JSON.parse(sessionStorage.getItem(this.items[idx].nome));
-      storage.quantità++;
-      sessionStorage.setItem(this.items[idx].nome, JSON.stringify(storage));
-    },
-    removeQuantity(idx) {
-      if (this.items[idx].quantità > 1) {
-        this.items[idx].quantità--;
-        const storage = JSON.parse(
-          sessionStorage.getItem(this.items[idx].nome)
-        );
-        storage.quantità--;
-        sessionStorage.setItem(this.items[idx].nome, JSON.stringify(storage));
-      }
-    },
-
-    removeItem(index, nome) {
-      this.items.splice(index, 1);
-      sessionStorage.removeItem(nome);
-    },
-    emptyCart() {
-      if (this.items.length != 0) {
-        this.items = [];
-        sessionStorage.clear();
       }
     },
   },
@@ -139,7 +103,7 @@ export default {
     <div class="titolo-ristorante">
       <div class="foto-titolo">
         <div class="foto d-flex">
-          <img :src="`${this.beUrl}${restaurant.image}`" alt="" />
+          <img :src="`${this.$store.state.beUrl}${restaurant.image}`" alt="" />
         </div>
         <div class="info">
           <h1>
@@ -167,8 +131,8 @@ export default {
                 <img
                   :src="
                     product.image
-                      ? `${this.beUrl}${product.image}`
-                      : `${this.beUrl}main-image.jpg`
+                      ? `${this.$store.state.beUrl}${product.image}`
+                      : `${this.$store.state.beUrl}main-image.jpg`
                   "
                   alt=""
                 />
@@ -181,64 +145,6 @@ export default {
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- CARRELLO -->
-    <div class="cart" v-if="cart_visible">
-      <h1 class="text-center">Carrello</h1>
-      <!-- Mostra il ristorante in cui si sta acquistando solo se è presente un prodotto -->
-      <div class="text-center py-2" v-if="this.items.length != 0">
-        <h6>Ristorante selezionato:</h6>
-        <h4>
-          {{ this.items[0].ristorante_nome }}
-        </h4>
-      </div>
-      <ul>
-        <li
-          class="row py-3 mx-3 align-items-center"
-          v-for="(item, idx) in items"
-          :key="idx"
-        >
-          <h3 class="col-6">
-            {{ item.nome }}
-          </h3>
-          <div
-            class="counter col-3 d-flex justify-content-center align-items-center"
-          >
-            <button
-              class="pb-2"
-              :class="item.quantità == 1 ? 'disabled' : ''"
-              @click.prevent="removeQuantity(idx)"
-            >
-              -
-            </button>
-            <span class="px-3">{{ item.quantità }}</span>
-            <button class="pb-2" @click.prevent="addQuantity(idx)">+</button>
-          </div>
-          <button
-            class="offset-1 col-2 btn btn-danger py-0"
-            @click="removeItem(index, item.nome)"
-          >
-            Rimuovi
-          </button>
-        </li>
-      </ul>
-
-      <!-- bottoni conclusione o per svuotare il carrello -->
-      <div v-if="this.items != 0" class="send-cart">
-        <div class="d-flex justify-content-around">
-          <!-- bottone per concludere l'ordine -->
-          <router-link :to="{ name: 'order' }" class="btn btn-success">
-            Acquista
-          </router-link>
-
-          <!-- bottone per cancellare tutto dall'interno del carrello -->
-          <button class="btn btn-danger" @click="emptyCart">
-            Svuota carrello
-          </button>
-        </div>
-      </div>
-      <div class="close-cart" @click="cart_visible = false">X</div>
     </div>
   </div>
 </template>
@@ -328,51 +234,6 @@ export default {
   }
 }
 
-.cart-add {
-  background-color: #005f73;
-  color: #fff;
-  width: fit-content;
-  padding: 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.quantity {
-  width: 50px;
-}
-
-.cart {
-  position: absolute;
-  width: 700px;
-  height: 350px;
-  top: 200px;
-  right: 200px;
-  background-color: rgb(98, 108, 129);
-  .close-cart {
-    font-size: 2rem;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-  }
-  .send-cart {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-  }
-  .counter {
-    font-size: 3rem;
-    button {
-      font-size: 2.5rem;
-      background-color: transparent;
-      border: none;
-      color: white;
-    }
-  }
-}
-
 .img-plate {
   width: 300px;
   height: 200px;
@@ -384,5 +245,17 @@ export default {
     object-fit: cover;
     border-radius: 20px;
   }
+}
+
+// Aggiungi a carrello
+
+.cart-add {
+  background-color: #005f73;
+  color: #fff;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
 }
 </style>

@@ -29,20 +29,24 @@ export default {
         </div>
       </div>
       <div class="col-2 d-flex align-items-center">
-        <router-link class="home" :to="{ name: 'home' }">Torna alla Home</router-link>
+        <router-link class="home" :to="{ name: 'home' }"
+          >Torna alla Home</router-link
+        >
       </div>
       <div class="offset-3 col-2 d-flex gap-4 align-items-center">
         <a href="http://127.0.0.1:8000/register">
-          <button>
-            Registrati
-          </button>
+          <button>Registrati</button>
         </a>
         <a href="http://127.0.0.1:8000/login">
-          <button>
-            Accedi
-          </button>
+          <button>Accedi</button>
         </a>
-        <button href="#">Carrello</button>
+        <button
+          @click="
+            this.$store.state.cart_visible = !this.$store.state.cart_visible
+          "
+        >
+          Carrello
+        </button>
       </div>
 
       <!-- <ul id="menu">

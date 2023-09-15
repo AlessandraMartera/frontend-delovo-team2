@@ -11,7 +11,6 @@ export default {
       restaurants: [], //array ristoranti con tipologie
       typologies: [], //array tipologie
       selectedTypologies: [], //array tipologie selezionate
-      beUrl: "http://127.0.0.1:8000/storage/",
     };
   },
   mounted() {
@@ -72,7 +71,7 @@ export default {
   />
   <!-- Sezione listato ristoranti filtrati -->
   <section class="my-5">
-    <div>{{ this.$store.state.message }}</div>
+    <!-- <div>{{ this.$store.state.beUrl }}</div> -->
     <div>
       <!-- Se non sono selezionate tipologie stampa tutti -->
       <div class="list-rest" v-if="selectedTypologies.length === 0">
@@ -91,8 +90,8 @@ export default {
                       class="img"
                       :src="
                         restaurant.image
-                          ? `${this.beUrl}${restaurant.image}`
-                          : `${this.beUrl}main-image.jpg`
+                          ? `${this.$store.state.beUrl}${restaurant.image}`
+                          : `${this.$store.state.beUrl}main-image.jpg`
                       "
                       alt=""
                     />
@@ -134,11 +133,10 @@ export default {
                 <div>
                   <div class="cont-img">
                     <img
-                      class="img"
                       :src="
                         restaurant.image
-                          ? `${this.beUrl}${restaurant.image}`
-                          : `${this.beUrl}main-image.jpg`
+                          ? `${this.$store.state.beUrl}${restaurant.image}`
+                          : `${this.$store.state.beUrl}main-image.jpg`
                       "
                       alt=""
                     />

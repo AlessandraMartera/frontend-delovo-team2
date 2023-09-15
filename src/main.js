@@ -15,7 +15,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const store = createStore({
   state() {
     return {
-      message: 'cighi'
+      beUrl: "http://127.0.0.1:8000/storage/",
+      items: [],
+      cart_visible: false
     }
   }
 })
