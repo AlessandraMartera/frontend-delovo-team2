@@ -106,7 +106,7 @@ h1 {
     }
 
     span {
-      background-color: #596d67;
+      background-color: $skobeloff;
       color: white;
       position: relative;
       bottom: 90px;
@@ -125,7 +125,7 @@ h1 {
     }
 
     span {
-      color: $vividAuburn;
+      background-color: $vividAuburn;
     }
   }
 }
