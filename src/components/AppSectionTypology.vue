@@ -31,7 +31,7 @@ export default {
       <div class="item" v-for="(typology, idx) in types" :key="idx">
         <button class="uovo" @click.prevent="$emit('event', idx)"
           :class="selectedTypes.includes(typology.nome) ? ' selected' : ''">
-          <img class="img-egg" src="./../assets/images/Italiano.jpg" alt="" />
+          <img class="img-egg" :src="`${this.$store.state.beUrl}${typology.image}`" alt="" />
           <span class="border px-4 py-2 rounded">
             {{ typology.nome.toUpperCase() }}
           </span>
