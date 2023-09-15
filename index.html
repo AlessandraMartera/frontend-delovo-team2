@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-    <!-- collegamento script payment -->
-    <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + Vue</title>
+  <!-- Include la libreria client Braintree JS -->
+  <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.min.js"></script>
+
+  <!-- Include jQuery -->
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <!-- collegamento script payment -->
+  <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
+</body>
+
 </html>

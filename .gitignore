@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.braintreeTutorial/routes/checkout.js
+.src/components/Payment.vue

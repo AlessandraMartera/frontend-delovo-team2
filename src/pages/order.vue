@@ -1,8 +1,12 @@
 <script>
 import axios from "axios";
+import Payment from "../components/Payment.vue";
 
 export default {
   name: "order",
+  components: {
+    Payment,
+  },
   data() {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
@@ -15,6 +19,7 @@ export default {
         totale: 0,
         product: [],
       },
+      payment_visible: false,
     };
   },
   mounted() {
@@ -161,7 +166,8 @@ export default {
         <input type="submit" value="update" class="button" />
       </form>
     </div>
-
+    <Payment v-if="payment_visible" />
+    <button @click="payment_visible = true">Paga</button>
     <div id="dropin-container"></div>
     <button
       @click="sendOrder()"
