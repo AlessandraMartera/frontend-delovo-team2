@@ -16,7 +16,7 @@ export default {
     braintree.dropin.create(
       {
         // Insert your tokenization key here
-        authorization: "sandbox_yk8b584y_4zwxbspym8vwtn2h",
+        authorization: "-",
         container: "#dropin-container",
       },
       function (createErr, instance) {
