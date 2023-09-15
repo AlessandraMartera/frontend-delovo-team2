@@ -4,7 +4,7 @@ import home from './pages/home.vue';
 import about from './pages/about.vue';
 
 import order from './pages/order.vue'
-
+import check from './pages/check.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,6 +23,11 @@ const router = createRouter({
             path: '/order',
             name: 'order',
             component: order
+        },
+        {
+            path: '/check',
+            name: 'check',
+            component: check
         },
         
     ]

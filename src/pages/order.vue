@@ -39,15 +39,16 @@ export default {
   },
   methods: {
     sendOrder() {
-      console.log("invio ordine");
+
       this.data.totale = this.$store.state.total;
-      axios
-        .post("http://127.0.0.1:8000/api/orders", this.data, {
-          headers: { "Content-Type": "multipart/form-data" },
-        })
+      axios.post("http://127.0.0.1:8000/api/orders", this.data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
         .then((res) => {
           console.log(res);
         });
+
+      this.$router.push('check')
     },
   },
 };
@@ -96,86 +97,45 @@ export default {
         <div>
           <label for="nome">Iserisci qui il tuo nome</label>
           <br />
-          <input
-            type="text"
-            name="nome"
-            id="nome"
-            placeholder="nome"
-            v-model="this.data.nome"
-            required
-          />
+          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input
-            type="text"
-            name="indirizzo"
-            id="indirizzo"
-            placeholder="indirizzo"
-            v-model="this.data.indirizzo"
-            required
-          />
+          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
+            required />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input
-            type="text"
-            name="telefono"
-            id="telefono"
-            placeholder="telefono"
-            v-model="this.data.telefono"
-            required
-          />
+          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="email"
-            v-model="this.data.email"
-            required
-          />
+          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea
-            name="note"
-            id="note"
-            cols="30"
-            rows="10"
-            v-model="this.data.note"
-          ></textarea>
+          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
         </div>
 
         <hr />
 
-        <input type="submit" value="update" class="button" />
+        <!-- <input type="submit" value="update" class="button" /> -->
       </form>
     </div>
-    <Payment v-if="payment_visible" />
-    <button @click="payment_visible = true">Paga</button>
-    <div id="dropin-container"></div>
-    <button
-      @click="sendOrder()"
-      id="submit-button"
-      class="button button--small button--green"
-    >
-      pagamento
-    </button>
+    <Payment @pay="sendOrder()" />
+
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div id="dropin-wrapper">
     <div id="checkout-message"></div>
     <div id="dropin-container"></div>
-    <button id="submit-button">Submit payment</button>
+    <button id="submit-button" @click="$emit('pay')">Submit payment</button>
   </div>
 </template>
 
@@ -58,6 +58,7 @@ export default {
         });
       }
     );
+
   },
 };
 </script>
