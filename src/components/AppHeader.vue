@@ -29,9 +29,7 @@ export default {
         </div>
       </div>
       <div class="col-2 d-flex align-items-center">
-        <router-link class="home" :to="{ name: 'home' }"
-          >Torna alla Home</router-link
-        >
+        <router-link class="home" :to="{ name: 'home' }">Torna alla Home</router-link>
       </div>
       <div class="offset-3 col-2 d-flex gap-4 align-items-center">
         <a href="http://127.0.0.1:8000/register">
@@ -40,11 +38,9 @@ export default {
         <a href="http://127.0.0.1:8000/login">
           <button>Accedi</button>
         </a>
-        <button
-          @click="
-            this.$store.state.cart_visible = !this.$store.state.cart_visible
-          "
-        >
+        <button @click="
+          this.$store.state.cart_visible = !this.$store.state.cart_visible
+          ">
           Carrello
         </button>
       </div>
@@ -82,6 +78,26 @@ header {
     border-radius: 10px;
     padding: 0 10px;
   }
+
+  nav {
+    background-image: url("./../assets/images/Sfondo_sezione_tipologie.jpg");
+    background-size: cover;
+    background-position: bottom;
+    height: 145px;
+
+    // box-shadow: 10px 10px 5px black;
+
+    // -webkit-box-shadow: -1px 0px 20px 8px #000000;
+    // -moz-box-shadow: -1px 0px 20px 8px #000000;
+    // -o-box-shadow: -1px 0px 20px 8px #000000;
+    // box-shadow: -1px 0px 20px 8px #000000;
+
+    -webkit-box-shadow: 10px 11px 24px 6px #000000;
+    -moz-box-shadow: 10px 11px 24px 6px #000000;
+    -o-box-shadow: 10px 11px 24px 6px #000000;
+    box-shadow: 10px 11px 24px 6px #000000;
+  }
+
 }
 
 #logo {
@@ -103,24 +119,7 @@ header {
   }
 }
 
-nav {
-  background-image: url("./../assets/images/Sfondo_sezione_tipologie.jpg");
-  background-size: cover;
-  background-position: bottom;
-  height: 145px;
 
-  // box-shadow: 10px 10px 5px black;
-
-  // -webkit-box-shadow: -1px 0px 20px 8px #000000;
-  // -moz-box-shadow: -1px 0px 20px 8px #000000;
-  // -o-box-shadow: -1px 0px 20px 8px #000000;
-  // box-shadow: -1px 0px 20px 8px #000000;
-
-  -webkit-box-shadow: 10px 11px 24px 6px #000000;
-  -moz-box-shadow: 10px 11px 24px 6px #000000;
-  -o-box-shadow: 10px 11px 24px 6px #000000;
-  box-shadow: 10px 11px 24px 6px #000000;
-}
 
 a {
   color: black;

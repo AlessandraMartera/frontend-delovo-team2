@@ -43,23 +43,26 @@ export default {
 </script>
 
 <template>
-    <section class="contenitore">
-
-        <div class="news">
-            <div id="logo">
-                <img src="./../assets/images/Logo3.svg" alt="">
+    <footer class="contenitore">
+        <div class="footer">
+            <div class="news">
+                <div id="logo">
+                    <img src="./../assets/images/Logo3.svg" alt="">
+                </div>
+                <ul>
+                    <li v-for="link in links">
+                        <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li v-for="link in links">
-                    <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
-                </li>
-            </ul>
+
+            <div>
+                <small id="copy">© Copyright 2012-2020 | L'ovo | All Rights Reserved </small>
+            </div>
         </div>
 
-        <div>
-            <small id="copy">© Copyright 2012-2020 | L'ovo | All Rights Reserved </small>
-        </div>
-    </section>
+
+    </footer>
 </template>
 
 <style lang="scss" scoped>
@@ -74,27 +77,39 @@ export default {
 
 
 .contenitore {
-    background-image: url("./../assets/images/Sfondo_footer.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    width: 110%;
+    margin-left: -5%;
+    padding: 30px 0px;
 
-    div {
-        font-size: 20px;
-        padding: 20px;
+    .footer {
+        background-image: url("./../assets/images/Sfondo_footer.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-box-shadow: 10px 11px 24px 6px #000000;
+        -moz-box-shadow: 10px 11px 24px 6px #000000;
+        -o-box-shadow: 10px 11px 24px 6px #000000;
+        box-shadow: 10px 11px 24px 6px #000000;
 
-        ul {
-            display: flex;
-            margin: 0px 20px;
+        div {
+            font-size: 20px;
+            padding: 20px;
 
-            li {
-                padding: 10px;
+            ul {
+                display: flex;
+                margin: 0px 20px;
 
-                a {
-                    font-weight: 600;
+                li {
+                    padding: 10px;
+
+                    a {
+                        font-weight: 600;
+                    }
+
                 }
-
             }
+
         }
+
 
     }
 }

@@ -10,14 +10,14 @@ export default {
       restaurants: [],
     };
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
 
 <template>
-  <section class="restaurants">
+  <main class="restaurants">
     <router-view></router-view>
-  </section>
+  </main>
 </template>
 
 <style lang="scss" scoped>

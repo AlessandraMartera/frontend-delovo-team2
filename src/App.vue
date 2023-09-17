@@ -13,6 +13,9 @@ export default {
     AppCart,
   },
 };
+
+
+
 </script>
 
 <template>
@@ -26,6 +29,8 @@ export default {
         <AppCart :restaurant="restaurant" />
       </div>
     </div>
+
+
   </body>
 </template>
 
@@ -33,6 +38,7 @@ export default {
 @use "./styles/partials/variables.scss" as Var;
 @use "./styles/general.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap");
+
 body,
 h1,
 h2,
@@ -43,11 +49,16 @@ h6 {
   font-family: "Patrick Hand SC", cursive;
   font-size: 1rem;
 }
+
 .background {
   width: 80%;
   margin: 0 auto;
-  background-image: url("./assets/images/Sfondo.jpg");
+  background-image: url("./assets/images/Sfondo2.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+
 }
+
 // AppCart
 .app-cart {
   position: absolute;
