@@ -80,7 +80,6 @@ export default {
 
     },
 
-
   }
 };
 </script>
@@ -170,7 +169,6 @@ export default {
 
       </form>
     </div>
-    <Payment @pay="sendOrder()" />
 
 
   </div>
