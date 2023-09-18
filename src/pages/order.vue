@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
+      check: false,
       data: {
         nome: "gargamella",
         indirizzo: "gargamella",
@@ -31,6 +32,41 @@ export default {
       this.data.product.push({ product_id: res.id, quantity: res.quantità });
     });
     // console.log(this.data.quantity);
+
+    this.data.totale = this.$store.state.total;
+    var formData = this.data;
+    var router = this.$router
+
+    var button = document.querySelector("#submit-button");
+
+    braintree.dropin.create({
+      authorization: 'sandbox_9qgbmcsx_w6h37fxfk57bn5bp',
+      selector: '#dropin-container'
+    }, function (err, instance) {
+      button.addEventListener('click', function sendOrder() {
+        // Il codice per inviare l'ordine dovrebbe essere qui
+        instance.requestPaymentMethod(function (
+          requestPaymentMethodErr,
+          payload
+        ) {
+          if (payload) {
+
+
+            axios
+              .post("http://127.0.0.1:8000/api/orders", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+
+              })
+              .then((res) => {
+                console.log(res);
+                // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
+                router.push('/check'); // Sostituisci '/pagina-di-destinazione' con l'URL della pagina a cui desideri reindirizzare l'utente
+              });
+
+          }
+        })
+      })
+    });
   },
   methods: {
     sendOrder() {
@@ -43,6 +79,9 @@ export default {
         .then((res) => {
           console.log(res);
         });
+
+      // reindirizzamento alla pagina di checkout
+      router.push('/check');
     },
   },
 };
@@ -86,90 +125,54 @@ export default {
       </div>
 
       <!-- FORM  -->
-      <form class="container-form my-2" method="POST">
+      <form class="container-form my-2" method="POST" @submit.prevent>
         <!-- input nome -->
         <div>
           <label for="nome">Iserisci qui il tuo nome</label>
           <br />
-          <input
-            type="text"
-            name="nome"
-            id="nome"
-            placeholder="nome"
-            v-model="this.data.nome"
-            required
-          />
+          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input
-            type="text"
-            name="indirizzo"
-            id="indirizzo"
-            placeholder="indirizzo"
-            v-model="this.data.indirizzo"
-            required
-          />
+          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
+            required />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input
-            type="text"
-            name="telefono"
-            id="telefono"
-            placeholder="telefono"
-            v-model="this.data.telefono"
-            required
-          />
+          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="email"
-            v-model="this.data.email"
-            required
-          />
+          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea
-            name="note"
-            id="note"
-            cols="30"
-            rows="10"
-            v-model="this.data.note"
-          ></textarea>
+          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
         </div>
 
         <hr />
 
-        <input type="submit" value="update" class="button" />
+        <!-- <input type="submit" value="update" class="button" /> -->
+        <div id="dropin-wrapper">
+          <div id="dropin-container"></div>
+          <input type="submit" id="submit-button" value="submit">
+        </div>
       </form>
     </div>
 
-    <div id="dropin-container"></div>
-    <button
-      @click="sendOrder()"
-      id="submit-button"
-      class="button button--small button--green"
-    >
-      pagamento
-    </button>
+
   </div>
 </template>
 
