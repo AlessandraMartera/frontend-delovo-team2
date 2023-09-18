@@ -2,10 +2,10 @@
   <div id="dropin-wrapper">
     <div id="checkout-message"></div>
     <div id="dropin-container"></div>
-    <button id="submit-button" @click="$emit('pay')">Submit payment</button>
+    <button id="submit-button">Submit payment</button>
   </div>
 </template>
-
+ <!-- @click="$emit('pay')" -->
 <script>
 import $ from "jquery";
 
