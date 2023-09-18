@@ -6,7 +6,6 @@ export default {
   data() {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
-      check: false,
       data: {
         nome: "gargamella",
         indirizzo: "gargamella",
@@ -19,6 +18,8 @@ export default {
     };
   },
   mounted() {
+    var check = false;
+
     // Cicla attraverso gli elementi presenti nello storage della sessione
     for (let i = 0; i < sessionStorage.length; i++) {
       const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
@@ -28,14 +29,13 @@ export default {
 
     this.sessionItems.forEach((element) => {
       const res = JSON.parse(element.valore);
-      // console.log(res.quantità);
       this.data.product.push({ product_id: res.id, quantity: res.quantità });
     });
-    // console.log(this.data.quantity);
 
     this.data.totale = this.$store.state.total;
     var formData = this.data;
     var router = this.$router
+    var arrayTeams = this.sessionItems;
 
     var button = document.querySelector("#submit-button");
 
@@ -44,45 +44,30 @@ export default {
       selector: '#dropin-container'
     }, function (err, instance) {
       button.addEventListener('click', function sendOrder() {
-        // Il codice per inviare l'ordine dovrebbe essere qui
+        // controllo se il pagamento va a buon fine
         instance.requestPaymentMethod(function (
           requestPaymentMethodErr,
           payload
         ) {
+          // Il codice per inviare l'ordine dovrebbe essere qui
+          // se l'ordine va a buon fine
           if (payload) {
-
-
             axios
               .post("http://127.0.0.1:8000/api/orders", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
-
               })
               .then((res) => {
-                console.log(res);
                 // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
-                router.push('/check'); // Sostituisci '/pagina-di-destinazione' con l'URL della pagina a cui desideri reindirizzare l'utente
+                router.push('/check');
+                check = true
+
               });
+
 
           }
         })
       })
     });
-  },
-  methods: {
-    sendOrder() {
-      console.log("invio ordine");
-      this.data.totale = this.$store.state.total;
-      axios
-        .post("http://127.0.0.1:8000/api/orders", this.data, {
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-          console.log(res);
-        });
-
-      // reindirizzamento alla pagina di checkout
-      router.push('/check');
-    },
   },
 };
 </script>
