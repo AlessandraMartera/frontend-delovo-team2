@@ -66,14 +66,14 @@ export default {
   <!-- Componente tipologie per ricerca -->
   <AppSectionTypology @event="toggle" :types="this.typologies" :selectedTypes="this.selectedTypologies" />
   <!-- Sezione listato ristoranti filtrati -->
-  <section class="my-5">
+  <section>
     <!-- <div>{{ this.$store.state.beUrl }}</div> -->
     <div>
       <!-- Se non sono selezionate tipologie stampa tutti -->
       <div class="list-rest" v-if="selectedTypologies.length === 0">
         <ul class="list-rest-ul" v-for="(restaurant, idx) in restaurants" :key="idx">
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-            <li class="card d-flex justify-content-center">
+            <li class="restaurant-card">
               <h2>{{ restaurant.nome }}</h2>
               <div class="d-flex gap-4 align-items-center">
                 <div>
@@ -107,7 +107,7 @@ export default {
       <div v-else class="list-rest">
         <ul class="list-rest-ul" v-for="(restaurant, idx) in filteredRestaurants" :key="idx">
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
-            <li class="card d-flex justify-content-center">
+            <li class="restaurant-card">
               <h2>{{ restaurant.nome }}</h2>
               <div class="d-flex gap-4 align-items-center">
                 <div>
@@ -141,21 +141,25 @@ export default {
 @use "./../styles/general.scss" as *;
 
 .list-rest {
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  max-width: 100vw;
   gap: 20px;
 
   .list-rest-ul {
     width: calc(50% - 20px);
+    min-width: fit-content;
     display: flex;
     justify-content: center;
+    margin: 0 auto;
   }
 }
 
-.card {
+.restaurant-card {
   height: 350px;
-  padding: 0 0 20px 40px;
+  padding-left: 50px;
+  padding-top: 30px;
   margin-top: 10px;
   margin-bottom: 40px;
   width: 550px;
@@ -219,8 +223,7 @@ export default {
 @media screen and (max-width: 600px) {
 
   .list-rest {
-    display: block;
-    margin-left: 170px;
+    justify-content: center;
   }
 
 }
