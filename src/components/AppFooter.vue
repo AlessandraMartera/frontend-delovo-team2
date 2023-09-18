@@ -68,42 +68,63 @@ export default {
     <footer class="contenitore">
         <div class="footer">
             <div class="news">
-                <div>
-                    <div id="logo">
-                        <img src="./../assets/images/Logo3.svg" alt="">
-                    </div>
-                    <ul class="lista-cose-footer">
+                <div id="logo">
+                    <img src="./../assets/images/Logo3.svg" alt="">
+                </div>
+                <div class="contenitore-sviluppatori">
+                    <ul class="prova">
                         <li v-for="link in links">
-                            <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+                            <h5>
+                                {{ link.text }}
+                            </h5>
                             <ul>
                                 <li>
-                                    prova
+                                    <a href="#">
+                                        prova
+                                    </a>
                                 </li>
                                 <li>
-                                    prova
+                                    <a href="#">
+                                        prova
+                                    </a>
                                 </li>
                                 <li>
-                                    prova
+                                    <a href="#">
+                                        prova
+                                    </a>
                                 </li>
                                 <li>
-                                    prova
+                                    <a href="#">
+                                        prova
+                                    </a>
                                 </li>
                                 <li>
-                                    prova
+                                    <a href="#">
+                                        prova
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        prova
+                                    </a>
                                 </li>
                             </ul>
                         </li>
+
                     </ul>
-                </div>
-                <div class="contenitore-sviluppatori">
-                    <h5>
-                        Developed by:
-                    </h5>
-                    <ul>
-                        <li v-for="developer in  developers ">
-                            <a :href="developer.link">
-                                {{ developer.nome }}
-                            </a>
+
+                    <ul class="prova">
+                        <li>
+                            <h5>
+                                Developed by:
+                            </h5>
+                            <ul>
+                                <li v-for="developer in  developers ">
+                                    <a :href="developer.link">
+                                        {{ developer.nome }}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -123,11 +144,6 @@ export default {
 @use './../styles/partials/mixins.scss' as *;
 @use './../styles/general.scss' as *;
 
-.brand {
-    padding: 20px 0;
-}
-
-
 
 .contenitore {
     width: 110%;
@@ -143,59 +159,61 @@ export default {
         -o-box-shadow: 10px 11px 24px 6px #000000;
         box-shadow: 10px 11px 24px 6px #000000;
 
-        div {
-            font-size: 20px;
-            padding: 20px;
-
-            .lista-cose-footer {
-                display: flex;
-                margin: 0px 20px;
-
-                li {
-                    padding: 5px;
-
-                    a {
-                        font-size: 20px;
-                        font-weight: 700;
-                    }
-
-                }
-            }
-
-        }
 
 
         .news {
             display: flex;
-            justify-content: space-between;
+            font-size: 20px;
+            padding: 20px;
             padding-bottom: 0px;
 
-            div {
+            #logo {
+                margin-left: 20px;
+                height: 80px;
+                width: 54px;
                 display: flex;
+                justify-content: center;
+
+                background-color: #992631;
+                //   margin: -30px 0 0 100px;
+                border-bottom-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border: 3px solid black;
+
+                img {
+                    margin-left: 4px;
+                    height: 76px;
+                }
             }
 
+
             .contenitore-sviluppatori {
-                display: block;
-                margin-right: 200px;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
 
-                h5 {
-                    margin-top: 12px;
-                    font-size: 22px;
-                    font-weight: 700;
-                }
 
-                ul {
-                    display: block;
+                .prova {
+                    display: flex;
+                    justify-content: space-around;
+                    width: 100%;
+
+                    h5 {
+                        margin-top: 12px;
+                        font-size: 22px;
+                        font-weight: 700;
+                    }
 
                     li {
+                        font-weight: 700;
 
                         a {
-                            font-size: 20px;
-                            font-weight: 700;
+                            color: #000000;
                         }
 
                     }
                 }
+
             }
         }
 
@@ -205,39 +223,5 @@ export default {
 
     }
 
-}
-
-
-
-
-button {
-    color: white;
-    padding: 0.5em 1em;
-    border-radius: 6px;
-    margin-left: 20px;
-}
-
-
-#logo {
-    height: 80px;
-    width: 54px;
-    display: flex;
-    justify-content: center;
-
-    background-color: #992631;
-    //   margin: -30px 0 0 100px;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border: 3px solid black;
-
-    img {
-        margin-left: 4px;
-        margin-top: -20px;
-        height: 76px;
-    }
-}
-
-a {
-    color: black;
 }
 </style>
