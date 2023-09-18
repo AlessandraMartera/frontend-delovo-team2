@@ -72,9 +72,26 @@ export default {
                     <div id="logo">
                         <img src="./../assets/images/Logo3.svg" alt="">
                     </div>
-                    <ul>
+                    <ul class="lista-cose-footer">
                         <li v-for="link in links">
                             <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+                            <ul>
+                                <li>
+                                    prova
+                                </li>
+                                <li>
+                                    prova
+                                </li>
+                                <li>
+                                    prova
+                                </li>
+                                <li>
+                                    prova
+                                </li>
+                                <li>
+                                    prova
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +109,7 @@ export default {
                 </div>
             </div>
 
-            <div>
+            <div id="copyright">
                 <small id="copy">© Copyright 2012-2020 | L'ovo | All Rights Reserved </small>
             </div>
         </div>
@@ -130,15 +147,16 @@ export default {
             font-size: 20px;
             padding: 20px;
 
-            ul {
+            .lista-cose-footer {
                 display: flex;
                 margin: 0px 20px;
 
                 li {
-                    padding: 10px;
+                    padding: 5px;
 
                     a {
-                        font-weight: 600;
+                        font-size: 20px;
+                        font-weight: 700;
                     }
 
                 }
@@ -150,6 +168,7 @@ export default {
         .news {
             display: flex;
             justify-content: space-between;
+            padding-bottom: 0px;
 
             div {
                 display: flex;
@@ -160,26 +179,32 @@ export default {
                 margin-right: 200px;
 
                 h5 {
+                    margin-top: 12px;
                     font-size: 22px;
                     font-weight: 700;
                 }
 
                 ul {
                     display: block;
-                    margin: 0px 20px;
 
                     li {
 
                         a {
                             font-size: 20px;
-                            font-weight: 300;
+                            font-weight: 700;
                         }
 
                     }
                 }
             }
         }
+
+        #copyright {
+            padding-top: 0px;
+        }
+
     }
+
 }
 
 
