@@ -224,4 +224,21 @@ export default {
     }
 
 }
+
+@media screen and (max-width: 600px) {
+    .contenitore {
+
+        .footer {
+
+
+
+            .news {
+
+                #logo {
+                    background-color: #000000;
+                }
+            }
+        }
+    }
+}
 </style>

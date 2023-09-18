@@ -65,4 +65,10 @@ h6 {
   top: 0;
   right: 0;
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: black;
+  }
+}
 </style>
