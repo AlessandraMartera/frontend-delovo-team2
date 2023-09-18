@@ -46,14 +46,28 @@ export default {
     <footer class="contenitore">
         <div class="footer">
             <div class="news">
-                <div id="logo">
-                    <img src="./../assets/images/Logo3.svg" alt="">
+                <div>
+                    <div id="logo">
+                        <img src="./../assets/images/Logo3.svg" alt="">
+                    </div>
+                    <ul>
+                        <li v-for="link in links">
+                            <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul>
-                    <li v-for="link in links">
-                        <a :href="link.url" :class="{ active: link.current }">{{ link.text }}</a>
-                    </li>
-                </ul>
+                <div class="contenitore-sviluppatori">
+                    <h5>
+                        Developed by:
+                    </h5>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/MirkoGLostia">
+                                Mirko
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div>
@@ -116,6 +130,15 @@ export default {
 
 .news {
     display: flex;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+    }
+
+    .contenitore-sviluppatori {
+        margin-right: 200px;
+    }
 }
 
 
