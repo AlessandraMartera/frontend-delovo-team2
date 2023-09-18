@@ -36,6 +36,28 @@ export default {
                     url: "#",
                     current: false,
                 },
+            ],
+            developers: [
+                {
+                    nome: "Mirko",
+                    link: "https://github.com/MirkoGLostia"
+                },
+                {
+                    nome: "Alessandra",
+                    link: "https://github.com/AlessandraMartera"
+                },
+                {
+                    nome: "Federica",
+                    link: "https://github.com/FedericaMammone"
+                },
+                {
+                    nome: "Gianbattista",
+                    link: "https://github.com/GianbaBotassi"
+                },
+                {
+                    nome: "Gabriele",
+                    link: "https://github.com/g4br100"
+                },
             ]
         }
     }
@@ -61,9 +83,9 @@ export default {
                         Developed by:
                     </h5>
                     <ul>
-                        <li>
-                            <a href="https://github.com/MirkoGLostia">
-                                Mirko
+                        <li v-for="developer in  developers ">
+                            <a :href="developer.link">
+                                {{ developer.nome }}
                             </a>
                         </li>
                     </ul>
@@ -125,21 +147,41 @@ export default {
         }
 
 
+        .news {
+            display: flex;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+            }
+
+            .contenitore-sviluppatori {
+                display: block;
+                margin-right: 200px;
+
+                h5 {
+                    font-size: 22px;
+                    font-weight: 700;
+                }
+
+                ul {
+                    display: block;
+                    margin: 0px 20px;
+
+                    li {
+
+                        a {
+                            font-size: 20px;
+                            font-weight: 300;
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
 
-.news {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-        display: flex;
-    }
-
-    .contenitore-sviluppatori {
-        margin-right: 200px;
-    }
-}
 
 
 
