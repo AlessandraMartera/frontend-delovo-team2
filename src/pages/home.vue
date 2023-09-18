@@ -79,8 +79,8 @@ export default {
                 <div>
                   <div class="cont-img">
                     <img class="img" :src="restaurant.image
-                        ? `${this.$store.state.beUrl}${restaurant.image}`
-                        : `${this.$store.state.beUrl}main-image.jpg`
+                      ? `${this.$store.state.beUrl}${restaurant.image}`
+                      : `${this.$store.state.beUrl}main-image.jpg`
                       " alt="" />
                   </div>
                 </div>
@@ -113,8 +113,8 @@ export default {
                 <div>
                   <div class="cont-img">
                     <img class="img" :src="restaurant.image
-                        ? `${this.$store.state.beUrl}${restaurant.image}`
-                        : `${this.$store.state.beUrl}main-image.jpg`
+                      ? `${this.$store.state.beUrl}${restaurant.image}`
+                      : `${this.$store.state.beUrl}main-image.jpg`
                       " alt="" />
                   </div>
                 </div>
@@ -209,5 +209,19 @@ export default {
     height: 100%;
     object-fit: cover;
   }
+}
+
+
+
+// media query
+
+// visuale cellulare
+@media screen and (max-width: 600px) {
+
+  .list-rest {
+    display: block;
+    margin-left: 170px;
+  }
+
 }
 </style>
