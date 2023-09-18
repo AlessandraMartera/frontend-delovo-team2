@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    var check = false;
+
 
     // Cicla attraverso gli elementi presenti nello storage della sessione
     for (let i = 0; i < sessionStorage.length; i++) {
@@ -32,43 +32,51 @@ export default {
       this.data.product.push({ product_id: res.id, quantity: res.quantità });
     });
 
-    this.data.totale = this.$store.state.total;
-    var formData = this.data;
-    var router = this.$router
-    var arrayTeams = this.sessionItems;
 
-    var button = document.querySelector("#submit-button");
-
-    braintree.dropin.create({
-      authorization: 'sandbox_9qgbmcsx_w6h37fxfk57bn5bp',
-      selector: '#dropin-container'
-    }, function (err, instance) {
-      button.addEventListener('click', function sendOrder() {
-        // controllo se il pagamento va a buon fine
-        instance.requestPaymentMethod(function (
-          requestPaymentMethodErr,
-          payload
-        ) {
-          // Il codice per inviare l'ordine dovrebbe essere qui
-          // se l'ordine va a buon fine
-          if (payload) {
-            axios
-              .post("http://127.0.0.1:8000/api/orders", formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-              })
-              .then((res) => {
-                // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
-                router.push('/check');
-                check = true
-
-              });
-
-
-          }
-        })
-      })
-    });
   },
+  computed: {
+
+    sendOrder() {
+      this.data.totale = this.$store.state.total;
+
+      var formData = this.data;
+      var router = this.$router
+      var button = document.querySelector("#submit-button");
+
+      braintree.dropin.create({
+        authorization: 'sandbox_9qgbmcsx_w6h37fxfk57bn5bp',
+        selector: '#dropin-container'
+      }, function (err, instance) {
+        button.addEventListener('click', function sendOrder() {
+          // controllo se il pagamento va a buon fine
+          instance.requestPaymentMethod(function (
+            requestPaymentMethodErr,
+            payload
+          ) {
+            // Il codice per inviare l'ordine dovrebbe essere qui
+            // se l'ordine va a buon fine
+            if (payload) {
+              axios
+                .post("http://127.0.0.1:8000/api/orders", formData, {
+                  headers: { "Content-Type": "multipart/form-data" },
+                })
+                .then((res) => {
+                  // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
+                  router.push('/check');
+
+                });
+            }
+          })
+        })
+      });
+
+      this.$store.state.items = [];
+      sessionStorage.clear();
+
+    },
+
+
+  }
 };
 </script>
 
@@ -152,7 +160,7 @@ export default {
         <!-- <input type="submit" value="update" class="button" /> -->
         <div id="dropin-wrapper">
           <div id="dropin-container"></div>
-          <input type="submit" id="submit-button" value="submit">
+          <input type="submit" id="submit-button" value="submit" @click="sendOrder()">
         </div>
       </form>
     </div>
