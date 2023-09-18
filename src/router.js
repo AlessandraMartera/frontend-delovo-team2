@@ -4,7 +4,8 @@ import home from './pages/home.vue';
 import about from './pages/about.vue';
 
 import order from './pages/order.vue'
-import check from './pages/check.vue';
+import check from './pages/check.vue'
+
 
 const router = createRouter({
     history: createWebHistory(),

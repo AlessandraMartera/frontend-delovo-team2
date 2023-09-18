@@ -23,6 +23,8 @@ export default {
     };
   },
   mounted() {
+
+
     // Cicla attraverso gli elementi presenti nello storage della sessione
     for (let i = 0; i < sessionStorage.length; i++) {
       const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
@@ -32,25 +34,54 @@ export default {
 
     this.sessionItems.forEach((element) => {
       const res = JSON.parse(element.valore);
-      // console.log(res.quantità);
       this.data.product.push({ product_id: res.id, quantity: res.quantità });
     });
-    // console.log(this.data.quantity);
+
+
   },
-  methods: {
+  computed: {
+
     sendOrder() {
-
       this.data.totale = this.$store.state.total;
-      axios.post("http://127.0.0.1:8000/api/orders", this.data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then((res) => {
-          console.log(res);
-        });
 
-      this.$router.push('check')
+      var formData = this.data;
+      var router = this.$router
+      var button = document.querySelector("#submit-button");
+
+      braintree.dropin.create({
+        authorization: 'sandbox_9qgbmcsx_w6h37fxfk57bn5bp',
+        selector: '#dropin-container'
+      }, function (err, instance) {
+        button.addEventListener('click', function sendOrder() {
+          // controllo se il pagamento va a buon fine
+          instance.requestPaymentMethod(function (
+            requestPaymentMethodErr,
+            payload
+          ) {
+            // Il codice per inviare l'ordine dovrebbe essere qui
+            // se l'ordine va a buon fine
+            if (payload) {
+              axios
+                .post("http://127.0.0.1:8000/api/orders", formData, {
+                  headers: { "Content-Type": "multipart/form-data" },
+                })
+                .then((res) => {
+                  // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
+                  router.push('/check');
+
+                });
+            }
+          })
+        })
+      });
+
+      this.$store.state.items = [];
+      sessionStorage.clear();
+
     },
-  },
+
+
+  }
 };
 </script>
 
@@ -92,7 +123,7 @@ export default {
       </div>
 
       <!-- FORM  -->
-      <form class="container-form my-2" method="POST">
+      <form class="container-form my-2" method="POST" @submit.prevent>
         <!-- input nome -->
         <div>
           <label for="nome">Iserisci qui il tuo nome</label>
@@ -132,9 +163,15 @@ export default {
         <hr />
 
         <!-- <input type="submit" value="update" class="button" /> -->
+        <div id="dropin-wrapper">
+          <div id="dropin-container"></div>
+          <input type="submit" id="submit-button" value="submit" @click="sendOrder()">
+        </div>
+
       </form>
     </div>
     <Payment @pay="sendOrder()" />
+
 
   </div>
 </template>
