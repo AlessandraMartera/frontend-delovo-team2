@@ -21,7 +21,7 @@ export default {
 
 <template>
   <section class="typology">
-    <div class="select d-flex gap-3" @click="showDropdown">
+    <div class="select" @click="showDropdown">
       <h1>SCEGLI LA TIPOLOGIA DI RISTORANTE</h1>
       <button>&#11167;</button>
     </div>
@@ -78,6 +78,11 @@ h1 {
   -moz-box-shadow: 10px 11px 24px 6px #000000;
   -o-box-shadow: 10px 11px 24px 6px #000000;
   box-shadow: 10px 11px 24px 6px #000000;
+
+  .select {
+    display: flex;
+    gap: 30px;
+  }
 
   .section-egg {
     padding: 20px 40px;

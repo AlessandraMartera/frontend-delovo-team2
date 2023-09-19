@@ -75,7 +75,7 @@ export default {
           <router-link :to="{ name: 'about', params: { id: restaurant.id } }">
             <li class="restaurant-card">
               <h2>{{ restaurant.nome }}</h2>
-              <div class="d-flex gap-4 align-items-center">
+              <div class="cont-img-typology">
                 <div>
                   <div class="cont-img">
                     <img class="img" :src="restaurant.image
@@ -182,6 +182,12 @@ export default {
     max-width: 420px;
   }
 
+  .cont-img-typology {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
   .typology-card {
     h4 {
       color: white;
@@ -224,6 +230,29 @@ export default {
 
   .list-rest {
     justify-content: center;
+  }
+
+  .restaurant-card {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    min-height: 400px;
+    /* padding-left: 50px; /
+    / padding-top: 30px; */
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 400px;
+
+    .cont-img-typology {
+
+      display: block;
+
+      .typology-card {
+        margin-top: 20px;
+      }
+    }
   }
 
 }
