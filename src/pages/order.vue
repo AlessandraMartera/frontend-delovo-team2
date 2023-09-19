@@ -85,7 +85,7 @@ export default {
   </div>
 
   <div class="container-fluid my-2">
-    <div class="d-flex justify-content-around">
+    <div class="container-order-elements">
       <!-- PRODOTTI CARRELLO -->
       <div class="carrello">
         <div class="container-interno bg-white p-4">
@@ -122,80 +122,42 @@ export default {
         <div>
           <label for="nome">Inserisci qui il tuo nome</label>
           <br />
-          <input
-            type="text"
-            name="nome"
-            id="nome"
-            placeholder="nome"
-            v-model="this.data.nome"
-            required
-          />
+          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input
-            type="text"
-            name="indirizzo"
-            id="indirizzo"
-            placeholder="indirizzo"
-            v-model="this.data.indirizzo"
-            required
-          />
+          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
+            required />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input
-            type="text"
-            name="telefono"
-            id="telefono"
-            placeholder="telefono"
-            v-model="this.data.telefono"
-            required
-          />
+          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="email"
-            v-model="this.data.email"
-            required
-          />
+          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea
-            name="note"
-            id="note"
-            cols="30"
-            rows="10"
-            v-model="this.data.note"
-          ></textarea>
+          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
         </div>
 
         <!-- <input type="submit" value="update" class="button" /> -->
         <div id="dropin-wrapper">
           <div id="dropin-container"></div>
-          <input
-            type="submit"
-            id="submit-button"
-            value="Invia ordine"
-            @click="sendOrder"
-          />
+          <input type="submit" id="submit-button" value="Invia ordine" @click="sendOrder" />
         </div>
       </form>
     </div>
@@ -210,7 +172,7 @@ export default {
 
 .title-page {
   background-color: $CookiesAndCream;
-  width: 500px;
+  width: 50vw;
   margin: 30px auto;
   border: 3px solid black;
   border-radius: 15px;
@@ -224,42 +186,45 @@ export default {
 .container-fluid {
   min-height: 900px;
 
-  .carrello {
-    width: 580px;
-    background-size: cover;
-    padding: 20px;
+  .container-order-elements {
 
-    border-radius: 20px;
-    min-height: 800px;
+    display: flex;
+    justify-content: space-around;
 
-    .container-interno {
-      width: 600px;
-      margin-left: 60px;
+    .carrello {
+      width: 580px;
+      background-size: cover;
+
+      border-radius: 20px;
+
+      .container-interno {
+        margin-left: 60px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 20px;
+      }
+
+      .product-quantity {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .product-quantity:first-child {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .riga-piatti:first-child {
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 20px;
+      }
     }
 
-    h1 {
-      text-align: center;
-      font-size: 50px;
-      margin-bottom: 20px;
-      margin-left: 40px;
-    }
-
-    .product-quantity {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .product-quantity:first-child {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .riga-piatti:first-child {
-      display: flex;
-      justify-content: space-between;
-
-      font-size: 20px;
-    }
   }
 
   .container-form {
@@ -276,6 +241,49 @@ export default {
     .button {
       width: 100px;
     }
+  }
+}
+
+@media screen and (max-width: 1450px) {
+
+  .container-fluid {
+
+    .container-order-elements {
+
+      display: block;
+
+      .carrello {
+        margin: 0 auto;
+
+        .container-interno {
+          margin-left: 0;
+        }
+      }
+    }
+
+  }
+}
+
+
+@media screen and (max-width: 750px) {
+
+  .title-page {
+
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  .container-fluid {
+
+    .container-order-elements {
+
+      .carrello {
+        padding: 20 0;
+        width: 420px;
+      }
+    }
+
   }
 }
 </style>
