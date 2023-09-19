@@ -7,34 +7,48 @@ export default {
         return {
             links: [
                 {
-                    text: "Shop",
+                    text: "Scopri l'Ovo",
                     url: "#",
                     current: false,
+                    infos: [
+                        'Ristoranti',
+                        'Programmazione',
+                        'Altro',
+                        'Lavora con noi',
+
+                    ]
                 },
                 {
-                    text: "About",
+                    text: "Note Legali",
                     url: "#",
                     current: false,
+                    infos: [
+                        'Termini & Condizioni',
+                        'Informazioni sulla privacy',
+                        'Cookies',
+                    ]
                 },
                 {
-                    text: "Gallery",
+                    text: "Chi siamo",
                     url: "#",
                     current: false,
+                    infos: [
+                        "Informazioni su l'OVO",
+                        'Diventa partner',
+                        'Investitori',
+                        "Diventa un rider",
+                        "Città in cui lavoriamo"
+                    ]
                 },
-                // {
-                //     text: "Locations",
-                //     url: "#",
-                //     current: false,
-                // },
-                // {
-                //     text: "Journal",
-                //     url: "#",
-                //     current: false,
-                // },
                 {
-                    text: "Orders",
+                    text: "Aiuto",
                     url: "#",
                     current: false,
+                    infos: [
+                        'Contatti',
+                        'FAQ',
+                        'Tipi di cucina'
+                    ]
                 },
             ],
             developers: [
@@ -71,53 +85,35 @@ export default {
                 <div id="logo">
                     <img src="./../assets/images/Logo3.svg" alt="">
                 </div>
-                <div class="contenitore-sviluppatori">
-                    <ul class="prova">
-                        <li v-for="link in links">
-                            <h5>
-                                {{ link.text }}
-                            </h5>
+                <div class="contenitore-footer">
+                    <ul class="developer">
+                        <li v-for="link in links" class="colonna">
+                            <div class="nav">
+                                <h5>
+                                    {{ link.text }}
+                                </h5>
+                            </div>
+
                             <ul>
-                                <li>
+                                <li v-for="info in link.infos">
                                     <a href="#">
-                                        prova
+                                        {{ info }}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        prova
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        prova
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        prova
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        prova
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        prova
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
 
                     </ul>
 
-                    <ul class="prova">
-                        <li>
-                            <h5>
-                                Developed by:
-                            </h5>
+                    <ul class="developer">
+                        <li class="colonna">
+                            <div class="nav">
+                                <h5>
+                                    Developed by:
+                                </h5>
+                            </div>
+
                             <ul>
                                 <li v-for="developer in  developers ">
                                     <a :href="developer.link">
@@ -187,30 +183,49 @@ export default {
             }
 
 
-            .contenitore-sviluppatori {
+            .contenitore-footer {
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
 
 
-                .prova {
+                .developer {
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: end;
                     width: 100%;
 
-                    h5 {
-                        margin-top: 12px;
-                        font-size: 22px;
-                        font-weight: 700;
+                    .colonna {
+                        padding: 10px;
+                        margin-right: 15px;
+                        margin-left: 5px;
+                    }
+
+                    .nav {
+                        width: max-content;
+
+                        border: 2px solid black;
+
+
+                        h5 {
+
+                            font-size: 20px;
+                            font-weight: 600;
+                            padding: 5px;
+                            background-color: antiquewhite;
+                        }
+                    }
+
+                    ul {
+                        margin-top: 15px;
+                        padding: 5px;
                     }
 
                     li {
-                        font-weight: 700;
 
                         a {
-                            color: #000000;
+                            font-size: 15px;
+                            color: $CookiesAndCream;
                         }
-
                     }
                 }
 
@@ -225,5 +240,47 @@ export default {
 
 }
 
-@media screen and (max-width: 600px) {}
+@media screen and (max-width: 810px) {
+    .contenitore {
+        .footer {
+            .news {
+                .contenitore-footer {
+                    .developer {
+
+                        .colonna {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 810px) {
+
+    .contenitore {
+        .footer {
+            .news {
+                .contenitore-footer {
+                    flex-wrap: wrap;
+
+                    .developer {
+                        flex-wrap: wrap;
+                        justify-content: start;
+
+                        .colonna {
+                            min-width: 140px;
+                            margin-right: 50px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+
+}
 </style>
