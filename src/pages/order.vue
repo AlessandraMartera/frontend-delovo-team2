@@ -11,11 +11,11 @@ export default {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
       data: {
-        nome: "gargamella",
-        indirizzo: "gargamella",
-        telefono: "gargamella",
-        email: "gargamella@gargamella",
-        note: "gargamella",
+        nome: "",
+        indirizzo: "",
+        telefono: "",
+        email: "",
+        note: "",
         totale: 0,
         product: [],
       },
@@ -88,7 +88,7 @@ export default {
     <div class="container-order-elements">
       <!-- PRODOTTI CARRELLO -->
       <div class="carrello">
-        <div class="container-interno bg-white p-4">
+        <div class="container-interno p-4">
           <h1>Riepilogo carrello</h1>
           <div class="text-center py-2">
             <h6>Ristorante selezionato:</h6>
@@ -99,7 +99,7 @@ export default {
           <ul class="list-unstyled text-center">
             <li>
               <div class="row product-quantity">
-                <div class="col-5 d-flex"><strong>Prodotto</strong></div>
+                <div class="col-5"><strong>Prodotto</strong></div>
                 <div class="col-5"><strong>Quantità</strong></div>
               </div>
             </li>
@@ -151,7 +151,7 @@ export default {
         <div>
           <label for="note">note</label>
           <br />
-          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
+          <textarea name="note" id="note" rows="10" v-model="this.data.note"></textarea>
         </div>
 
         <!-- <input type="submit" value="update" class="button" /> -->
@@ -193,12 +193,17 @@ export default {
 
     .carrello {
       width: 580px;
-      background-size: cover;
-
-      border-radius: 20px;
+      padding-bottom: 50px;
 
       .container-interno {
         margin-left: 60px;
+
+
+        background-color: #e0cfb5;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+
+        border-radius: 20px;
+        border: 3px solid black;
       }
 
       h1 {
@@ -228,14 +233,15 @@ export default {
   }
 
   .container-form {
-    width: 360px;
+    width: 520px;
     margin: 0 auto;
 
     div {
       font-size: 25px;
     }
 
-    input {
+    input,
+    textarea {
       width: 100%;
       font-size: 20px;
       padding: 5px;
@@ -287,6 +293,31 @@ export default {
       }
     }
 
+    .container-form {
+      width: 420px;
+    }
   }
+}
+
+
+@media screen and (max-width: 550px) {
+
+  .container-fluid {
+    .container-order-elements {
+
+      .carrello {
+        width: 300px;
+
+        .product-quantity {
+          font-size: 30px;
+        }
+      }
+    }
+
+    .container-form {
+      width: 300px;
+    }
+  }
+
 }
 </style>
