@@ -101,6 +101,16 @@ export default {
 </script>
 
 <template>
+  <div class="button-home">
+    <router-link :to="{ name: 'home' }">
+      <button class="home">
+
+        Torna alla home
+      </button>
+    </router-link>
+  </div>
+
+
   <div class="titolo-ristorante">
     <div class="foto-titolo">
       <div class="foto">
@@ -147,6 +157,19 @@ export default {
 @use "./../styles/partials/mixins.scss" as *;
 @use "./../styles/general.scss" as *;
 
+.button-home {
+  text-align: center;
+
+  .home {
+    margin-top: 20px;
+    font-size: 2rem;
+    background: #e0cfb5;
+    color: #982931;
+
+    border-radius: 10px;
+    padding: 0 20px;
+  }
+}
 
 
 .titolo-ristorante {
@@ -166,16 +189,17 @@ export default {
   }
 
   .foto {
-    margin-top: -100px;
-    margin-left: -100px;
+    margin-top: -112px;
+    margin-left: -112px;
     margin-bottom: 30px;
-    width: 25vw;
-    height: 25vw;
-    max-width: 250px;
-    max-height: 250px;
+    width: 30vw;
+    height: 30vw;
+    max-width: 280px;
+    max-height: 280px;
     border-radius: 50%;
     background-color: white;
     border: 3px solid black;
+
 
     img {
       width: 100%;

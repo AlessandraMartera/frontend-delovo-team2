@@ -85,7 +85,7 @@ h1 {
     border: none;
     font-size: 1.5rem;
     background: #a08b80;
-
+    height: 55px;
 
   }
 
