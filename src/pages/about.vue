@@ -118,7 +118,7 @@ export default {
 
     <h1>Menu</h1>
     <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
-      <div class="col-6 card p-3" v-if="product.is_visible">
+      <div class="plate p-3" v-if="product.is_visible">
         <div class="product">
           <div class="product-details">
             <h2>{{ product.nome }}</h2>
@@ -215,8 +215,11 @@ export default {
   }
 }
 
-.card {
+.plate {
   background-color: #f8eccb;
+  max-width: 500px;
+  border-radius: 20px;
+  border: 2px solid black;
 }
 
 .product {
@@ -233,13 +236,13 @@ export default {
 }
 
 .img-plate {
-  width: 300px;
+  max-width: 300px;
   height: 200px;
   margin: 20px 0;
 
   img {
     width: 100%;
-    height: 100%;
+
     object-fit: cover;
     border-radius: 20px;
   }
