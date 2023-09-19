@@ -151,7 +151,7 @@ h1 {
   display: none;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 610px) {
 
   .typology {
     .select {
@@ -173,17 +173,16 @@ h1 {
     flex-wrap: wrap;
 
     div {
-      margin: 5px;
 
       button {
-        margin: 5px;
+        margin: 10px;
         width: 88px;
         height: 124px;
         border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
         text-align: center;
         font-size: 1rem;
 
-        border: 2px solid $richBlack;
+        border: 3px solid $richBlack;
         background-color: $skobeloff;
         color: white;
       }
