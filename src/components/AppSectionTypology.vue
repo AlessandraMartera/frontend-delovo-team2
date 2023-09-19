@@ -169,19 +169,28 @@ h1 {
 
   .cell-view-tipology {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 
     div {
       margin: 5px;
 
       button {
-        padding: 5px;
-        border-radius: 20px;
+        margin: 5px;
+        width: 88px;
+        height: 124px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        text-align: center;
+        font-size: 1rem;
+
+        border: 2px solid $richBlack;
+        background-color: $skobeloff;
+        color: white;
       }
 
       .selected {
-        color: aquamarine;
-        background-color: brown;
+        background-color: $vividAuburn;
+        color: $CookiesAndCream;
       }
     }
 
