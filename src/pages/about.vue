@@ -126,7 +126,7 @@ export default {
       </div>
     </div>
 
-    <h1>Menu</h1>
+    <h1 class="menu-title">Menu</h1>
     <div class="row my-4" v-for="(product, idx) in restaurant.products" :key="idx">
       <div class="plate p-3" v-if="product.is_visible">
         <div class="product">
@@ -224,8 +224,11 @@ export default {
     box-shadow: 10px 11px 35px 6px #000000;
     padding: 20px;
 
+
+
     h1 {
-      font-size: 40px;
+      font-weight: bold;
+      font-size: 50px;
       color: $skobeloff;
       padding-bottom: 20px;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -236,6 +239,12 @@ export default {
       font-size: 22px;
 
     }
+
+
+  }
+
+  .menu-title {
+    font-size: 70px;
   }
 
   .menu {
