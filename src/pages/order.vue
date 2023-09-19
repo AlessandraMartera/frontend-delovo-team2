@@ -1,12 +1,12 @@
 <script>
 import axios from "axios";
-import Payment from "../components/Payment.vue";
+// import Payment from "../components/Payment.vue";
 
 export default {
   name: "order",
-  components: {
-    Payment,
-  },
+  // components: {
+  //   Payment,
+  // },
   data() {
     return {
       sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
@@ -23,8 +23,6 @@ export default {
     };
   },
   mounted() {
-
-
     // Cicla attraverso gli elementi presenti nello storage della sessione
     for (let i = 0; i < sessionStorage.length; i++) {
       const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
@@ -36,51 +34,48 @@ export default {
       const res = JSON.parse(element.valore);
       this.data.product.push({ product_id: res.id, quantity: res.quantità });
     });
-
-
   },
   computed: {
-
     sendOrder() {
       this.data.totale = this.$store.state.total;
 
       var formData = this.data;
-      var router = this.$router
+      var router = this.$router;
       var button = document.querySelector("#submit-button");
+      const store = this;
 
-      braintree.dropin.create({
-        authorization: 'sandbox_9qgbmcsx_w6h37fxfk57bn5bp',
-        selector: '#dropin-container'
-      }, function (err, instance) {
-        button.addEventListener('click', function sendOrder() {
-          // controllo se il pagamento va a buon fine
-          instance.requestPaymentMethod(function (
-            requestPaymentMethodErr,
-            payload
-          ) {
-            // Il codice per inviare l'ordine dovrebbe essere qui
-            // se l'ordine va a buon fine
-            if (payload) {
-              axios
-                .post("http://127.0.0.1:8000/api/orders", formData, {
-                  headers: { "Content-Type": "multipart/form-data" },
-                })
-                .then((res) => {
-                  // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
-                  router.push('/check');
-
-                });
-            }
-          })
-        })
-      });
-
-      this.$store.state.items = [];
-      sessionStorage.clear();
-
+      braintree.dropin.create(
+        {
+          authorization: "sandbox_9qgbmcsx_w6h37fxfk57bn5bp",
+          selector: "#dropin-container",
+        },
+        function (err, instance) {
+          button.addEventListener("click", function sendData() {
+            // controllo se il pagamento va a buon fine
+            instance.requestPaymentMethod(function (
+              requestPaymentMethodErr,
+              payload
+            ) {
+              // Il codice per inviare l'ordine dovrebbe essere qui
+              // se l'ordine va a buon fine
+              if (payload) {
+                axios
+                  .post("http://127.0.0.1:8000/api/orders", formData, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                  })
+                  .then((res) => {
+                    // Dopo il completamento della chiamata Axios, esegui il reindirizzamento
+                    router.push("/check");
+                    store.$store.state.items = [];
+                    sessionStorage.clear();
+                  });
+              }
+            });
+          });
+        }
+      );
     },
-
-  }
+  },
 };
 </script>
 
@@ -93,11 +88,11 @@ export default {
     <div class="d-flex justify-content-around">
       <!-- PRODOTTI CARRELLO -->
       <div class="carrello">
-        <div class="container-interno">
-          <h1>Carrello</h1>
+        <div class="container-interno bg-white p-4">
+          <h1>Riepilogo carrello</h1>
           <div class="text-center py-2">
             <h6>Ristorante selezionato:</h6>
-            <h2>
+            <h2 v-if="this.$store.state.items.length != 0">
               {{ this.$store.state.items[0].ristorante_nome }}
             </h2>
           </div>
@@ -117,7 +112,7 @@ export default {
               </div>
             </li>
           </ul>
-          <div>Totale:{{ this.$store.state.total }}</div>
+          <h2 class="pt-3">Totale: € {{ this.$store.state.total }}</h2>
         </div>
       </div>
 
@@ -125,52 +120,85 @@ export default {
       <form class="container-form my-2" method="POST" @submit.prevent>
         <!-- input nome -->
         <div>
-          <label for="nome">Iserisci qui il tuo nome</label>
+          <label for="nome">Inserisci qui il tuo nome</label>
           <br />
-          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            placeholder="nome"
+            v-model="this.data.nome"
+            required
+          />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
-            required />
+          <input
+            type="text"
+            name="indirizzo"
+            id="indirizzo"
+            placeholder="indirizzo"
+            v-model="this.data.indirizzo"
+            required
+          />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
+          <input
+            type="text"
+            name="telefono"
+            id="telefono"
+            placeholder="telefono"
+            v-model="this.data.telefono"
+            required
+          />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
+            v-model="this.data.email"
+            required
+          />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea name="note" id="note" cols="30" rows="10" v-model="this.data.note"></textarea>
+          <textarea
+            name="note"
+            id="note"
+            cols="30"
+            rows="10"
+            v-model="this.data.note"
+          ></textarea>
         </div>
-
-        <hr />
 
         <!-- <input type="submit" value="update" class="button" /> -->
         <div id="dropin-wrapper">
           <div id="dropin-container"></div>
-          <input type="submit" id="submit-button" value="submit" @click="sendOrder()">
+          <input
+            type="submit"
+            id="submit-button"
+            value="Invia ordine"
+            @click="sendOrder"
+          />
         </div>
-
       </form>
     </div>
-
-
   </div>
 </template>
 
@@ -205,7 +233,7 @@ export default {
     min-height: 800px;
 
     .container-interno {
-      width: 400px;
+      width: 600px;
       margin-left: 60px;
     }
 

@@ -27,7 +27,7 @@ export default {
   computed: {
     total() {
       this.$store.state.total = 0;
-      console.log(this.$store.state.items);
+      // console.log(this.$store.state.items);
       this.$store.state.items.forEach((element) => {
         this.$store.state.total +=
           parseFloat(element.prezzo) * parseFloat(element.quantità);
@@ -86,47 +86,58 @@ export default {
       <h4>
         {{ this.$store.state.items[0].ristorante_nome }}
       </h4>
-    </div>
-    <ul class="pb-5">
-      <li
-        class="row py-3 mx-3 align-items-center"
-        v-for="(item, idx) in this.$store.state.items"
-        :key="idx"
-      >
-        <h3 class="col-4">
-          {{ item.nome }}
-        </h3>
-        <div
-          class="counter col-3 d-flex justify-content-center align-items-center"
+      <hr class="mt-2" />
+      <div class="mx-3 py-2 row">
+        <div class="col-4">Prodotti:</div>
+        <div class="col-3 text-center">Quantità:</div>
+        <div class="col-3 text-center">Prezzo:</div>
+      </div>
+      <hr />
+      <ul class="lista-prodotti">
+        <li
+          class="row py-2 mx-3 align-items-center"
+          v-for="(item, idx) in this.$store.state.items"
+          :key="idx"
         >
-          <button
-            class="pb-2"
-            :class="item.quantità == 1 ? 'disabled' : ''"
-            @click.prevent="removeQuantity(idx)"
+          <h3 class="col-4">
+            {{ item.nome }}
+          </h3>
+          <div
+            class="counter col-3 d-flex justify-content-center align-items-center"
           >
-            -
+            <button
+              class="pb-2 text-dark"
+              :class="item.quantità == 1 ? 'disabled' : ''"
+              @click.prevent="removeQuantity(idx)"
+            >
+              -
+            </button>
+            <span class="quantity px-3">{{ item.quantità }}</span>
+            <button class="pb-2 text-dark" @click.prevent="addQuantity(idx)">
+              +
+            </button>
+          </div>
+          <div class="price col-3 text-center">
+            € {{ (item.prezzo * item.quantità).toFixed(2) }}
+          </div>
+          <button
+            class="offset-1 col-1 btn btn-danger py-0"
+            @click="removeItem(index, item.nome)"
+          >
+            X
           </button>
-          <span class="px-3">{{ item.quantità }}</span>
-          <button class="pb-2" @click.prevent="addQuantity(idx)">+</button>
-        </div>
-        <div class="price col-2 text-center">
-          € {{ (item.prezzo * item.quantità).toFixed(2) }}
-        </div>
-        <button
-          class="offset-1 col-2 btn btn-danger py-0"
-          @click="removeItem(index, item.nome)"
-        >
-          Rimuovi
-        </button>
-      </li>
-      <li class="row py-3 mx-3 align-items-center">
-        <div class="col-7">Totale:</div>
-        <div class="col-5">{{ total }}</div>
-      </li>
-    </ul>
-
+        </li>
+      </ul>
+      <hr />
+      <div class="row py-2 mx-3 align-items-center">
+        <div class="col-4 total">Totale:</div>
+        <div class="offset-3 col-3 total">€ {{ total.toFixed(2) }}</div>
+      </div>
+      <hr />
+    </div>
+    <h2 class="text-center pt-3" v-else>Non ci sono prodotti nel carrello.</h2>
     <!-- bottoni conclusione o per svuotare il carrello -->
-    <div v-if="this.$store.state.items != 0" class="send-cart">
+    <div v-if="this.$store.state.items != 0" class="send-cart pb-2">
       <div class="d-flex justify-content-around">
         <!-- bottone per concludere l'ordine -->
         <router-link
@@ -157,11 +168,16 @@ export default {
 
 .cart {
   position: absolute;
-  width: 700px;
-  height: fit-content;
+  width: 500px;
+  height: 480p6;
   top: 200px;
   right: 200px;
-  background-color: rgb(98, 108, 129);
+  background-color: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  .lista-prodotti {
+    height: 200px;
+    overflow-y: scroll;
+  }
   .close-cart {
     font-size: 2rem;
     position: absolute;
@@ -171,19 +187,13 @@ export default {
   }
 
   .quantity {
-    width: 50px;
-  }
-
-  .send-cart {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+    font-size: 1.6rem;
   }
 
   .counter,
-  .price {
-    font-size: 1.6rem;
+  .price,
+  .total {
+    font-size: 1.3rem;
     button {
       font-size: 2.5rem;
       background-color: transparent;
