@@ -23,19 +23,31 @@ export default {
   <section class="typology">
     <div class="select d-flex gap-3" @click="showDropdown">
       <h1 class="ms-5">SCEGLI LA TIPOLOGIA DI RISTORANTE</h1>
-      <button class="py-0 px-2 rounded">&#11167;</button>
+      <button>&#11167;</button>
     </div>
 
     <!-- <AppSectionTypology /> -->
     <section v-if="showmenu" class="section-egg">
-      <div class="item" v-for="(typology, idx) in types" :key="idx">
-        <button class="uovo" @click.prevent="$emit('event', idx)"
-          :class="selectedTypes.includes(typology.nome) ? ' selected' : ''">
-          <img class="img-egg" :src="`${this.$store.state.beUrl}${typology.image}`" alt="" />
-          <span class="border px-4 py-2 rounded">
-            {{ typology.nome.toUpperCase() }}
-          </span>
-        </button>
+      <div class="desktop-view-tipology">
+        <div class="item" v-for="(typology, idx) in types" :key="idx">
+          <button class="uovo" @click.prevent="$emit('event', idx)"
+            :class="selectedTypes.includes(typology.nome) ? ' selected' : ''">
+            <img class="img-egg" :src="`${this.$store.state.beUrl}${typology.image}`" alt="" />
+            <span class="border px-4 py-2 rounded">
+              {{ typology.nome.toUpperCase() }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="cell-view-tipology">
+        <div v-for="(typology, idx) in types" :key="idx">
+          <button @click.prevent="$emit('event', idx)" :class="selectedTypes.includes(typology.nome) ? ' selected' : ''">
+            <span>
+              {{ typology.nome.toUpperCase() }}
+            </span>
+          </button>
+        </div>
       </div>
     </section>
   </section>
@@ -74,9 +86,13 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     gap: 30px;
-    // .img-egg {
-    //   filter: opacity(0.7);
-    // }
+
+  }
+
+  .desktop-view-tipology {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
 
@@ -90,7 +106,7 @@ h1 {
   }
 
   .uovo {
-    margin-left: 25px;
+    margin: 25px;
     display: block;
     width: 168px;
     height: 240px;
@@ -127,6 +143,39 @@ h1 {
     span {
       background-color: $vividAuburn;
     }
+  }
+}
+
+.cell-view-tipology {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+
+  .typology {
+    .desktop-view-tipology {
+      display: none;
+    }
+  }
+
+  .cell-view-tipology {
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+      margin: 5px;
+
+      button {
+        padding: 5px;
+        border-radius: 20px;
+      }
+
+      .selected {
+        color: aquamarine;
+        background-color: brown;
+      }
+    }
+
   }
 }
 </style>
