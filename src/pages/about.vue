@@ -20,10 +20,10 @@ export default {
     addOneProduct(item) {
       // Attivo variabile carrello in store globale
       this.$store.state.cart_visible = true;
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth", // Scorrimento fluido
-      });
+      // window.scrollTo({
+      //   top: 0,
+      //   behavior: "smooth", // Scorrimento fluido
+      // });
       if (this.$store.state.items.length > 0) {
         const cartItem = this.$store.state.items[0];
 
@@ -103,7 +103,7 @@ export default {
 <template>
   <div class="titolo-ristorante">
     <div class="foto-titolo">
-      <div class="foto d-flex">
+      <div class="foto">
         <img :src="`${this.$store.state.beUrl}${restaurant.image}`" alt="" />
       </div>
       <div class="info">
@@ -191,24 +191,26 @@ export default {
 
     text-align: center;
     width: 60%;
-    height: 180px;
+    height: fit-content;
     margin-top: -60px;
     border-radius: 20px;
     background-image: url(./../assets/images/Sfondo_titolo_ristorante.avif);
     border: 3px solid black;
     background-size: cover;
     box-shadow: 10px 11px 35px 6px #000000;
+    padding: 20px;
 
     h1 {
       font-size: 40px;
       color: $skobeloff;
-      padding: 20px;
+      padding-bottom: 20px;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     }
 
     span {
       color: bisque;
       font-size: 22px;
+
     }
   }
 
@@ -244,6 +246,7 @@ export default {
 
   img {
     width: 100%;
+    max-height: 200px;
 
     object-fit: cover;
     border-radius: 20px;
@@ -267,14 +270,15 @@ export default {
   .titolo-ristorante {
 
     .foto {
-
-      margin-top: -80px;
-      margin-left: -90px;
+      display: none;
     }
 
     .info {
 
       margin-top: -90px;
+      margin-bottom: 30px;
+
+      width: 90%;
 
       h1 {
         font-size: 30px;
