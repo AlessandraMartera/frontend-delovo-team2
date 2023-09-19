@@ -169,8 +169,10 @@ export default {
     margin-top: -100px;
     margin-left: -100px;
     margin-bottom: 30px;
-    width: 250px;
-    height: 250px;
+    width: 25vw;
+    height: 25vw;
+    max-width: 250px;
+    max-height: 250px;
     border-radius: 50%;
     background-color: white;
     border: 3px solid black;
@@ -258,5 +260,27 @@ export default {
   border-radius: 10px;
   cursor: pointer;
   font-size: 20px;
+}
+
+@media screen and (max-width:650px) {
+
+  .titolo-ristorante {
+
+    .foto {
+
+      margin-top: -80px;
+      margin-left: -90px;
+    }
+
+    .info {
+
+      margin-top: -90px;
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  }
+
 }
 </style>
