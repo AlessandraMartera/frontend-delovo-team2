@@ -22,7 +22,7 @@ export default {
 <template>
   <section class="typology">
     <div class="select d-flex gap-3" @click="showDropdown">
-      <h1 class="ms-5">SCEGLI LA TIPOLOGIA DI RISTORANTE</h1>
+      <h1>SCEGLI LA TIPOLOGIA DI RISTORANTE</h1>
       <button>&#11167;</button>
     </div>
 
@@ -61,6 +61,7 @@ export default {
 h1 {
   color: #e0cfb5;
   font-size: 3rem;
+  margin-left: 2vw;
   // text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
@@ -153,6 +154,14 @@ h1 {
 @media screen and (max-width: 480px) {
 
   .typology {
+    .select {
+
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
     .desktop-view-tipology {
       display: none;
     }

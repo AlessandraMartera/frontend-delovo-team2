@@ -54,7 +54,7 @@ h6 {
   width: 80%;
   margin: 0 auto;
   background-image: url("./assets/images/Sfondo2.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: repeat-y;
 
 }
