@@ -53,8 +53,8 @@ export default {
         </div>
 
 
-        <div class="header-menu-cell">
-          <div @click="showDropdown">
+        <div class="header-menu-cell" @click="showDropdown">
+          <div>
             <button class="rounded">&#11167;</button>
           </div>
 

@@ -152,12 +152,15 @@ export default {
 
 .cart {
   position: absolute;
-  width: 500px;
-  height: 480p6;
-  top: 200px;
-  right: 200px;
-  background-color: white;
+  width: 421px;
+  height: 480px;
+  top: 250px;
+  right: 10vw;
+  background-color: #e0cfb5;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+
+  border-radius: 20px;
+  border: 3px solid black;
 
   .lista-prodotti {
     height: 200px;
@@ -188,5 +191,14 @@ export default {
       color: white;
     }
   }
+}
+
+@media screen and (max-width: 500px) {
+
+  .cart {
+
+    right: 5px;
+  }
+
 }
 </style>
