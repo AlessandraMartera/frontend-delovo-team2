@@ -228,6 +228,9 @@ export default {
   }
 
   .container-form {
+    width: 360px;
+    margin: 0 auto;
+
     div {
       font-size: 25px;
     }
