@@ -202,7 +202,7 @@ export default {
 
 .no-restaurant {
   padding: 20px;
-  margin-bottom: 50px;
+  margin: 100px auto;
   color: $carnelian;
   background-color: rgba($color: $richBlack, $alpha: 0.7);
   border: 3px solid black;
