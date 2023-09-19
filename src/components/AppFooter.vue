@@ -21,16 +21,16 @@ export default {
                     url: "#",
                     current: false,
                 },
-                {
-                    text: "Locations",
-                    url: "#",
-                    current: false,
-                },
-                {
-                    text: "Journal",
-                    url: "#",
-                    current: false,
-                },
+                // {
+                //     text: "Locations",
+                //     url: "#",
+                //     current: false,
+                // },
+                // {
+                //     text: "Journal",
+                //     url: "#",
+                //     current: false,
+                // },
                 {
                     text: "Orders",
                     url: "#",
@@ -225,20 +225,5 @@ export default {
 
 }
 
-@media screen and (max-width: 600px) {
-    .contenitore {
-
-        .footer {
-
-
-
-            .news {
-
-                #logo {
-                    background-color: #000000;
-                }
-            }
-        }
-    }
-}
+@media screen and (max-width: 600px) {}
 </style>
