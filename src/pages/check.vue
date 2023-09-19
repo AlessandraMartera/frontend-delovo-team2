@@ -19,5 +19,7 @@ export default {
 <style>
 .container {
     height: 100vh;
+    margin-top: 130px;
+    text-align: center;
 }
 </style>
