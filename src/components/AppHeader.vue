@@ -193,7 +193,7 @@ a {
         background-size: cover;
         background-position: bottom;
         padding: 10px 15px;
-        right: 124px;
+        right: 15vw;
       }
     }
   }
