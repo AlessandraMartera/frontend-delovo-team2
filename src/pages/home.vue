@@ -233,6 +233,7 @@ export default {
   }
 
   .restaurant-card {
+    height: max-content;
     padding: 20px;
     flex-direction: column;
     align-items: center;
@@ -246,7 +247,6 @@ export default {
     width: 400px;
 
     .cont-img-typology {
-
       display: block;
 
       .typology-card {
