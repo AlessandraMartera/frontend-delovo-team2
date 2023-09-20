@@ -41,10 +41,10 @@ export default {
         </div>
 
         <div class="header-menu-desktop">
-          <a href="http://127.0.0.1:8000/register">
+          <a href="http://127.0.0.1:8000/register" target="_blank">
             <button>Registrati</button>
           </a>
-          <a href="http://127.0.0.1:8000/login">
+          <a href="http://127.0.0.1:8000/login" target="_blank">
             <button>Accedi</button>
           </a>
 
