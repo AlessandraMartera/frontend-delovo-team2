@@ -69,6 +69,7 @@ export default {
     emptyCart() {
       if (this.$store.state.items.length != 0) {
         this.$store.state.items = [];
+        this.$store.state.emptyCart = true;
         sessionStorage.clear();
       }
     },
