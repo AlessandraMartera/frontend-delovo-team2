@@ -32,12 +32,15 @@ export default {
     <nav class="background-container">
       <div class="container-header">
         <div id="logo">
-          <router-link :to="{ name: 'home' }">
+          <router-link
+            :to="{ name: 'home' }"
+            @click="this.$store.state.cart_visible = false"
+          >
             <img src="./../assets/images/Logo3.svg" alt="" />
           </router-link>
         </div>
 
-        <div class="header-menu-desktop ">
+        <div class="header-menu-desktop">
           <a href="http://127.0.0.1:8000/register">
             <button>Registrati</button>
           </a>
@@ -45,13 +48,14 @@ export default {
             <button>Accedi</button>
           </a>
 
-          <button @click="
-            this.$store.state.cart_visible = !this.$store.state.cart_visible
-            ">
+          <button
+            @click="
+              this.$store.state.cart_visible = !this.$store.state.cart_visible
+            "
+          >
             Carrello
           </button>
         </div>
-
 
         <div class="header-menu-cell" @click="showDropdown">
           <div>
@@ -59,25 +63,25 @@ export default {
           </div>
 
           <div v-if="showmenu">
-
             <div>
-
               <a href="http://127.0.0.1:8000/register">
                 <button>Registrati</button>
               </a>
               <a href="http://127.0.0.1:8000/login">
                 <button>Accedi</button>
               </a>
-              <button @click="
-                this.$store.state.cart_visible = !this.$store.state.cart_visible
-                ">
+              <button
+                @click="
+                  this.$store.state.cart_visible =
+                    !this.$store.state.cart_visible
+                "
+              >
                 Carrello
               </button>
             </div>
           </div>
         </div>
       </div>
-
     </nav>
   </header>
 </template>
@@ -119,8 +123,6 @@ header {
       align-items: center;
       width: 80%;
       margin: 0 auto;
-
-
     }
   }
 
@@ -132,7 +134,6 @@ header {
     border-radius: 10px;
     padding: 0 20px;
   }
-
 }
 
 #logo {
@@ -142,7 +143,6 @@ header {
   justify-content: center;
 
   background-color: #992631;
-
 
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
@@ -155,25 +155,19 @@ header {
   }
 }
 
-
-
 a {
   color: black;
   text-decoration: none;
 }
 
-
-// MEDIAQUERY 
-
+// MEDIAQUERY
 
 .header-menu-cell {
   display: none;
 }
 
-
 // visuale cellulare
 @media screen and (max-width: 900px) {
-
   .header-menu-desktop {
     display: none;
   }
@@ -182,9 +176,7 @@ a {
     display: block;
     z-index: 20;
 
-
     div {
-
       div {
         display: flex;
         flex-direction: column;
@@ -197,8 +189,5 @@ a {
       }
     }
   }
-
-
-
 }
 </style>
