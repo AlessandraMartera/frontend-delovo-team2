@@ -23,19 +23,21 @@ export default {
     };
   },
   mounted() {
-    // // Cicla attraverso gli elementi presenti nello storage della sessione
+    // Cicla attraverso gli elementi presenti nello storage della sessione
     // for (let i = 0; i < sessionStorage.length; i++) {
     //   const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
     //   const valore = sessionStorage.getItem(chiave); // Ottieni il valore associato alla chiave
     //   this.sessionItems.push({ chiave, valore }); // Aggiungi l'elemento all'array sessionItems
     // }
-    // this.sessionItems.forEach((element) => {
-    //   const res = JSON.parse(element.valore);
-    //   this.data.product.push({ product_id: res.id, quantity: res.quantità });
-    // });
   },
   computed: {
     sendOrder() {
+      this.$store.state.items.forEach((element) => {
+        this.data.product.push({
+          product_id: element.id,
+          quantity: element.quantità,
+        });
+      });
       this.data.totale = this.$store.state.total;
 
       var formData = this.data;
