@@ -9,7 +9,7 @@ export default {
   // },
   data() {
     return {
-      sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
+      // sessionItems: [], // Un array per immagazzinare gli elementi dello storage della sessione
       data: {
         nome: "",
         indirizzo: "",
@@ -23,17 +23,16 @@ export default {
     };
   },
   mounted() {
-    // Cicla attraverso gli elementi presenti nello storage della sessione
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
-      const valore = sessionStorage.getItem(chiave); // Ottieni il valore associato alla chiave
-      this.sessionItems.push({ chiave, valore }); // Aggiungi l'elemento all'array sessionItems
-    }
-
-    this.sessionItems.forEach((element) => {
-      const res = JSON.parse(element.valore);
-      this.data.product.push({ product_id: res.id, quantity: res.quantità });
-    });
+    // // Cicla attraverso gli elementi presenti nello storage della sessione
+    // for (let i = 0; i < sessionStorage.length; i++) {
+    //   const chiave = sessionStorage.key(i); // Ottieni il nome della chiave
+    //   const valore = sessionStorage.getItem(chiave); // Ottieni il valore associato alla chiave
+    //   this.sessionItems.push({ chiave, valore }); // Aggiungi l'elemento all'array sessionItems
+    // }
+    // this.sessionItems.forEach((element) => {
+    //   const res = JSON.parse(element.valore);
+    //   this.data.product.push({ product_id: res.id, quantity: res.quantità });
+    // });
   },
   computed: {
     sendOrder() {
@@ -103,16 +102,18 @@ export default {
                 <div class="col-5"><strong>Quantità</strong></div>
               </div>
             </li>
-            <li v-for="(item, index) in sessionItems" :key="index">
+            <li v-for="(item, index) in this.$store.state.items" :key="index">
               <div class="row riga-piatti">
-                <div class="col-5 d-flex text-nowrap">{{ item.chiave }}</div>
+                <div class="col-5 d-flex text-nowrap">{{ item.nome }}</div>
                 <div class="col-5">
-                  {{ JSON.parse(item.valore).quantità }}
+                  {{ item.quantità }}
                 </div>
               </div>
             </li>
           </ul>
-          <h2 class="pt-3">Totale: € {{ this.$store.state.total }}</h2>
+          <h2 class="pt-3">
+            Totale: € {{ this.$store.state.total.toFixed(2) }}
+          </h2>
         </div>
       </div>
 
@@ -122,42 +123,79 @@ export default {
         <div>
           <label for="nome">Inserisci qui il tuo nome</label>
           <br />
-          <input type="text" name="nome" id="nome" placeholder="nome" v-model="this.data.nome" required />
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            placeholder="nome"
+            v-model="this.data.nome"
+            required
+          />
         </div>
 
         <!-- input indirizzo -->
         <div>
           <label for="indirizzo">Dove consegnare</label>
           <br />
-          <input type="text" name="indirizzo" id="indirizzo" placeholder="indirizzo" v-model="this.data.indirizzo"
-            required />
+          <input
+            type="text"
+            name="indirizzo"
+            id="indirizzo"
+            placeholder="indirizzo"
+            v-model="this.data.indirizzo"
+            required
+          />
         </div>
 
         <!-- input telefono -->
         <div>
           <label for="telefono">Recapito telefonico</label>
           <br />
-          <input type="text" name="telefono" id="telefono" placeholder="telefono" v-model="this.data.telefono" required />
+          <input
+            type="text"
+            name="telefono"
+            id="telefono"
+            placeholder="telefono"
+            v-model="this.data.telefono"
+            required
+          />
         </div>
 
         <!-- input email -->
         <div>
           <label for="email">email</label>
           <br />
-          <input type="email" name="email" id="email" placeholder="email" v-model="this.data.email" required />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
+            v-model="this.data.email"
+            required
+          />
         </div>
 
         <!-- input per le note -->
         <div>
           <label for="note">note</label>
           <br />
-          <textarea name="note" id="note" rows="10" v-model="this.data.note"></textarea>
+          <textarea
+            name="note"
+            id="note"
+            rows="10"
+            v-model="this.data.note"
+          ></textarea>
         </div>
 
         <!-- <input type="submit" value="update" class="button" /> -->
         <div id="dropin-wrapper">
           <div id="dropin-container"></div>
-          <input type="submit" id="submit-button" value="Invia ordine" @click="sendOrder" />
+          <input
+            type="submit"
+            id="submit-button"
+            value="Invia ordine"
+            @click="sendOrder"
+          />
         </div>
       </form>
     </div>
@@ -187,7 +225,6 @@ export default {
   min-height: 900px;
 
   .container-order-elements {
-
     display: flex;
     justify-content: space-around;
 
@@ -197,7 +234,6 @@ export default {
 
       .container-interno {
         margin-left: 60px;
-
 
         background-color: #e0cfb5;
         box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
@@ -229,7 +265,6 @@ export default {
         font-size: 20px;
       }
     }
-
   }
 
   .container-form {
@@ -254,11 +289,8 @@ export default {
 }
 
 @media screen and (max-width: 1450px) {
-
   .container-fluid {
-
     .container-order-elements {
-
       display: block;
 
       .carrello {
@@ -269,24 +301,18 @@ export default {
         }
       }
     }
-
   }
 }
 
-
 @media screen and (max-width: 750px) {
-
   .title-page {
-
     h1 {
       font-size: 30px;
     }
   }
 
   .container-fluid {
-
     .container-order-elements {
-
       .carrello {
         padding: 20 0;
         width: 420px;
@@ -299,12 +325,9 @@ export default {
   }
 }
 
-
 @media screen and (max-width: 550px) {
-
   .container-fluid {
     .container-order-elements {
-
       .carrello {
         width: 300px;
 
@@ -318,6 +341,5 @@ export default {
       width: 300px;
     }
   }
-
 }
 </style>

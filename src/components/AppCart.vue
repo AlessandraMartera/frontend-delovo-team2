@@ -71,6 +71,7 @@ export default {
         this.$store.state.items = [];
         this.$store.state.emptyCart = true;
         sessionStorage.clear();
+        this.$store.state.total = 0;
       }
     },
   },
@@ -95,13 +96,22 @@ export default {
       </div>
       <hr />
       <ul class="lista-prodotti">
-        <li class="row py-2 mx-3 align-items-center" v-for="(item, idx) in this.$store.state.items" :key="idx">
+        <li
+          class="row py-2 mx-3 align-items-center"
+          v-for="(item, idx) in this.$store.state.items"
+          :key="idx"
+        >
           <h3 class="col-4">
             {{ item.nome }}
           </h3>
-          <div class="counter col-3 d-flex justify-content-center align-items-center">
-            <button class="pb-2 text-dark" :class="item.quantità == 1 ? 'disabled' : ''"
-              @click.prevent="removeQuantity(idx)">
+          <div
+            class="counter col-3 d-flex justify-content-center align-items-center"
+          >
+            <button
+              class="pb-2 text-dark"
+              :class="item.quantità == 1 ? 'disabled' : ''"
+              @click.prevent="removeQuantity(idx)"
+            >
               -
             </button>
             <span class="quantity px-3">{{ item.quantità }}</span>
@@ -112,7 +122,10 @@ export default {
           <div class="price col-3 text-center">
             € {{ (item.prezzo * item.quantità).toFixed(2) }}
           </div>
-          <button class="offset-1 col-1 btn btn-danger py-0" @click="removeItem(idx, item.nome)">
+          <button
+            class="offset-1 col-1 btn btn-danger py-0"
+            @click="removeItem(idx, item.nome)"
+          >
             X
           </button>
         </li>
@@ -129,7 +142,11 @@ export default {
     <div v-if="this.$store.state.items != 0" class="send-cart pb-2">
       <div class="d-flex justify-content-around">
         <!-- bottone per concludere l'ordine -->
-        <router-link :to="{ name: 'order' }" class="btn btn-success" @click="this.$store.state.cart_visible = false">
+        <router-link
+          :to="{ name: 'order' }"
+          class="btn btn-success"
+          @click="this.$store.state.cart_visible = false"
+        >
           Acquista
         </router-link>
 
@@ -195,11 +212,8 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-
   .cart {
-
     right: 5px;
   }
-
 }
 </style>

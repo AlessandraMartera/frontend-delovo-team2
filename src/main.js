@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 // import './style.css'
 import App from './App.vue'
-// Import vuex
+// Import vuex per store reattivo e altre funzionalità
 import { createStore } from 'vuex'
 
 
